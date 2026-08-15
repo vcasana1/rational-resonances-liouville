@@ -1,0 +1,5 @@
+Python: 3.13.5
+Executable: /opt/pyvenv/bin/python3
+NumPy: 2.3.5
+Matplotlib: 3.10.8
+mpmath: 1.3.0

@@ -1,0 +1,5 @@
+FINAL v.2 PDF render audit
+Pages: 16
+Renderer: pdfium via render_pdf.py
+Visual inspection: all 16 pages reviewed in montage; pages containing the Tao weighted lemma, numerical tables, and all three PNG figures were additionally inspected at full page size.
+No clipped text, broken glyphs, missing figures, or layout overlaps observed.

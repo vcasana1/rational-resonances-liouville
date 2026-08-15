@@ -1,0 +1,7 @@
+Bibliographic audit - FINAL v.2
+
+- Terence Tao, arXiv:1509.05422 / Forum Math. Pi 4 (2016), e8. The manuscript invokes Theorem 1.2 in its explicit two-point affine logarithmic form and then proves the residue-class weight conversion 1/(Qk+A) = (1/Q)(1/k) + O(k^-2).
+- N. Frantzikinakis, arXiv:1908.02732: Correlations of multiplicative functions along deterministic and independent sequences.
+- D. Crncevic, F. Hernandez, K. Rizk, K. Sereesuchart, R. Tao, arXiv:2211.15830 / Acta Arith. 213 (2024), 193-226: irrational-alpha Liouville logarithmic cancellation. R. Tao is Ran Tao, not Terence Tao.
+- J. Teravainen, A. Walker, arXiv:2303.12574 / Math. Z. 310 (2025), Art. 75: Theorem 1.2(3) gives existence and the zero/non-zero criterion in the rationally dependent case. In the homogeneous rational specialization alpha_1=1, alpha_2=p/q, the criterion implies non-vanishing because equality occurs for infinitely many indices divisible by q.
+- The manuscript computes the closed-form value lambda(pq)/q by isolating the proportional residue class and applying Tao's logarithmic two-point theorem to the finitely many non-proportional affine classes. It does not attribute the closed-form constant itself to the statement of Teravainen-Walker Theorem 1.2(3).

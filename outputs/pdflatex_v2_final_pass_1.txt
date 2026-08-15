@@ -1,0 +1,283 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./tex_resonant_liouville_JNT_FINAL_v2.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(./elsarticle.cls
+Document Class: elsarticle 2026/01/09, 3.5: Elsevier Ltd
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def))
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texmf/tex/latex/lm/lmodern.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texmf/tex/latex/lm/t1lmr.fd)
+No file tex_resonant_liouville_JNT_FINAL_v2.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+
+Package natbib Warning: Citation `Tao2016' on page 1 undefined on input line 85
+.
+
+
+Package natbib Warning: Citation `MRT2015' on page 1 undefined on input line 86
+.
+
+
+Package natbib Warning: Citation `Abercrombie1995' on page 1 undefined on input
+ line 87.
+
+
+Package natbib Warning: Citation `AbercrombieBanksShparlinski2009' on page 1 un
+defined on input line 88.
+
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/en
+c/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
+hare/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
+-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}]
+
+Package natbib Warning: Citation `CHRST2024' on page 2 undefined on input line 
+94.
+
+
+Package natbib Warning: Citation `TeravainenWalker2025' on page 2 undefined on 
+input line 96.
+
+
+Package natbib Warning: Citation `Frantzikinakis2020' on page 2 undefined on in
+put line 99.
+
+
+[2]
+
+LaTeX Warning: Reference `conj:affine_chowla' on page 3 undefined on input line
+ 150.
+
+
+LaTeX Warning: Reference `conj:affine_chowla' on page 3 undefined on input line
+ 157.
+
+
+Package natbib Warning: Citation `Tao2016' on page 3 undefined on input line 19
+5.
+
+
+[3]
+
+LaTeX Warning: Reference `eq:tao_weight_one_over_k' on page 4 undefined on inpu
+t line 221.
+
+
+LaTeX Warning: Reference `eq:residue_weight_expansion' on page 4 undefined on i
+nput line 222.
+
+
+LaTeX Warning: Reference `eq:weighted_tao' on page 4 undefined on input line 22
+2.
+
+
+[4]
+
+LaTeX Warning: Reference `conj:affine_chowla' on page 5 undefined on input line
+ 262.
+
+
+LaTeX Warning: Reference `prop:decomposition' on page 5 undefined on input line
+ 274.
+
+
+LaTeX Warning: Reference `conj:affine_chowla' on page 5 undefined on input line
+ 277.
+
+
+LaTeX Warning: Reference `eq:logstep_small_perturbation' on page 5 undefined on
+ input line 314.
+
+
+[5]
+
+LaTeX Warning: Reference `lem:weighted_tao' on page 6 undefined on input line 3
+28.
+
+
+Package natbib Warning: Citation `TeravainenWalker2025' on page 6 undefined on 
+input line 351.
+
+
+LaTeX Warning: Reference `eq:logstep_small_perturbation' on page 6 undefined on
+ input line 354.
+
+
+LaTeX Warning: Reference `eq:logstep_fractional_separation' on page 6 undefined
+ on input line 369.
+
+
+LaTeX Warning: Reference `lem:weighted_tao' on page 6 undefined on input line 3
+69.
+
+
+LaTeX Warning: Reference `eq:logstep_tail_mass' on page 6 undefined on input li
+ne 371.
+
+
+[6]
+
+LaTeX Warning: Reference `conj:affine_chowla' on page 7 undefined on input line
+ 380.
+
+
+LaTeX Warning: Reference `eq:perturbedfloor' on page 7 undefined on input line 
+420.
+
+
+LaTeX Warning: Reference `eq:perturbedfloor' on page 7 undefined on input line 
+439.
+
+
+[7]
+
+LaTeX Warning: Reference `lem:macroscopic' on page 8 undefined on input line 45
+5.
+
+
+LaTeX Warning: Reference `thm:fixed' on page 8 undefined on input line 484.
+
+
+[8]
+
+LaTeX Warning: Reference `conj:affine_chowla' on page 9 undefined on input line
+ 499.
+
+
+LaTeX Warning: Reference `thm:profile' on page 9 undefined on input line 517.
+
+
+[9]
+
+LaTeX Warning: Reference `thm:naturalmajority' on page 10 undefined on input li
+ne 553.
+
+
+LaTeX Warning: Reference `eq:logmajority' on page 10 undefined on input line 60
+3.
+
+
+LaTeX Warning: Reference `thm:logmajority' on page 10 undefined on input line 6
+07.
+
+
+[10]
+
+LaTeX Warning: Reference `thm:logmajority' on page 11 undefined on input line 6
+18.
+
+
+[11]
+[12]
+[13 <./rational_resonances_X2000000.png> <./rational_local_profile_3_over_2.png
+>]
+
+LaTeX Warning: Reference `thm:naturalmajority' on page 14 undefined on input li
+ne 738.
+
+(/usr/share/texmf/tex/latex/lm/t1lmtt.fd)
+[14]
+[15 <./logarithmic_mesoscopic_m2_X10000000.png>]
+
+Package natbib Warning: There were undefined citations.
+
+
+[16] (./tex_resonant_liouville_JNT_FINAL_v2.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `tex_resonant_liouville_JNT_FINAL_v2.out' 
+has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/ty
+pe1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></u
+sr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/p
+ublic/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/shar
+e/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm
+/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb
+></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1
+/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/
+share/texmf/fonts/type1/public/lm/lmri7.pfb></usr/share/texmf/fonts/type1/publi
+c/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lm
+tt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb>
+Output written on tex_resonant_liouville_JNT_FINAL_v2.pdf (16 pages, 582788 byt
+es).
+Transcript written on tex_resonant_liouville_JNT_FINAL_v2.log.

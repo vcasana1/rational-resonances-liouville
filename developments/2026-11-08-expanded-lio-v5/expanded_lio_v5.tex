@@ -1,0 +1,1941 @@
+\documentclass[preprint,12pt]{elsarticle}
+
+\journal{Journal of Number Theory}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[pagebackref=true]{hyperref}
+\usepackage{bookmark}
+\usepackage{pdfcomment}
+
+% Hover previews for internal references (no layout change).
+\makeatletter
+\let\CG@origref\ref
+\let\CG@origeqref\eqref
+\newcommand{\CG@gettip}[1]{\@ifundefined{CGTip@#1}{Reference: #1}{\csname CGTip@#1\endcsname}}
+\DeclareRobustCommand{\CGref}[1]{\pdftooltip{\CG@origref{#1}}{\CG@gettip{#1}}}
+\DeclareRobustCommand{\CGeqref}[1]{\pdftooltip{\CG@origeqref{#1}}{\CG@gettip{#1}}}
+\expandafter\gdef\csname CGTip@rem:logical_status\endcsname{Remark - Logical status of the results: The results of this paper fall into four classes. ; [(A)] Conditional on Conjecture\textasciitilde{}[conj:affine\_chowla]: Lemma\textasciitilde{}[lem:macroscopic], Theorem\textasciitilde{}[thm:fixed], Theorem\textasciitilde{}[thm:profile] and Corollary\textasciitilde{}[cor:integer], as stated in Sections\textasciitilde{}[sec:rational]--[sec:integer]. ; [(B)] Unconditional, by exact identities or classical and logarithmic inputs: Lemma\textasciitilde{}[lem:weighted\_tao] and Theorem\textasciitilde{}[thm:logstep] (via Tao's logarithmic two-point theorem), Proposition\textasciitilde{}[prop:decomposition], Theorems\textasciitilde{}[thm:naturalmajority] and [thm:logmajority], Proposition\textasciitilde{}[prop:left], Lemma\textasciitilde{}[lem:floor\_k], Theorem\textasciitilde{}[thm:dec\_k], Lemma\textasciitilde{}[lem:len\_k], Theorem\textasciitilde{}[thm:suf\_k](1), Theorem\textasciitilde{}[thm:integer\_k], Theorem\textasciitilde{}[thm:nec\_k] (an implication), Theorem\textasciitilde{}[thm:log\_k] (via Tao--Ter"av"ainen), and Propositions\textasciitilde{}[prop:barrier\_poly], [prop:barrier\_pos], Lemma\textasciitilde{}[lem:vonneumann], Proposition\textasciitilde{}[prop:local\_control], Lemma\textasciitilde{}[lem:expansion\_k] in Section\textasciitilde{}9. ; [(C)] ...}
+\expandafter\gdef\csname CGTip@lem:expansion_k\endcsname{Lemma - The k-linear expansion of the centering error: Let kge2, lge1, binmathbb Z, and let B be so large that every prime of mathcal S exceeds l. Let mathcal D be an admissible family with interval (H,tau H], let |a\_d|le1, let varphi be the smooth cutoff of [eq:gk] with widehatvarphi(t)=intvarphi(s)e(-ts) ds, and define [ R\_B(X)=sum\_substackxle X xequiv b (l)sum\_dinmathcal Da\_dA\textasciicircum{}omega\_mathcal C(d)mathbf 1\_dmid xprod\_i=0\textasciicircum{}k-1lambda(x+h\_id)w\_d(x+h\_id), ] and C\_B(X) by the same expression with A\textasciicircum{}omega\_mathcal C(d)mathbf 1\_dmid xprod\_iw\_d(x+h\_id) replaced by g\textasciicircum{}(k)\_d(x). Then limsup\_Xtoinftyfrac|R\_B(X)-C\_B(X)|Xle|widehatvarphi|\_1\textasciicircum{}k L\_0 supmathcal E\_k , where the supremum is over all M with P\_0/taule Mle e\textasciicircum{}C\_0B, all coefficients |c\_w|le1 supported on P\_0-rough integers of (M,tau M], all residue classes bar b modulo l, and all real t\_1,dots,t\_k-1, of the quantity mathcal E\_k of [eq:E\_k] with [ b\_0(z)=mathbf 1\_zequivbar b (l) lambda(z) ...}
+\expandafter\gdef\csname CGTip@eq:Ek_exponent\endcsname{Equation: B\textasciicircum{}varepsilon/2(log B)\textasciicircum{}K+1/2B\textasciicircum{}-varrho(1-varepsilon)=B\textasciicircum{}-1-varepsiloncdot(log B)\textasciicircum{}K+1/2 B\textasciicircum{}-(varrho(1-varepsilon)-1-frac32varepsilon) .}
+\expandafter\gdef\csname CGTip@eq:expansion_k\endcsname{Equation: limsup\_Xtoinftyfrac|R\_B(X)-C\_B(X)|Xle|widehatvarphi|\_1\textasciicircum{}k L\_0 supmathcal E\_k ,}
+\expandafter\gdef\csname CGTip@conj:affine_chowla\endcsname{Conjecture - Standard fixed two-point affine Chowla: Let a\_1,a\_2inmathbb N and b\_1,b\_2inmathbb Z be fixed, with the two affine forms positive for all sufficiently large n and a\_1b\_2-a\_2b\_1ne0. Then sum\_substacknle Y a\_1n+b\_1ge1, a\_2n+b\_2ge1lambda(a\_1n+b\_1)lambda(a\_2n+b\_2)=o(Y).}
+\expandafter\gdef\csname CGTip@lem:macroscopic\endcsname{Lemma - Macroscopic subintervals: Assume Conjecture\textasciitilde{}[conj:affine\_chowla] for a fixed pair of affine forms. If 0le A\_Xle B\_X, A\_X/Xto A and B\_X/Xto B with 0le Ale B<infty, then [ sum\_substackA\_X<nle B\_X a\_1n+b\_1ge1, a\_2n+b\_2ge1lambda(a\_1n+b\_1)lambda(a\_2n+b\_2)=o(X). ]}
+\expandafter\gdef\csname CGTip@lem:weighted_tao\endcsname{Lemma - Affine logarithmic cancellation with residue-class weight: Let A\_1,A\_2,Qinmathbb N and B\_1,B\_2,Ainmathbb Z be fixed. Assume that the affine forms A\_1k+B\_1 and A\_2k+B\_2 are positive for all sufficiently large k and are non-proportional: A\_1B\_2-A\_2B\_1ne0. If Qk+A>0 for all sufficiently large k, then sum\_substack1le kle K A\_1k+B\_1ge1, A\_2k+B\_2ge1 Qk+Age1 (lambda(A\_1k+B\_1)lambda(A\_2k+B\_2))/(Qk+A) =o(log K).}
+\expandafter\gdef\csname CGTip@rem:status_conj\endcsname{Remark - Status of Conjecture\textasciitilde{}[conj:affine\_chowla]: For non-negative intercepts, Conjecture\textasciitilde{}[conj:affine\_chowla] is now [ref], an unrefereed preprint, with a power-of-logarithm saving at every real cutoff; negative intercepts reduce to that case by a fixed shift (Lemma\textasciitilde{}[lem:macro\_rate]). Sections\textasciitilde{}[sec:rational]--[sec:integer] are kept in their original conditional formulation; the unconditional statements are collected in Section\textasciitilde{}[sec:unconditional].}
+\expandafter\gdef\csname CGTip@prop:decomposition\endcsname{Proposition - Exact residue-class decomposition: Let (p,q)=1 and Xinmathbb N. Then C\_X (logfrac pq)  = lambda(pq)lfloorfrac Xqrfloor nonumber   + sum\_a=1\textasciicircum{}q-1 sum\_substackkge0 1le qk+ale X pk+lfloor pa/qrfloorge1 lambda(qk+a) lambda (pk+lfloor(pa)/(q)rfloor). For every ane0 the two affine forms in the inner sum are non-proportional.}
+\expandafter\gdef\csname CGTip@thm:fixed\endcsname{Theorem - Fixed rational natural resonance: Assume Conjecture\textasciitilde{}[conj:affine\_chowla]. Then frac1X C\_X (logfrac pq)longrightarrowfraclambda(pq)q. For q=1 the exact identity C\_X(log p)=lambda(p)X holds for every Xinmathbb N.}
+\expandafter\gdef\csname CGTip@thm:logstep\endcsname{Theorem - Logarithmic microscopic step: Let (p,q)=1 and let cinmathbb R be fixed. Then C\_X\textasciicircum{}log (logfrac pq+frac cX) longrightarrow fraclambda(pq)q mathbf 1\_cge0 unconditionally.}
+\expandafter\gdef\csname CGTip@thm:profile\endcsname{Theorem - Rational natural microscopic profile: Assume Conjecture\textasciitilde{}[conj:affine\_chowla].par Let (p,q)=1 and fix cinmathbb R. Then frac1X C\_X (logfrac pq+frac cX) longrightarrow Psi\_p,q(c), where Psi\_p,q(c)= 0, c<0, [1mm] dfraclambda(pq)q, 0le cle q/p, [3mm] (lambda(pq))/(pc), c>q/p. For c>0, Psi\_p,q(c)= lambda(pq)min (frac1q,frac1pc).}
+\expandafter\gdef\csname CGTip@cor:integer\endcsname{Corollary - Integer profile and exact right-hand plateau: Assume Conjecture\textasciitilde{}[conj:affine\_chowla]. For fixed mge2, frac1X C\_X (log m+frac cX) longrightarrow 0, c<0, lambda(m), 0le cle1/m, lambda(m)/(mc), c>1/m. Moreover, for every fixed 0<c<1/m, C\_X (log m+frac cX)=lambda(m)X for all sufficiently large X.}
+\expandafter\gdef\csname CGTip@thm:naturalmajority\endcsname{Theorem - Unconditional right-hand natural majority window: Let mge1 and 0<c<2/m. Then liminf\_Xtoinfty lambda(m)frac1X C\_X (log m+frac cX) ge 2min (1,frac1mc)-1>0.}
+\expandafter\gdef\csname CGTip@thm:logmajority\endcsname{Theorem - Unconditional logarithmic mesoscopic majority: Let (p,q)=1 and let c\_X>0 satisfy (log c\_X)/(log X)longrightarrowtheta, 0letheta<1. Then liminf\_Xtoinfty lambda(pq) C\_X\textasciicircum{}log (logfrac pq+(c\_X)/(X)) ge frac2(1-theta)q-1. In particular, when q=1 and theta<1/2, writing m=p, liminf\_Xtoinfty lambda(m)C\_X\textasciicircum{}log (log m+(c\_X)/(X)) ge1-2theta>0.}
+\expandafter\gdef\csname CGTip@eq:o30\endcsname{Equation: C\_X\textasciicircum{}log (log m+(c\_X)/(X))tolambda(m)}
+\expandafter\gdef\csname CGTip@eq:o31\endcsname{Equation: Xm(e\textasciicircum{}1/(mX)-1) = 1+frac12mX+O(X\textasciicircum{}-2)>1.}
+\expandafter\gdef\csname CGTip@prop:left\endcsname{Proposition - Exact left-hand c-independence interval: Let mge2 and fix -1/m<c<0. For all sufficiently large X, C\_X (log m+frac cX) = sum\_nle Xlambda(n)lambda(mn-1). This states exact independence with respect to c on that finite interval. At this point Theorem\textasciitilde{}[thm:oai] is not used, and no asymptotic value of the right-hand sum is asserted here; Corollary\textasciitilde{}[cor:uncond] later bounds it by O(X(log X)\textasciicircum{}-kappa).}
+\expandafter\gdef\csname CGTip@eq:o33\endcsname{Equation: clongmapsto C\_X (log m+frac cX)}
+\expandafter\gdef\csname CGTip@thm:oai\endcsname{Theorem: [Ordinary two-point affine Chowla [ref]] There is an absolute constant kappa>0 with the following property. Let a\_1,a\_2ge1 and b\_1,b\_2ge0 be fixed integers with a\_1b\_2-a\_2b\_1ne0. Then there is C=C\_a\_1,a\_2,b\_1,b\_2 such that |sum\_nle Xlambda(a\_1n+b\_1)lambda(a\_2n+b\_2)|le C fracX(log X)\textasciicircum{}kappa (Xge3, Xinmathbb R).}
+\expandafter\gdef\csname CGTip@lem:macro_rate\endcsname{Lemma - Macroscopic blocks with a rate: Let alpha\_1,alpha\_2ge1 and beta\_1,beta\_2inmathbb Z be fixed with alpha\_1beta\_2-alpha\_2beta\_1ne0. Let 0le Ale B<infty be fixed and A\_X=AX+O(1), B\_X=BX+O(1). Then sum\_substackA\_X<kle B\_X alpha\_1k+beta\_1ge1, alpha\_2k+beta\_2ge1lambda(alpha\_1k+beta\_1)lambda(alpha\_2k+beta\_2)=O(fracX(log X)\textasciicircum{}kappa).}
+\expandafter\gdef\csname CGTip@thm:profile_uncond\endcsname{Theorem - Rational natural microscopic profile, unconditional: Let (p,q)=1 and fix cinmathbb R. Then frac1X C\_X (logfrac pq+frac cX)=Psi\_p,q(c)+O\_p,q,c((log X)\textasciicircum{}-kappa), with Psi\_p,q as in [eq:profile] and kappa the absolute constant of Theorem\textasciitilde{}[thm:oai].}
+\expandafter\gdef\csname CGTip@cor:uncond\endcsname{Corollary - Unconditional forms of Theorem\textasciitilde{}[thm:fixed], Corollary\textasciitilde{}[cor:integer] and Proposition\textasciitilde{}[prop:left]: Let (p,q)=1 and mge2. ; C\_X(log(p/q))=lambda(pq)X/q+O(X(log X)\textasciicircum{}-kappa). ; The limit in Corollary\textasciitilde{}[cor:integer] holds unconditionally, with error term O\_m,c((log X)\textasciicircum{}-kappa). ; For fixed -1/m<c<0 and all sufficiently large X, C\_X (log m+frac cX)=sum\_nle Xlambda(n)lambda(mn-1)=O(frac X(log X)\textasciicircum{}kappa).}
+\expandafter\gdef\csname CGTip@rem:trivial_resonance\endcsname{Remark - The trivial resonance is binary Chowla: Take p=q=1 and fix -1<c<0. Since X(1-e\textasciicircum{}c/X)to|c|<1, for Xge X\_0(c) one has 0<n(1-e\textasciicircum{}c/X)<1 for every nle X, hence lfloor e\textasciicircum{}c/Xnrfloor=n-1, and the term n=1 is omitted by definition. Thus, for every Xge X\_0(c), C\_X (frac cX)=sum\_2le nle Xlambda(n-1)lambda(n), while Psi\_1,1(c)=0. The profile of Theorem\textasciitilde{}[thm:profile] at the single point (p,q,c)=(1,1,c) is therefore, for every large X and not only in the limit, the shift-one Chowla sum. No argument that avoids two-point input can produce Theorem\textasciitilde{}[thm:profile]; the residue-class decomposition isolates the main term exactly, and the remainder is a finite set of fixed binary correlations, which Theorem\textasciitilde{}[thm:oai] controls.}
+\expandafter\gdef\csname CGTip@lem:floor_k\endcsname{Lemma - Floors on residue classes: For n=Lm+ale X, lfloor e\textasciicircum{}u\_inrfloor=A\_im+b\_a,i+r\_i(n), r\_i(n):=lfloortheta\_a,i+delta\_inrfloor, and |r\_i(n)|le(p\_i)/(q\_i)|c\_i|e\textasciicircum{}|c\_i|+1. In particular r\_i(n) ranges over a finite set R\_i depending only on (p\_i,q\_i,c\_i).}
+\expandafter\gdef\csname CGTip@def:classes\endcsname{Definition - Proportionality classes: For fixed (a,r) write f\_a,r,i(m)=mathcal A\_im+mathcal B\_i, let d\_i:=gcd(mathcal A\_i,|mathcal B\_i|) (with gcd(mathcal A,0)=mathcal A), and let (alpha\_i,beta\_i):=(mathcal A\_i,mathcal B\_i)/d\_i, a primitive vector with alpha\_ige1. Declare isim j if (alpha\_i,beta\_i)=(alpha\_j,beta\_j), equivalently mathcal A\_imathcal B\_j=mathcal A\_jmathcal B\_i. For a class mathcal C let g\_mathcal C(m):=alpha\_mathcal Cm+beta\_mathcal C be its primitive form, let Odd(a,r) be the set of classes of odd cardinality and k'(a,r):=|Odd(a,r)|. The block is resonant if k'(a,r)=0. Put varepsilon\_a,r:=lambda(d\_0d\_1cdots d\_k-1)inpm1.}
+\expandafter\gdef\csname CGTip@thm:dec_k\endcsname{Theorem - Exact decomposition of the k-point family: For every Xge1 and every choice [eq:uk], C\textasciicircum{}(k)\_X(u)=sum\_substack(a,r) k'(a,r)=0varepsilon\_a,r |I\_a,r(X)| +sum\_substack(a,r) k'(a,r)ge1varepsilon\_a,rsum\_min I\_a,r(X) prod\_mathcal CinOdd(a,r)lambda(g\_mathcal C(m)). The forms g\_mathcal C, mathcal CinOdd(a,r), are primitive, pairwise non-proportional and positive on I\_a,r(X), and k'(a,r)equiv kpmod 2.}
+\expandafter\gdef\csname CGTip@lem:len_k\endcsname{Lemma - Block lengths: Let J\_a,r(c)subseteq[0,1] be the set of t with r\_iletheta\_a,i+(p\_ic\_i)/(q\_i)t<r\_i+1 for all i. It is an interval, possibly empty, and |I\_a,r(X)|=frac XL|J\_a,r(c)|+O\_p,q,c(1). More precisely, m: min I\_a,r(X)=(A\_X,B\_X]capmathbb Z with A\_X=AX+O(1), B\_X=BX+O(1) for fixed Ale B.}
+\expandafter\gdef\csname CGTip@def:profile_k\endcsname{Definition - k-point profile: Psi\textasciicircum{}(k)\_p,q(c):=frac1Lsum\_substack(a,r) k'(a,r)=0varepsilon\_a,r |J\_a,r(c)| . For odd k there are no resonant blocks, since k'equiv kpmod2, and Psi\textasciicircum{}(k)equiv0.}
+\expandafter\gdef\csname CGTip@rem:k2\endcsname{Remark - k=2: For k=2, L=q, and 0sim1 holds if and only if qmid a and r=0, that is (a,r)=(0,0), with d\_0=q, d\_1=p, varepsilon\_0,0=lambda(pq), and |J\_0,0(c)|=min(1,q/(pc)) for cge0, |J\_0,0(c)|=0 for c<0. Definition\textasciitilde{}[def:profile\_k] recovers Psi\_p,q of Theorem\textasciitilde{}[thm:profile], and Theorem\textasciitilde{}[thm:dec\_k] recovers the block structure of its proof.}
+\expandafter\gdef\csname CGTip@thm:suf_k\endcsname{Theorem - Sufficiency: In [eq:dec\_k]: ; the pieces with k'(a,r)=1 are O\_p,q,c(Xexp(-c\_0sqrtlog X)) for an absolute c\_0>0; ; the pieces with k'(a,r)=2 are O\_p,q,c(X(log X)\textasciicircum{}-kappa); ; if Ch\_k' holds for every 3le k'le k with k'equiv kpmod2, then frac1XC\textasciicircum{}(k)\_X(u)longrightarrowPsi\textasciicircum{}(k)\_p,q(c) (Xtoinfty).}
+\expandafter\gdef\csname CGTip@prop:criterion\endcsname{Proposition - Exact criterion for unconditional closure: Fix (p,q,c). If every block (a,r) with |J\_a,r(c)|>0 has k'(a,r)le2, then [eq:limit\_k] holds unconditionally, with error O((log X)\textasciicircum{}-kappa). Conversely, if some block with |J\_a,r(c)|>0 has k'(a,r)ge3, then Theorem\textasciitilde{}[thm:suf\_k](1),(2) do not cover it, and [eq:limit\_k] at (p,q,c) is equivalent to the statement that the sum over all such blocks is o(X); it does not follow that each block separately satisfies its k'-point estimate.}
+\expandafter\gdef\csname CGTip@ex:k4\endcsname{Example - k=4, closed unconditionally: Take (p\_i/q\_i)=(2,3,6) and c=(1,c\_2,1) with 0<c\_2<tfrac13. Then L=1, a=0, r\_2=0 on [0,1], r\_1=lfloor2trfloor and r\_3=lfloor6trfloor. The blocks in t=n/X, with the proportionality classes of the forms (m, 2m+r\_1, 3m, 6m+r\_3) indexed 0,1,2,3, are: small hline t   r   classes   piece hline [0,tfrac16)   (0,0,0)   0,1,2,3   resonant, varepsilon=lambda(36)=1 [tfrac16,tfrac13)   (0,0,1)   0,1,2,3   lambda(6)lambda(m)lambda(6m+1), k'=2 [tfrac13,tfrac12)   (0,0,2)   0,1,2,3   lambda(12)lambda(m)lambda(3m+1), k'=2 [tfrac12,tfrac23)   (1,0,3)   0,2,1,3   resonant, varepsilon=lambda(9)=1 [tfrac23,tfrac56)   (1,0,4)   0,2,1,3   lambda(6)lambda(2m+1)lambda(3m+2), k'=2 [tfrac56,1)   (1,0,5)   0,2,1,3   lambda(3)lambda(2m+1)lambda(6m+5), k'=2 hline By Proposition\textasciitilde{}[prop:criterion], unconditionally, frac1X C\textasciicircum{}(4)\_X(log2+frac1X, log3+fracc\_2X, log6+frac1X)=frac13+O((log X)\textasciicircum{}-kappa). The second plateau ...}
+\expandafter\gdef\csname CGTip@thm:integer_k\endcsname{Theorem - Integer resonances at level k: Let m\_1,dots,m\_k-1ge1 be integers and u\_i=log m\_i+c\_i/X. ; If 0<c\_i<1/m\_i for all i, then for Xge X\_0(m,c) C\textasciicircum{}(k)\_X(u)=lambda(m\_1cdots m\_k-1)sum\_nle Xlambda(n)\textasciicircum{}k= lambda(m\_1cdots m\_k-1)lfloor Xrfloor,  k even, [1mm] O(Xe\textasciicircum{}-c\_0sqrtlog X),  k odd. ; If k is even and c\_i>0 for all i, then liminf\_Xtoinfty lambda(m\_1cdots m\_k-1)fracC\textasciicircum{}(k)\_X(u)X ge 2min(1,frac1max\_im\_ic\_i)-1 . ; If -1/m\_i<c\_i<0 for all i, then for Xge X\_0(m,c) C\textasciicircum{}(k)\_X(u)=sum\_substacknle X m\_in-1ge1 forall ilambda(n)prod\_i=1\textasciicircum{}k-1lambda(m\_in-1). No Chowla input is used.}
+\expandafter\gdef\csname CGTip@cor:level3_23\endcsname{Corollary - Level three at (2,3) is ordinary three-point Chowla: For every c=(c\_1,c\_2)in(-tfrac12,0)times(-tfrac13,0) and every Xge X\_0(c), C\textasciicircum{}(3)\_X(log2+fracc\_1X, log3+fracc\_2X) =sum\_nle Xlambda(n)lambda(2n-1)lambda(3n-1)  =sum\_substack3le Mle 6X-3 Mequiv3 (mod 6)lambda(M)lambda(M+1)lambda(M+3), while Psi\textasciicircum{}(3)equiv0. Consequently the level-three profile on this open set of c, for all large X, is equivalent to sum\_substackMle Y Mequiv3 (mod 6)lambda(M)lambda(M+1)lambda(M+3)=o(Y).}
+\expandafter\gdef\csname CGTip@thm:nec_k\endcsname{Theorem - Necessity: Fix kge2 and a\_1,dots,a\_k-1ge1. For rinmathbb Z\_ge0\textasciicircum{}k-1 put P\_r(Y):=sum\_mle Ylambda(m)prod\_i=1\textasciicircum{}k-1lambda(a\_im+r\_i), pi\_r:=varepsilon\_0,r mathbf 1[k'(0,r)=0], with the classes of Definition\textasciitilde{}[def:classes] for (p\_i,q\_i)=(a\_i,1). Suppose that [eq:limit\_k] holds for (p\_i,q\_i)=(a\_i,1) and every cin(0,infty)\textasciicircum{}k-1. Then P\_r(Y)=pi\_rY+o(Y) for every rinmathbb Z\_ge0\textasciicircum{}k-1. In particular, if the forms m,a\_1m+r\_1,dots,a\_k-1m+r\_k-1 are pairwise non-proportional, then P\_r(Y)=o(Y).}
+\expandafter\gdef\csname CGTip@thm:log_k\endcsname{Theorem - Odd levels, logarithmic average: Let kge3 be odd. For every rational resonance [eq:uk] and every cinmathbb R\textasciicircum{}k-1, C\textasciicircum{}(k),log\_X(u)to0.}
+\expandafter\gdef\csname CGTip@prop:barrier_poly\endcsname{Proposition - Polynomial-phase barrier, all kge3: Let kge3, 0=h\_0<h\_1<dots<h\_k-1, V:=prod\_0le j<lle k-1(h\_l-h\_j) and R\_i:=Vprod\_jne i(h\_i-h\_j)\textasciicircum{}-1inmathbb Zsetminus0. Let beta be irrational and b\_i(m):=e(beta R\_im\textasciicircum{}k-1). Then: ; for every integer Dge1, uniformly in alphainmathbb R, limsup\_Ytoinftyfrac1DYint\_0\textasciicircum{}Y|sum\_y<mle y+Db\_i(m)e(alpha m)| dyle D\textasciicircum{}-1/2; ; prod\_i=0\textasciicircum{}k-1b\_i(z+h\_iw)=e(beta Vw\textasciicircum{}k-1) for all z,w; hence with c\_w:=e(-beta Vw\textasciicircum{}k-1)mathbf 1[w is P\_0-rough], frac1Ysum\_zle Yb\_0(z)sum\_M<wletau M(c\_w)/(w)prod\_i=1\textasciicircum{}k-1b\_i(z+h\_iw)=fraclfloor YrfloorYsum\_substackM<wletau M w P\_0-roughfrac1w . For P\_0le Mle P\_0\textasciicircum{}2/tau, a range contained in that of [eq:oai124], every P\_0-rough integer of (M,tau M] is prime, and the right-hand side of [eq:barrier\_poly\_E] is sum\_M<pletau M1/pge(tau-1)/(3taulog(tau M))gg\_tau B\textasciicircum{}-1+varepsilon for large B, which exceeds B\textasciicircum{}-1-varepsilon by the factor B\textasciicircum{}2varepsilon. Thus [eq:E\_k] does not follow from [eq:oai127], the ...}
+\expandafter\gdef\csname CGTip@prop:barrier_pos\endcsname{Proposition - Barrier for non-negative coefficients, k=3: Let 0<h\_1<h\_2, rho:=h\_1h\_2(h\_1-h\_2), tauin(1,2), H,D\textasciicircum{}*ge1, and let q be a prime with qgemax(2h\_2+1, 7h\_2(D\textasciicircum{}*+1)\textasciicircum{}3, 6|rho|tau\textasciicircum{}2H\textasciicircum{}2). Put b\_0(m)=e((h\_1-h\_2)m\textasciicircum{}2/q), b\_1(m)=e(h\_2m\textasciicircum{}2/q), b\_2(m)=e(-h\_1m\textasciicircum{}2/q). Then: ; for integers 1le Dle D\textasciicircum{}* and every alpha, limsup\_Ytoinftyfrac1DYint\_0\textasciicircum{}Y|sum\_y<mle y+Db\_i(m)e(alpha m)|dyle(3+log q)/(D); ; for Mle H and every c\_wge0 supported on (M,tau M], liminf\_Ytoinfty Re frac1Ysum\_zle Yb\_0(z) sum\_M<wletau M(c\_w)/(w)b\_1(z+h\_1w)b\_2(z+h\_2w)  ge frac12sum\_M<wletau M(c\_w)/(w).}
+\expandafter\gdef\csname CGTip@def:local_gowers\endcsname{Definition - Local Gowers norm: For an integer Dge2 let N\_D be the least prime >4D. For b:mathbb Ntomathbb C and yge0 define G\_y:mathbb Z\_N\_Dtomathbb C by G\_y(x)=b(lfloor yrfloor+x) for xin1,dots,2D+1 and G\_y(x)=0 for the other residues, and put |b|\_U\textasciicircum{}s(y;D):=|G\_y|\_U\textasciicircum{}s(mathbb Z\_N\_D).}
+\expandafter\gdef\csname CGTip@lem:vonneumann\endcsname{Lemma - Generalised von Neumann inequality: Let kge2, 0=h\_0<h\_1<dots<h\_k-1, N>h\_k-1 prime, and g\_0,dots,g\_k-1:mathbb Z\_Ntomathbb C with |g\_i|le1. Then |mathbb E\_z,winmathbb Z\_Nprod\_i=0\textasciicircum{}k-1g\_i(z+h\_iw)|le|g\_k-1|\_U\textasciicircum{}k-1.}
+\expandafter\gdef\csname CGTip@prop:local_control\endcsname{Proposition - Local U\textasciicircum{}k control of the k-point centering error: Let kge3, 0=h\_0<h\_1<dots<h\_k-1, tauin(1,2), Mge1, mathcal J=(M,tau M], |c\_w|le1 for winmathcal J, varpi:=sum\_winmathcal J|c\_w|/w, and D:=lceil h\_k-1tau Mrceil. There is C=C(h\_k-1) such that for all b\_0,dots,b\_k-1:mathbb Ntomathbb C with |b\_i|le1 and all Yge1,  frac1Y|sum\_zle Yb\_0(z)sum\_winmathcal Jfracc\_wwprod\_i=1\textasciicircum{}k-1b\_i(z+h\_iw)|   le C (varpilog(3M))\textasciicircum{}1/2 frac1Yint\_0\textasciicircum{}Y|b\_k-1|\_U\textasciicircum{}k(y;D) dy   +((2D+1)varpi)/(Y). No hypothesis on the support of c\_w or on b\_0,dots,b\_k-2 is needed.}
+\expandafter\gdef\csname CGTip@hyp:LU\endcsname{Hypothesis - LU\_k(varrho,K): quantitative local Gowers uniformity of lambda: Let kge3. For every integer Dge2, every finite set of primes mathcal P and every multiplicative b:mathbb Ntomathbb C with |b|le1 and b(p\textasciicircum{}j)=lambda(p\textasciicircum{}j) for all pnotinmathcal P, jge1, limsup\_Ytoinftyfrac1Yint\_0\textasciicircum{}Y|b|\_U\textasciicircum{}k(y;D) dyle K(2+sum\_pinmathcal Pfrac1p)\textasciicircum{}K(log D)\textasciicircum{}-varrho.}
+\expandafter\gdef\csname CGTip@thm:centering_k\endcsname{Theorem - k-point centering under LU\_k: Let kge3 and assume LU\_k(varrho,K) for some K and some varrho>1+3varepsilon, with varepsilon=10\textasciicircum{}-4 as in [eq:oai\_params]. Then [eq:E\_k] holds for the twists b\_i of [ref], any 1-bounded b\_0,dots,b\_k-2, and all coefficients |c\_w|le1 supported on P\_0-rough integers of (M,tau M] with P\_0/taule Mle e\textasciicircum{}C\_0B, uniformly, for all sufficiently large B.}
+\expandafter\gdef\csname CGTip@hyp:G\endcsname{Hypothesis - G\_k(h): k-linear divisor graph estimate: Fix 0=h\_0<h\_1<dots<h\_k-1, 1<tau<2, C\_0ge1, T>0. For every sufficiently large B, every admissible family mathcal D, all cutoffs w\_d as in [ref], all |a\_d|le1 and all F\_0,dots,F\_k-1:mathbb Ntomathbb D, limsup\_Xtoinftyfrac1X|sum\_xle Xsum\_dinmathcal Da\_dprod\_i=0\textasciicircum{}k-1F\_i(x+h\_id) g\textasciicircum{}(k)\_d(x)|ll L\_0B\textasciicircum{}-1-c\_*/2, with implied constant depending only on h,tau,C\_0,T and [eq:oai\_params].}
+\expandafter\gdef\csname CGTip@thm:conditional_k\endcsname{Theorem - Conditional k-point Chowla in progressions: Let kge3 and 0=h\_0<dots<h\_k-1. Assume LU\_k(varrho,K) with varrho>1+3varepsilon and G\_k(h). Then for all fixed lge1 and binmathbb Z, frac1Nsum\_substackmle N mequiv b (mod l)prod\_i=0\textasciicircum{}k-1lambda(m+h\_i)longrightarrow0 (Ntoinfty).}
+\expandafter\gdef\csname CGTip@cor:family_conditional\endcsname{Corollary - The k-point family under LU and G: Let K\_0ge3. Assume, for every 3le kle K\_0, LU\_k(varrho,K) with varrho>1+3varepsilon and G\_k(h) for every h. Then Ch\_k' holds for 3le k'le K\_0, and [eq:limit\_k] holds for every kle K\_0, every rational resonance and every c. In particular [eq:chowla013] holds.}
+\expandafter\gdef\csname CGTip@rem:status\endcsname{Remark - Status of the two hypotheses: Proposition\textasciitilde{}[prop:local\_control], Lemma\textasciitilde{}[lem:vonneumann] and Propositions\textasciitilde{}[prop:barrier\_poly]--[prop:barrier\_pos] are unconditional; Theorem\textasciitilde{}[thm:centering\_k] is the implication LU\_kRightarrow[eq:E\_k], and Theorem\textasciitilde{}[thm:conditional\_k] is conditional on both hypotheses. At fixed D, LU\_k is a statement about averaged 2\textasciicircum{}k-point correlations of b at shifts le3D (expand |G\_y|\_U\textasciicircum{}k\textasciicircum{}2\textasciicircum{}k); it is therefore not a statement obviously weaker than k-point Chowla, and Theorem\textasciitilde{}[thm:conditional\_k] should be read as isolating exactly which uniformity the bias method needs. LU\_k concerns windows of fixed length D while Ytoinfty, with an ordinary average in y and the rate (log D)\textasciicircum{}-varrho. Matom"aki--Radziwill--Tao proved local Fourier uniformity, with the supremum over frequencies inside the integral, for windows Hge X\textasciicircum{}theta with any fixed theta>0 [ref]; Tao showed that the logarithmically averaged Chowla ...}
+\expandafter\gdef\csname CGTip@eq:o34\endcsname{Equation: p/q   C\_X/X   lambda(pq)/q   (C\_X-Xlambda(pq)/q)/sqrt X hline 3/2   0.4999230   0.5000000   -0.109 5/2   0.4995180   0.5000000   -0.682 7/2   0.4996260   0.5000000   -0.529 2/3   0.3326445   0.3333333   -0.974 5/3   0.3324220   0.3333333   -1.289 4/3   -0.3322400   -0.3333333   1.546 5/4   -0.2492080   -0.2500000   1.120}
+\expandafter\gdef\csname CGTip@eq:o35\endcsname{Equation: c   C\_X/X   Psi\_3,2(c) hline -0.5   -0.000265   0 -0.1   -0.000321   0 0.0   0.499923   0.500000 0.3   0.499923   0.500000 0.6   0.499904   0.500000 0.8   0.415884   0.416667 1.2   0.276538   0.277778 2.0   0.166553   0.166667}
+\expandafter\gdef\csname CGTip@eq:o36\endcsname{Equation: Xm(e\textasciicircum{}c/X-1)=1.000000250000041666ldots, C\_X=-999998.}
+\expandafter\gdef\csname CGTip@eq:o38\endcsname{Equation: theta   c\_X   lambda(2)C\_X\textasciicircum{}log   2B\_X-1   1-2theta hline 0.00   1.0000   0.958453098   0.916965031   1.000000000 0.20   25.1189   0.765504459   0.530794400   0.600000000 0.40   630.9573   0.573145613   0.144624375   0.200000000 0.45   1412.5375   0.523535345   0.048073466   0.100000000}
+\expandafter\gdef\csname CGTip@eq:o1\endcsname{Equation: C\_X(u):=sum\_substack1le nle X lfloor e\textasciicircum{}u nrfloorge1 lambda(n)lambda(lfloor e\textasciicircum{}u nrfloor).}
+\expandafter\gdef\csname CGTip@eq:o2\endcsname{Equation: (1)/(X)C\_X (logfrac pq+frac cX) longrightarrow 0, c<0, lambda(pq)/q, 0le cle q/p, lambda(pq)/(pc), c>q/p.}
+\expandafter\gdef\csname CGTip@eq:o3\endcsname{Equation: ell=frac qplfloor(pell)/(q)rfloor.}
+\expandafter\gdef\csname CGTip@eq:o4\endcsname{Equation: u\_X=log(p/q)+c/X,}
+\expandafter\gdef\csname CGTip@eq:o5\endcsname{Equation: sum\_substacknle Y a\_1n+b\_1ge1, a\_2n+b\_2ge1lambda(a\_1n+b\_1)lambda(a\_2n+b\_2)=o(Y).}
+\expandafter\gdef\csname CGTip@eq:CXdef\endcsname{Equation: C\_X(u):= sum\_substack1le nle X lfloor e\textasciicircum{}u nrfloorge1 lambda(n)lambda(lfloor e\textasciicircum{}u nrfloor).}
+\expandafter\gdef\csname CGTip@eq:o6\endcsname{Equation: H\_X:=sum\_nle Xfrac1n}
+\expandafter\gdef\csname CGTip@eq:logdef\endcsname{Equation: C\_X\textasciicircum{}log(u):= frac1H\_X sum\_substack1le nle X lfloor e\textasciicircum{}u nrfloorge1 fraclambda(n)lambda(lfloor e\textasciicircum{}u nrfloor)n.}
+\expandafter\gdef\csname CGTip@eq:weighted_tao_nonprop\endcsname{Equation: A\_1B\_2-A\_2B\_1ne0.}
+\expandafter\gdef\csname CGTip@eq:weighted_tao\endcsname{Equation: sum\_substack1le kle K A\_1k+B\_1ge1, A\_2k+B\_2ge1 Qk+Age1 (lambda(A\_1k+B\_1)lambda(A\_2k+B\_2))/(Qk+A) =o(log K).}
+\expandafter\gdef\csname CGTip@eq:tao_theorem_form\endcsname{Equation: sum\_K/omega(K)<kle K (lambda(a\_1k+b\_1)lambda(a\_2k+b\_2))/(k) =o(logomega(K)).}
+\expandafter\gdef\csname CGTip@eq:tao_weight_one_over_k\endcsname{Equation: sum\_kle K (lambda(A\_1k+B\_1)lambda(A\_2k+B\_2))/(k) =o(log K).}
+\expandafter\gdef\csname CGTip@eq:residue_weight_expansion\endcsname{Equation: frac1Qk+A=frac1Q frac1k+O\_Q,A(k\textasciicircum{}-2).}
+\expandafter\gdef\csname CGTip@eq:decomp\endcsname{Equation: C\_X (logfrac pq)  = lambda(pq)lfloorfrac Xqrfloor nonumber   + sum\_a=1\textasciicircum{}q-1 sum\_substackkge0 1le qk+ale X pk+lfloor pa/qrfloorge1 lambda(qk+a) lambda (pk+lfloor(pa)/(q)rfloor).}
+\expandafter\gdef\csname CGTip@eq:o7\endcsname{Equation: lfloorfrac pq(qk+a)rfloor = pk+lfloor(pa)/(q)rfloor.}
+\expandafter\gdef\csname CGTip@eq:o8\endcsname{Equation: frac1X C\_X (logfrac pq)longrightarrowfraclambda(pq)q.}
+\expandafter\gdef\csname CGTip@eq:o9\endcsname{Equation: C\_X(log p)=lambda(p)X}
+\expandafter\gdef\csname CGTip@eq:logstep\endcsname{Equation: C\_X\textasciicircum{}log (logfrac pq+frac cX) longrightarrow fraclambda(pq)q mathbf 1\_cge0}
+\expandafter\gdef\csname CGTip@eq:logstep_Y\endcsname{Equation: Y=X\textasciicircum{}1-varepsilon.}
+\expandafter\gdef\csname CGTip@eq:logstep_small_perturbation\endcsname{Equation: frac pq(e\textasciicircum{}c/X-1)n=O\_p,q,c(X\textasciicircum{}-varepsilon).}
+\expandafter\gdef\csname CGTip@eq:logstep_fractional_separation\endcsname{Equation: (pa)/(q)in [frac1q,1-frac1q].}
+\expandafter\gdef\csname CGTip@eq:logstep_prop_initial\endcsname{Equation: (lambda(pq))/(H\_X) sum\_kle Y/qfrac1qk = (H\_Y)/(H\_X)fraclambda(pq)q+o(1).}
+\expandafter\gdef\csname CGTip@eq:logstep_tail_mass\endcsname{Equation: (H\_X-H\_Y)/(H\_X)=varepsilon+o(1).}
+\expandafter\gdef\csname CGTip@eq:logstep_bilateral\endcsname{Equation: | C\_X\textasciicircum{}log (logfrac pq+frac cX) -(H\_Y)/(H\_X)fraclambda(pq)q | le (H\_X-H\_Y)/(H\_X)+o(1).}
+\expandafter\gdef\csname CGTip@eq:logstep_negative_zero_class\endcsname{Equation: lfloor pe\textasciicircum{}c/Xkrfloor=pk-1}
+\expandafter\gdef\csname CGTip@eq:logstep_reindex\endcsname{Equation: qk=qell+q, pk-1=pell+(p-1).}
+\expandafter\gdef\csname CGTip@eq:profilelimit\endcsname{Equation: frac1X C\_X (logfrac pq+frac cX) longrightarrow Psi\_p,q(c),}
+\expandafter\gdef\csname CGTip@eq:profile\endcsname{Equation: Psi\_p,q(c)= 0, c<0, [1mm] dfraclambda(pq)q, 0le cle q/p, [3mm] (lambda(pq))/(pc), c>q/p.}
+\expandafter\gdef\csname CGTip@eq:o10\endcsname{Equation: Psi\_p,q(c)= lambda(pq)min (frac1q,frac1pc).}
+\expandafter\gdef\csname CGTip@eq:o11\endcsname{Equation: delta\_X:=frac pq(e\textasciicircum{}c/X-1)}
+\expandafter\gdef\csname CGTip@eq:perturbedfloor\endcsname{Equation: lfloor e\textasciicircum{}log(p/q)+c/X(qk+a)rfloor = pk+ lfloor(pa)/(q)+delta\_X(qk+a)rfloor.}
+\expandafter\gdef\csname CGTip@eq:o12\endcsname{Equation: rle (pa)/(q)+delta\_X(qk+a)<r+1.}
+\expandafter\gdef\csname CGTip@eq:blockinterval\endcsname{Equation: fracr-pa/qXp(e\textasciicircum{}c/X-1) -(a)/(qX) le (k)/(X) < fracr+1-pa/qXp(e\textasciicircum{}c/X-1) -(a)/(qX).}
+\expandafter\gdef\csname CGTip@eq:o13\endcsname{Equation: qk+a, pk+lfloor(pa)/(q)rfloor+r.}
+\expandafter\gdef\csname CGTip@eq:o14\endcsname{Equation: qr=pa-qlfloor(pa)/(q)rfloor =pabmod qin1,ldots,q-1,}
+\expandafter\gdef\csname CGTip@eq:o15\endcsname{Equation: n=qk, p(e\textasciicircum{}c/X-1)k<1.}
+\expandafter\gdef\csname CGTip@eq:o16\endcsname{Equation: R\_X(c)= min ( lfloorfrac Xqrfloor, lceilfrac1p(e\textasciicircum{}c/X-1)rceil-1 ),}
+\expandafter\gdef\csname CGTip@eq:o17\endcsname{Equation: fracR\_X(c)Xlongrightarrow min (frac1q,frac1pc),}
+\expandafter\gdef\csname CGTip@eq:o18\endcsname{Equation: (pX)/(q)(e\textasciicircum{}c/X-1) = 1+(q)/(2pX)+O(X\textasciicircum{}-2),}
+\expandafter\gdef\csname CGTip@eq:o19\endcsname{Equation: frac1X C\_X (log m+frac cX) longrightarrow 0, c<0, lambda(m), 0le cle1/m, lambda(m)/(mc), c>1/m.}
+\expandafter\gdef\csname CGTip@eq:o20\endcsname{Equation: C\_X (log m+frac cX)=lambda(m)X}
+\expandafter\gdef\csname CGTip@eq:naturalmajority\endcsname{Equation: liminf\_Xtoinfty lambda(m)frac1X C\_X (log m+frac cX) ge 2min (1,frac1mc)-1>0.}
+\expandafter\gdef\csname CGTip@eq:o21\endcsname{Equation: I\_0,X:=1le nle X:m(e\textasciicircum{}c/X-1)n<1.}
+\expandafter\gdef\csname CGTip@eq:o22\endcsname{Equation: lambda(m)C\_X (log m+frac cX)ge2|I\_0,X|-X.}
+\expandafter\gdef\csname CGTip@eq:o23\endcsname{Equation: frac|I\_0,X|Xtomin (1,frac1mc),}
+\expandafter\gdef\csname CGTip@eq:o24\endcsname{Equation: (log c\_X)/(log X)longrightarrowtheta, 0letheta<1.}
+\expandafter\gdef\csname CGTip@eq:logmajority\endcsname{Equation: liminf\_Xtoinfty lambda(pq) C\_X\textasciicircum{}log (logfrac pq+(c\_X)/(X)) ge frac2(1-theta)q-1.}
+\expandafter\gdef\csname CGTip@eq:o25\endcsname{Equation: liminf\_Xtoinfty lambda(m)C\_X\textasciicircum{}log (log m+(c\_X)/(X)) ge1-2theta>0.}
+\expandafter\gdef\csname CGTip@eq:o26\endcsname{Equation: p(e\textasciicircum{}c\_X/X-1)k<1.}
+\expandafter\gdef\csname CGTip@eq:o27\endcsname{Equation: K\_X=X\textasciicircum{}1-theta+o(1).}
+\expandafter\gdef\csname CGTip@eq:o28\endcsname{Equation: B\_X= frac1H\_Xsum\_kle K\_Xfrac1qk = (1-theta)/(q)+o(1).}
+\expandafter\gdef\csname CGTip@eq:o29\endcsname{Equation: lambda(pq)C\_X\textasciicircum{}logge B\_X-(1-B\_X)=2B\_X-1.}
+\expandafter\gdef\csname CGTip@eq:o32\endcsname{Equation: C\_X (log m+frac cX) = sum\_nle Xlambda(n)lambda(mn-1).}
+\expandafter\gdef\csname CGTip@eq:oai\endcsname{Equation: |sum\_nle Xlambda(a\_1n+b\_1)lambda(a\_2n+b\_2)|le C fracX(log X)\textasciicircum{}kappa (Xge3, Xinmathbb R).}
+\expandafter\gdef\csname CGTip@eq:macro_rate\endcsname{Equation: sum\_substackA\_X<kle B\_X alpha\_1k+beta\_1ge1, alpha\_2k+beta\_2ge1lambda(alpha\_1k+beta\_1)lambda(alpha\_2k+beta\_2)=O(fracX(log X)\textasciicircum{}kappa).}
+\expandafter\gdef\csname CGTip@eq:profile_uncond\endcsname{Equation: frac1X C\_X (logfrac pq+frac cX)=Psi\_p,q(c)+O\_p,q,c((log X)\textasciicircum{}-kappa),}
+\expandafter\gdef\csname CGTip@eq:left_uncond\endcsname{Equation: C\_X (log m+frac cX)=sum\_nle Xlambda(n)lambda(mn-1)=O(frac X(log X)\textasciicircum{}kappa).}
+\expandafter\gdef\csname CGTip@eq:trivial_resonance\endcsname{Equation: C\_X (frac cX)=sum\_2le nle Xlambda(n-1)lambda(n),}
+\expandafter\gdef\csname CGTip@eq:Ck\endcsname{Equation: C\textasciicircum{}(k)\_X(u):=sum\_substack1le nle X lfloor e\textasciicircum{}u\_inrfloorge1 forall ilambda(n)prod\_i=1\textasciicircum{}k-1lambda(lfloor e\textasciicircum{}u\_inrfloor), C\textasciicircum{}(k),log\_X(u):=frac1H\_Xsum\_substack1le nle X lfloor e\textasciicircum{}u\_inrfloorge1 forall ifraclambda(n)prod\_ilambda(lfloor e\textasciicircum{}u\_inrfloor)n.}
+\expandafter\gdef\csname CGTip@eq:uk\endcsname{Equation: u\_i=log(p\_i)/(q\_i)+(c\_i)/(X), L:=lcm(q\_1,dots,q\_k-1), delta\_i:=(p\_i)/(q\_i)(e\textasciicircum{}c\_i/X-1).}
+\expandafter\gdef\csname CGTip@eq:theta_k\endcsname{Equation: theta\_a,i:=(p\_ia)/(q\_i), b\_a,i:=lfloor(p\_ia)/(q\_i)rfloor, A\_i:=(p\_iL)/(q\_i)inmathbb N .}
+\expandafter\gdef\csname CGTip@eq:floor_k\endcsname{Equation: lfloor e\textasciicircum{}u\_inrfloor=A\_im+b\_a,i+r\_i(n), r\_i(n):=lfloortheta\_a,i+delta\_inrfloor,}
+\expandafter\gdef\csname CGTip@eq:forms_k\endcsname{Equation: f\_a,r,0(m):=Lm+a, f\_a,r,i(m):=A\_im+b\_a,i+r\_i (1le ile k-1).}
+\expandafter\gdef\csname CGTip@eq:dec0_k\endcsname{Equation: C\textasciicircum{}(k)\_X(u)=sum\_a=0\textasciicircum{}L-1sum\_rin R sum\_min I\_a,r(X) prod\_i=0\textasciicircum{}k-1lambda(f\_a,r,i(m))}
+\expandafter\gdef\csname CGTip@eq:dec_k\endcsname{Equation: C\textasciicircum{}(k)\_X(u)=sum\_substack(a,r) k'(a,r)=0varepsilon\_a,r |I\_a,r(X)| +sum\_substack(a,r) k'(a,r)ge1varepsilon\_a,rsum\_min I\_a,r(X) prod\_mathcal CinOdd(a,r)lambda(g\_mathcal C(m)).}
+\expandafter\gdef\csname CGTip@eq:collapse\endcsname{Equation: prod\_i=0\textasciicircum{}k-1lambda(f\_a,r,i(m))=lambda(prod\_i d\_i)prod\_mathcal Clambda(g\_mathcal C(m))\textasciicircum{}|mathcal C|=varepsilon\_a,rprod\_mathcal CinOdd(a,r)lambda(g\_mathcal C(m)).}
+\expandafter\gdef\csname CGTip@eq:profile_k\endcsname{Equation: Psi\textasciicircum{}(k)\_p,q(c):=frac1Lsum\_substack(a,r) k'(a,r)=0varepsilon\_a,r |J\_a,r(c)| .}
+\expandafter\gdef\csname CGTip@eq:limit_k\endcsname{Equation: frac1XC\textasciicircum{}(k)\_X(u)longrightarrowPsi\textasciicircum{}(k)\_p,q(c) (Xtoinfty).}
+\expandafter\gdef\csname CGTip@eq:ex4\endcsname{Equation: frac1X C\textasciicircum{}(4)\_X(log2+frac1X, log3+fracc\_2X, log6+frac1X)=frac13+O((log X)\textasciicircum{}-kappa).}
+\expandafter\gdef\csname CGTip@eq:plateau_k\endcsname{Equation: C\textasciicircum{}(k)\_X(u)=lambda(m\_1cdots m\_k-1)sum\_nle Xlambda(n)\textasciicircum{}k= lambda(m\_1cdots m\_k-1)lfloor Xrfloor,  k even, [1mm] O(Xe\textasciicircum{}-c\_0sqrtlog X),  k odd.}
+\expandafter\gdef\csname CGTip@eq:majority_k\endcsname{Equation: liminf\_Xtoinfty lambda(m\_1cdots m\_k-1)fracC\textasciicircum{}(k)\_X(u)X ge 2min(1,frac1max\_im\_ic\_i)-1 .}
+\expandafter\gdef\csname CGTip@eq:left_k\endcsname{Equation: C\textasciicircum{}(k)\_X(u)=sum\_substacknle X m\_in-1ge1 forall ilambda(n)prod\_i=1\textasciicircum{}k-1lambda(m\_in-1).}
+\expandafter\gdef\csname CGTip@eq:level3_23\endcsname{Equation: C\textasciicircum{}(3)\_X(log2+fracc\_1X, log3+fracc\_2X) =sum\_nle Xlambda(n)lambda(2n-1)lambda(3n-1)  =sum\_substack3le Mle 6X-3 Mequiv3 (mod 6)lambda(M)lambda(M+1)lambda(M+3),}
+\expandafter\gdef\csname CGTip@eq:chowla013\endcsname{Equation: sum\_substackMle Y Mequiv3 (mod 6)lambda(M)lambda(M+1)lambda(M+3)=o(Y).}
+\expandafter\gdef\csname CGTip@eq:Pr\endcsname{Equation: P\_r(Y):=sum\_mle Ylambda(m)prod\_i=1\textasciicircum{}k-1lambda(a\_im+r\_i), pi\_r:=varepsilon\_0,r mathbf 1[k'(0,r)=0],}
+\expandafter\gdef\csname CGTip@eq:last_block\endcsname{Equation: I\_r(X)=[alpha\_rX, X]+O(1), alpha\_r:=max\_i(r\_i)/(r\_i+1)in[tfrac12,1).}
+\expandafter\gdef\csname CGTip@eq:suffix\endcsname{Equation: P\_r(Y)-P\_r(alpha\_rY)=pi\_r(1-alpha\_r)Y+o(Y) (Ytoinfty).}
+\expandafter\gdef\csname CGTip@eq:231\endcsname{Equation: sum\_mle Xlambda(m)lambda(2m+1)lambda(3m+1)=o(X):}
+\expandafter\gdef\csname CGTip@eq:oai_params\endcsname{Equation: varepsilon=10\textasciicircum{}-4, eta=(varepsilon)/(100), kappa\_0=(400)/(eta), A=e\textasciicircum{}2kappa\_0, c\_*=(varepsilon)/(100), theta=frac14,}
+\expandafter\gdef\csname CGTip@eq:oai_primes\endcsname{Equation:  mathcal C=p: B\textasciicircum{}1-eta<log ple B, mathcal Z=p: B\textasciicircum{}1-varepsilon<log ple B\textasciicircum{}1-eta,  mathcal S=mathcal Ccupmathcal Z, P\_0=e\textasciicircum{}B\textasciicircum{}1-varepsilon,}
+\expandafter\gdef\csname CGTip@eq:oai124\endcsname{Equation: limsup\_Ytoinfty|frac1Ysum\_zle Yb\_1(z)sum\_M<wletau M(c\_w)/(w) b\_2(z+hw)|ll B\textasciicircum{}-1-varepsilon,}
+\expandafter\gdef\csname CGTip@eq:oai127\endcsname{Equation: limsup\_Ytoinfty sup\_alphainmathbb R/mathbb Z frac1DYint\_0\textasciicircum{}Y|sum\_y<mle y+Db(m)e(alpha m)| dyll(loglog D)/(log D),}
+\expandafter\gdef\csname CGTip@eq:E_k\endcsname{Equation: mathcal E\_k:=limsup\_Ytoinfty|frac1Ysum\_zle Yb\_0(z)sum\_M<wletau M(c\_w)/(w)prod\_i=1\textasciicircum{}k-1b\_i(z+h\_iw)|ll B\textasciicircum{}-1-varepsilon.}
+\expandafter\gdef\csname CGTip@eq:cw_general\endcsname{Equation: lambda(u)\textasciicircum{}k c\textasciicircum{}(u)\_w=lambda(w)\textasciicircum{}k(-theta)\textasciicircum{}omega(w)mathbf 1[uwinmathcal D]= theta\textasciicircum{}omega(w)mathbf 1[uwinmathcal D], k odd, (-theta)\textasciicircum{}omega(w)mathbf 1[uwinmathcal D], k even.}
+\expandafter\gdef\csname CGTip@eq:barrier_poly_127\endcsname{Equation: limsup\_Ytoinftyfrac1DYint\_0\textasciicircum{}Y|sum\_y<mle y+Db\_i(m)e(alpha m)| dyle D\textasciicircum{}-1/2;}
+\expandafter\gdef\csname CGTip@eq:barrier_poly_E\endcsname{Equation: frac1Ysum\_zle Yb\_0(z)sum\_M<wletau M(c\_w)/(w)prod\_i=1\textasciicircum{}k-1b\_i(z+h\_iw)=fraclfloor YrfloorYsum\_substackM<wletau M w P\_0-roughfrac1w .}
+\expandafter\gdef\csname CGTip@eq:barrier_cs\endcsname{Equation: frac1Yint\_0\textasciicircum{}Y|S\_y(alpha)|\textasciicircum{}2dy=sum\_1le t,t'le D e(alpha(t-t'))  timesfrac1Yint\_0\textasciicircum{}Ye(beta R\_i((n\_0+t)\textasciicircum{}k-1-(n\_0+t')\textasciicircum{}k-1))dy .}
+\expandafter\gdef\csname CGTip@eq:q_choice\endcsname{Equation: qgemax(2h\_2+1, 7h\_2(D\textasciicircum{}*+1)\textasciicircum{}3, 6|rho|tau\textasciicircum{}2H\textasciicircum{}2).}
+\expandafter\gdef\csname CGTip@eq:barrier_pos_127\endcsname{Equation: limsup\_Ytoinftyfrac1DYint\_0\textasciicircum{}Y|sum\_y<mle y+Db\_i(m)e(alpha m)|dyle(3+log q)/(D);}
+\expandafter\gdef\csname CGTip@eq:barrier_pos\endcsname{Equation: liminf\_Ytoinfty Re frac1Ysum\_zle Yb\_0(z) sum\_M<wletau M(c\_w)/(w)b\_1(z+h\_1w)b\_2(z+h\_2w)  ge frac12sum\_M<wletau M(c\_w)/(w).}
+\expandafter\gdef\csname CGTip@eq:gowers\endcsname{Equation: |g|\_U\textasciicircum{}s\textasciicircum{}2\textasciicircum{}s:=mathbb E\_a |Delta\_ag|\_U\textasciicircum{}s-1\textasciicircum{}2\textasciicircum{}s-1 (sge2),}
+\expandafter\gdef\csname CGTip@eq:vonneumann\endcsname{Equation: |mathbb E\_z,winmathbb Z\_Nprod\_i=0\textasciicircum{}k-1g\_i(z+h\_iw)|le|g\_k-1|\_U\textasciicircum{}k-1.}
+\expandafter\gdef\csname CGTip@eq:vn_step\endcsname{Equation: |mathbb E\_z,wprod\_i=0\textasciicircum{}k-1g\_i(z+h\_iw)|\textasciicircum{}2 lemathbb E\_z|mathbb E\_wprod\_i=1\textasciicircum{}k-1g\_i(z+h\_iw)|\textasciicircum{}2  =mathbb E\_t mathbb E\_z,wprod\_i=1\textasciicircum{}k-1(Delta\_h\_itg\_i)(z+(h\_i-h\_1)w),}
+\expandafter\gdef\csname CGTip@eq:local_control\endcsname{Equation:  frac1Y|sum\_zle Yb\_0(z)sum\_winmathcal Jfracc\_wwprod\_i=1\textasciicircum{}k-1b\_i(z+h\_iw)|   le C (varpilog(3M))\textasciicircum{}1/2 frac1Yint\_0\textasciicircum{}Y|b\_k-1|\_U\textasciicircum{}k(y;D) dy   +((2D+1)varpi)/(Y).}
+\expandafter\gdef\csname CGTip@eq:windows\endcsname{Equation: |sum\_zle Yg(z)|lefrac1Dint\_0\textasciicircum{}Y|S\_y| dy+(2D+1)varpi .}
+\expandafter\gdef\csname CGTip@eq:cs_w\endcsname{Equation: |S\_y|\textasciicircum{}2levarpisum\_winmathcal J(|c\_w|)/(w)|X\_y,w|\textasciicircum{}2le(varpi)/(M)sum\_winmathcal J|X\_y,w|\textasciicircum{}2 .}
+\expandafter\gdef\csname CGTip@eq:Tk\endcsname{Equation: sum\_winmathcal J|X\_y,w|\textasciicircum{}2=sum\_|s|<DT\_s, T\_s:=sum\_xsum\_winmathcal J(Delta\_sF\_0)(x)prod\_i=1\textasciicircum{}k-1(Delta\_sG\_i)(x+h\_iw),}
+\expandafter\gdef\csname CGTip@eq:Tk_bound\endcsname{Equation: |T\_s|le N\textasciicircum{}2(2+log N) |Delta\_sG\_k-1|\_U\textasciicircum{}k-1(mathbb Z\_N) .}
+\expandafter\gdef\csname CGTip@eq:sum_k\endcsname{Equation: sum\_|s|<D|Delta\_sG\_k-1|\_U\textasciicircum{}k-1le N\textasciicircum{}1-2\textasciicircum{}1-k(sum\_sinmathbb Z\_N|Delta\_sG\_k-1|\textasciicircum{}2\textasciicircum{}k-1\_U\textasciicircum{}k-1)\textasciicircum{}2\textasciicircum{}1-k=N |G\_k-1|\textasciicircum{}2\_U\textasciicircum{}k.}
+\expandafter\gdef\csname CGTip@eq:LU\endcsname{Equation: limsup\_Ytoinftyfrac1Yint\_0\textasciicircum{}Y|b|\_U\textasciicircum{}k(y;D) dyle K(2+sum\_pinmathcal Pfrac1p)\textasciicircum{}K(log D)\textasciicircum{}-varrho.}
+\expandafter\gdef\csname CGTip@eq:Ek_bound\endcsname{Equation: mathcal E\_kll(B\textasciicircum{}-1+varepsilon(log B) B)\textasciicircum{}1/2(2+log B)\textasciicircum{}K B\textasciicircum{}-varrho(1-varepsilon)ll B\textasciicircum{}varepsilon/2(log B)\textasciicircum{}K+1/2B\textasciicircum{}-varrho(1-varepsilon),}
+\expandafter\gdef\csname CGTip@eq:gk\endcsname{Equation: g\textasciicircum{}(k)\_d(x):=A\textasciicircum{}omega\_mathcal C(d) mathbf 1\_d\_mathcal Cmid xprod\_substackpmid d pinmathcal Z(mathbf 1\_pmid x-fractheta p)prod\_i=0\textasciicircum{}k-1w\_d(x+h\_id).}
+\expandafter\gdef\csname CGTip@eq:Gk\endcsname{Equation: limsup\_Xtoinftyfrac1X|sum\_xle Xsum\_dinmathcal Da\_dprod\_i=0\textasciicircum{}k-1F\_i(x+h\_id) g\textasciicircum{}(k)\_d(x)|ll L\_0B\textasciicircum{}-1-c\_*/2,}
+\expandafter\gdef\csname CGTip@eq:conditional_k\endcsname{Equation: frac1Nsum\_substackmle N mequiv b (mod l)prod\_i=0\textasciicircum{}k-1lambda(m+h\_i)longrightarrow0 (Ntoinfty).}
+\expandafter\gdef\csname CGTip@eq:char_div\endcsname{Equation: |mathbb E\_divchi(d)| =prod\_pinmathcal S|(1+A\_pchi(p)/p)/(1+A\_p/p)|  leexp(-sum\_pinmathcal Z(1-Re chi(p))/(p)+O(sum\_p>P\_0p\textasciicircum{}-2))to0,}
+\expandafter\gdef\csname CGTip@eq:RB_k\endcsname{Equation: R\_B(X):=sum\_substackxle X xequiv b (l)sum\_dinmathcal Da\_dA\textasciicircum{}omega\_mathcal C(d)prod\_i=0\textasciicircum{}k-1lambda(x+h\_id)w\_d(x+h\_id) mathbf 1\_dmid x.}
+\expandafter\gdef\csname CGTip@eq:o37\endcsname{Equation: c   lambda(2)C\_X/X   (2|I\_0,X|-X)/X   2min(1,(2c)\textasciicircum{}-1)-1 hline 0.60   0.833072800   0.666666600   0.666666667 0.90   0.555258200   0.111111000   0.111111111}
+\expandafter\gdef\csname CGTip@sec:introduction\endcsname{Section: Introduction}
+\expandafter\gdef\csname CGTip@sec:input\endcsname{Section: Affine input and logarithmic normalization}
+\expandafter\gdef\csname CGTip@sec:rational\endcsname{Section: Exact rational decomposition}
+\expandafter\gdef\csname CGTip@sec:logstep\endcsname{Section: Unconditional logarithmic microscopic step}
+\expandafter\gdef\csname CGTip@sec:natural\endcsname{Section: Conditional natural microscopic profile}
+\expandafter\gdef\csname CGTip@sec:integer\endcsname{Section: Integer rigidity and unconditional majority}
+\expandafter\gdef\csname CGTip@sec:unconditional\endcsname{Section: Unconditional natural profile}
+\expandafter\gdef\csname CGTip@sec:kpoint\endcsname{Section: The k-point resonance family}
+\expandafter\gdef\csname CGTip@subsec:kpoint_def\endcsname{Subsection: Definition and exact decomposition}
+\expandafter\gdef\csname CGTip@subsec:kpoint_suff\endcsname{Subsection: What each order of Chowla closes}
+\expandafter\gdef\csname CGTip@subsec:kpoint_integer\endcsname{Subsection: Plateaus, majority and the left-hand identity at integer resonances}
+\expandafter\gdef\csname CGTip@subsec:kpoint_nec\endcsname{Subsection: Necessity}
+\expandafter\gdef\csname CGTip@sec:three\endcsname{Section: Three and more points: the centering step of the bias method}
+\expandafter\gdef\csname CGTip@subsec:bias\endcsname{Subsection: The bias method for two points}
+\expandafter\gdef\csname CGTip@subsec:barrier\endcsname{Subsection: Barriers}
+\expandafter\gdef\csname CGTip@subsec:local_gowers\endcsname{Subsection: Local Gowers norms control the centering error}
+\expandafter\gdef\csname CGTip@subsec:conditional\endcsname{Subsection: A conditional extension of the bias method}
+\expandafter\gdef\csname CGTip@sec:numerics\endcsname{Section: Numerical verification}
+\expandafter\gdef\csname CGTip@sec:conclusions\endcsname{Section: Conclusions}
+\expandafter\gdef\csname CGTip@sec:data\endcsname{Section: Data and reproducibility}
+\expandafter\gdef\csname CGTip@sec:ai\endcsname{Section: Use of AI tools}
+\expandafter\gdef\csname CGTip@fig:rational\endcsname{Figure: Measured rational resonances at X=2cdot10\textasciicircum{}6 and the conditional natural main term.}
+\expandafter\gdef\csname CGTip@fig:profile\endcsname{Figure: Natural microscopic profile around log(3/2).}
+\expandafter\gdef\csname CGTip@fig:logmajority\endcsname{Figure: Finite logarithmic mesoscopic check for m=2, X=10\textasciicircum{}7. The dashed curve is the envelope supplied by the unconditional signed majority bound.}
+\makeatother
+
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 1},
+  linkbordercolor={1 0 0},
+  citebordercolor={0 0.3 1},
+  urlbordercolor={0 0.6 0.6},
+  filebordercolor={0 0.6 0.6},
+  linktoc=all,
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  bookmarksopenlevel=1,
+  pdfstartview=FitH,
+  pdftitle={Rational Resonances and Microscopic Natural--Logarithmic Profiles for the Liouville Function (expanded version)},
+  pdfauthor={V. Casa\~na-Giner},
+  pdfsubject={Liouville function, Chowla conjecture, rational resonances, k-point family},
+  pdfkeywords={Liouville function; Chowla conjecture; rational resonance; microscopic profile; local Gowers uniformity; divisor graph}
+}
+% Back-references in the bibliography.
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+  \ifcase #1 %
+    \relax
+  \or
+    \ (Cited on p.~#2.)%
+  \else
+    \ (Cited on pp.~#2.)%
+  \fi}
+
+\numberwithin{equation}{section}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\emergencystretch=1.5em
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{definition}
+\newtheorem{experiment}[theorem]{Experiment}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Rational Resonances and Microscopic Natural--Logarithmic Profiles for the Liouville Function}
+
+\author[uned]{Víctor Casaña-Giner\texorpdfstring{\corref{cor1}}{}}
+\ead{vcasana1@alumno.uned.es}
+\ead[url]{https://orcid.org/0000-0002-8252-2608}
+\cortext[cor1]{Corresponding author.}
+\affiliation[uned]{organization={Universidad Nacional de Educación a Distancia},
+addressline={C/ Bravo Murillo, 38}, postcode={28015}, city={Madrid}, country={Spain}}
+
+\begin{abstract}
+Let $\lambda(n)=(-1)^{\Omega(n)}$. For $X\in\mathbb N$ and $u\in\mathbb R$, define
+\begin{equation}
+C_X(u):=\sum_{\substack{1\le n\le X\\ \lfloor e^u n\rfloor\ge1}}
+\lambda(n)\lambda(\lfloor e^u n\rfloor).
+\label{eq:o1}
+\end{equation}
+For reduced rational dilations $e^u=p/q$, we isolate exactly the unique
+proportional residue class. Assuming the standard fixed two-point affine
+Chowla conjecture, this yields the natural microscopic profile
+\begin{equation}
+\frac{1}{X}C_X\!\left(\log\frac pq+\frac cX\right)
+\longrightarrow
+\begin{cases}
+0,&c<0,\\
+\lambda(pq)/q,&0\le c\le q/p,\\
+\lambda(pq)/(pc),&c>q/p.
+\end{cases}
+\label{eq:o2}
+\end{equation}
+The logarithmically weighted analogue has an unconditional one-sided
+microscopic limit at the same $X^{-1}$ scale. At integer resonances we prove,
+without Chowla input, a right-hand natural-average majority window
+$0<c<2/m$ and a logarithmic mesoscopic majority theorem whose elementary
+majority mechanism has threshold exponent $1/2$: every sequence
+$c_X=X^{\theta+o(1)}$ with $\theta<1/2$ forces non-cancellation at the
+corresponding right-hand scale $c_X/X=X^{-1+\theta+o(1)}$. Thus natural and logarithmic weighting exhibit different
+microscopic scales, while integer resonances are singled out by unconditional
+majority rigidity.
+In this expanded version the two-point input is supplied by the ordinary
+two-point theorem of OpenAI (2026), which makes the natural profile
+unconditional with the rate $(\log X)^{-\kappa}$. We introduce the $k$-point
+resonance family, prove its exact decomposition into proportionality classes
+and its closed-form profile, extend the plateaus, the majority theorem and the
+left-hand identity to every $k$, and show that the level-three family at the
+resonances $(2,3)$ is, for every large $X$, the ordinary three-point sum
+$\sum_{M\equiv3\,(6)}\lambda(M)\lambda(M+1)\lambda(M+3)$. For the bias method
+behind the two-point theorem we prove that its centering step cannot be
+extended to $k\ge3$ with the short-interval input it uses, that local $U^k$
+uniformity suffices for that step, and that a quantitative local Gowers
+uniformity hypothesis together with a $k$-linear divisor-graph hypothesis
+yields $k$-point Chowla in progressions and the profile of the whole family.
+\end{abstract}
+
+\begin{keyword}
+Liouville function \sep Chowla conjecture \sep Beatty sequence \sep
+rational resonance \sep logarithmic average \sep microscopic profile
+\end{keyword}
+
+\end{frontmatter}
+
+\tableofcontents
+
+\section{Introduction}
+\label{sec:introduction}
+
+The Liouville function $\lambda(n)=(-1)^{\Omega(n)}$ is completely
+multiplicative. The fixed two-point Chowla conjecture predicts natural-average
+cancellation of $\lambda$ on non-proportional affine forms. Tao proved the
+corresponding logarithmically averaged two-point theorem
+\cite{Tao2016}, while Matom\"aki--Radziwi{\l}{\l}--Tao proved an averaged
+natural form \cite{MRT2015}. Arithmetic functions on Beatty sequences were
+studied by Abercrombie \cite{Abercrombie1995} and
+Abercrombie--Banks--Shparlinski \cite{AbercrombieBanksShparlinski2009}.
+
+For irrational $\alpha$ with first slope equal to $1$, logarithmic
+cancellation of
+$\lambda(n)\lambda(\lfloor\alpha n\rfloor)$ was proved by
+Crn\v{c}evi\'c, Hern\'andez, Rizk, Sereesuchart and R.~Tao
+\cite{CHRST2024}. For a general irrational ratio of slopes, logarithmic
+two-point cancellation is due to Ter\"av\"ainen and Walker
+\cite[Theorem~1.2]{TeravainenWalker2025}; they moreover prove that in the
+rationally dependent case the logarithmic limit exists and characterize when
+it vanishes, answering the two-point case of a conjecture of Frantzikinakis
+\cite{Frantzikinakis2020}. The statement of Ter\"av\"ainen--Walker, Theorem~1.2(3), gives existence
+and a zero/non-zero criterion in the rationally dependent case, but it does
+not state a closed-form value for the present specialization. Here
+$\alpha_1=1$, $\alpha_2=p/q$ and $r=q/p$. Their vanishing criterion cannot
+hold eventually, because for every $\ell$ divisible by $q$,
+\begin{equation}
+\ell=\frac qp\left\lfloor\frac{p\ell}{q}\right\rfloor.
+\label{eq:o3}
+\end{equation}
+Thus their theorem implies non-vanishing in this case. The explicit value
+$\lambda(pq)/q$ is obtained here by isolating the proportional residue class
+and applying Tao's logarithmic two-point theorem to the finitely many
+non-proportional affine classes. The new object is the singular
+$X$-dependent perturbation
+\begin{equation}
+u_X=\log(p/q)+c/X,
+\label{eq:o4}
+\end{equation}
+together with its natural microscopic profile and the unconditional majority
+phenomena that appear at integer resonances.
+
+The structure is transparent. At a reduced rational dilation $p/q$, the
+residue class $n\equiv0\pmod q$ is the unique proportional affine class; all
+other residue classes are non-proportional. The natural main term is therefore
+the sign $\lambda(pq)$ times the size of this proportional block, while the
+remaining pieces require affine Chowla cancellation.
+
+\paragraph{Expanded version}
+Sections~\CGref{sec:unconditional}--\CGref{sec:three} are new. The remainder of
+the residue-class decomposition is a finite set of fixed binary affine
+correlations, and the ordinary two-point Chowla theorem of
+\cite[Theorem~1.1, p.~3]{OpenAI2026} controls exactly these; Section~\CGref{sec:unconditional}
+records the resulting unconditional profile with a rate, and shows that at the
+trivial resonance $p=q=1$, $-1<c<0$, the profile is literally the shift-one
+Chowla sum. Section~\CGref{sec:kpoint} constructs the $k$-point family
+$C^{(k)}_X$, proves its exact decomposition (Theorem~\CGref{thm:dec_k}), the
+criterion for unconditional closure (Proposition~\CGref{prop:criterion}), the
+plateau, majority and left-hand identities at every level
+(Theorem~\CGref{thm:integer_k}), the identification of level three at $(2,3)$
+with an ordinary three-point Chowla sum (Corollary~\CGref{cor:level3_23}), and
+the necessity theorem (Theorem~\CGref{thm:nec_k}). Section~\CGref{sec:three}
+examines the bias method of \cite[Part~II]{OpenAI2026} for $k\ge3$ points:
+a barrier for its centering step (Propositions~\CGref{prop:barrier_poly}
+and~\CGref{prop:barrier_pos}), an unconditional bound of the $k$-point centering
+error by local Gowers norms (Proposition~\CGref{prop:local_control}), and a
+conditional $k$-point theorem (Theorem~\CGref{thm:conditional_k},
+Corollary~\CGref{cor:family_conditional}) whose two hypotheses are stated
+explicitly and are not proved here.
+
+\section{Affine input and logarithmic normalization}
+\label{sec:input}
+
+\begin{conjecture}[Standard fixed two-point affine Chowla]
+\label{conj:affine_chowla}
+Let $a_1,a_2\in\mathbb N$ and $b_1,b_2\in\mathbb Z$ be fixed, with the two
+affine forms positive for all sufficiently large $n$ and
+$a_1b_2-a_2b_1\ne0$. Then
+\begin{equation}
+\sum_{\substack{n\le Y\\ a_1n+b_1\ge1,\ a_2n+b_2\ge1}}\lambda(a_1n+b_1)\lambda(a_2n+b_2)=o(Y).
+\label{eq:o5}
+\end{equation}
+\end{conjecture}
+
+No uniform or quantitative strengthening of this conjecture is used.
+
+Throughout the paper, $X\in\mathbb N$ and all limits $X\to\infty$ are taken
+through positive integers. For $u\in\mathbb R$ we write
+\begin{equation}
+C_X(u):=
+\sum_{\substack{1\le n\le X\\ \lfloor e^u n\rfloor\ge1}}
+\lambda(n)\lambda(\lfloor e^u n\rfloor).
+\label{eq:CXdef}
+\end{equation}
+
+\begin{lemma}[Macroscopic subintervals]
+\label{lem:macroscopic}
+Assume Conjecture~\CGref{conj:affine_chowla} for a fixed pair of affine forms.
+If $0\le A_X\le B_X$, $A_X/X\to A$ and $B_X/X\to B$ with $0\le A\le B<\infty$, then
+\[
+\sum_{\substack{A_X<n\le B_X\\ a_1n+b_1\ge1,\ a_2n+b_2\ge1}}\lambda(a_1n+b_1)\lambda(a_2n+b_2)=o(X).
+\]
+\end{lemma}
+
+\begin{proof}
+Let $S(Y)$ be the sum in \CGeqref{eq:o5}. The conjecture says that for every
+$\varepsilon>0$ there is $C_\varepsilon$ with $|S(Y)|\le\varepsilon Y+C_\varepsilon$ for all
+$Y\ge0$. The sum in the lemma is $S(B_X)-S(A_X)$, so it is at most
+$\varepsilon(A_X+B_X)+2C_\varepsilon\le3\varepsilon BX$ for large $X$ (and
+$\le\varepsilon X+2C_\varepsilon$ if $B=0$). This covers $A=0$ and $A=B$.
+\end{proof}
+
+Let
+\begin{equation}
+H_X:=\sum_{n\le X}\frac1n
+\label{eq:o6}
+\end{equation}
+and define
+\begin{equation}
+C_X^{\log}(u):=
+\frac1{H_X}
+\sum_{\substack{1\le n\le X\\ \lfloor e^u n\rfloor\ge1}}
+\frac{\lambda(n)\lambda(\lfloor e^u n\rfloor)}n.
+\label{eq:logdef}
+\end{equation}
+Thus $|C_X^{\log}(u)|\le1$.
+
+\begin{lemma}[Affine logarithmic cancellation with residue-class weight]
+\label{lem:weighted_tao}
+Let $A_1,A_2,Q\in\mathbb N$ and $B_1,B_2,A\in\mathbb Z$ be fixed.
+Assume that the affine forms $A_1k+B_1$ and $A_2k+B_2$ are positive for all
+sufficiently large $k$ and are non-proportional:
+\begin{equation}
+A_1B_2-A_2B_1\ne0.
+\label{eq:weighted_tao_nonprop}
+\end{equation}
+If $Qk+A>0$ for all sufficiently large $k$, then
+\begin{equation}
+\sum_{\substack{1\le k\le K\\A_1k+B_1\ge1,\ A_2k+B_2\ge1\\Qk+A\ge1}}
+\frac{\lambda(A_1k+B_1)\lambda(A_2k+B_2)}{Qk+A}
+=o(\log K).
+\label{eq:weighted_tao}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Tao's logarithmically averaged two-point theorem
+\cite[Theorem~1.2]{Tao2016} states that for fixed
+$a_1,a_2\in\mathbb N$ and $b_1,b_2\in\mathbb Z$ with
+$a_1b_2-a_2b_1\ne0$, and for any
+$1\le\omega(K)\le K$ with $\omega(K)\to\infty$,
+\begin{equation}
+\sum_{K/\omega(K)<k\le K}
+\frac{\lambda(a_1k+b_1)\lambda(a_2k+b_2)}{k}
+=o(\log\omega(K)).
+\label{eq:tao_theorem_form}
+\end{equation}
+Apply this with $(a_i,b_i)=(A_i,B_i)$ and $\omega(K)=K$.
+Deleting or restoring finitely many initial terms changes the sum by $O(1)$,
+so
+\begin{equation}
+\sum_{k\le K}
+\frac{\lambda(A_1k+B_1)\lambda(A_2k+B_2)}{k}
+=o(\log K).
+\label{eq:tao_weight_one_over_k}
+\end{equation}
+The residue-class weight satisfies
+\begin{equation}
+\frac1{Qk+A}=\frac1Q\,\frac1k+O_{Q,A}(k^{-2}).
+\label{eq:residue_weight_expansion}
+\end{equation}
+Since the Liouville product has modulus one, the total contribution of the
+$O(k^{-2})$ error is $O(1)$. Combining
+\CGeqref{eq:tao_weight_one_over_k} and
+\CGeqref{eq:residue_weight_expansion} proves \CGeqref{eq:weighted_tao}.
+\end{proof}
+
+\begin{remark}[Status of Conjecture~\CGref{conj:affine_chowla}]
+\label{rem:status_conj}
+For non-negative intercepts, Conjecture~\CGref{conj:affine_chowla} is now
+\cite[Theorem~1.1, p.~3]{OpenAI2026}, an unrefereed preprint, with a power-of-logarithm saving at
+every real cutoff; negative intercepts reduce to that case by a fixed shift
+(Lemma~\CGref{lem:macro_rate}). Sections~\CGref{sec:rational}--\CGref{sec:integer}
+are kept in their original conditional formulation; the unconditional
+statements are collected in Section~\CGref{sec:unconditional}.
+\end{remark}
+
+\begin{remark}[Logical status of the results]
+\label{rem:logical_status}
+The results of this paper fall into four classes.
+\begin{enumerate}
+\item[(A)] \emph{Conditional on Conjecture~\CGref{conj:affine_chowla}:} Lemma~\CGref{lem:macroscopic}, Theorem~\CGref{thm:fixed}, Theorem~\CGref{thm:profile} and Corollary~\CGref{cor:integer}, as stated in Sections~\CGref{sec:rational}--\CGref{sec:integer}.
+\item[(B)] \emph{Unconditional, by exact identities or classical and logarithmic inputs:} Lemma~\CGref{lem:weighted_tao} and Theorem~\CGref{thm:logstep} (via Tao's logarithmic two-point theorem), Proposition~\CGref{prop:decomposition}, Theorems~\CGref{thm:naturalmajority} and \CGref{thm:logmajority}, Proposition~\CGref{prop:left}, Lemma~\CGref{lem:floor_k}, Theorem~\CGref{thm:dec_k}, Lemma~\CGref{lem:len_k}, Theorem~\CGref{thm:suf_k}(1), Theorem~\CGref{thm:integer_k}, Theorem~\CGref{thm:nec_k} (an implication), Theorem~\CGref{thm:log_k} (via Tao--Ter\"av\"ainen), and Propositions~\CGref{prop:barrier_poly}, \CGref{prop:barrier_pos}, Lemma~\CGref{lem:vonneumann}, Proposition~\CGref{prop:local_control}, Lemma~\CGref{lem:expansion_k} in Section~9.
+\item[(C)] \emph{Unconditional only through Theorem~\CGref{thm:oai}, i.e.\ through the unrefereed preprint \cite{OpenAI2026}:} Lemma~\CGref{lem:macro_rate}, Theorem~\CGref{thm:profile_uncond}, Corollary~\CGref{cor:uncond}, Theorem~\CGref{thm:suf_k}(2) and Proposition~\CGref{prop:criterion}. If \cite{OpenAI2026} is withdrawn or corrected, these return to class (A).
+\item[(D)] \emph{Conditional on hypotheses for $k\ge3$:} Theorem~\CGref{thm:suf_k}(3) and Corollary~\CGref{cor:level3_23} (on $\mathrm{Ch}_{k'}$), Theorem~\CGref{thm:centering_k} (on $\mathrm{LU}_k$), Theorem~\CGref{thm:conditional_k} and Corollary~\CGref{cor:family_conditional} (on $\mathrm{LU}_k$ and $\mathrm G_k$). Besides these hypotheses, Theorems~\CGref{thm:centering_k} and \CGref{thm:conditional_k} also use intermediate estimates of \cite{OpenAI2026} (the rough-number bound $\varpi\ll B^{-1+\varepsilon}\log B$, the divisor-interval and dilation lemmas, and the order of limits), so they too depend on that unrefereed preprint.
+\end{enumerate}
+No other result of the paper uses \cite{OpenAI2026}: the results of classes (A) and (B) do not use it, and the literature entries of Theorem~\CGref{thm:oai} and Subsection~\CGref{subsec:bias} only quote it.
+
+\end{remark}
+
+\section{Exact rational decomposition}
+\label{sec:rational}
+
+\begin{proposition}[Exact residue-class decomposition]
+\label{prop:decomposition}
+Let $(p,q)=1$ and $X\in\mathbb N$. Then
+\begin{align}
+C_X\!\left(\log\frac pq\right)
+&=
+\lambda(pq)\left\lfloor\frac Xq\right\rfloor \nonumber\\
+&\quad+
+\sum_{a=1}^{q-1}
+\sum_{\substack{k\ge0\\1\le qk+a\le X\\
+pk+\lfloor pa/q\rfloor\ge1}}
+\lambda(qk+a)
+\lambda\!\left(pk+\left\lfloor\frac{pa}{q}\right\rfloor\right).
+\label{eq:decomp}
+\end{align}
+For every $a\ne0$ the two affine forms in the inner sum are
+non-proportional.
+\end{proposition}
+
+\begin{proof}
+Write $n=qk+a$, $0\le a<q$. Then
+\begin{equation}
+\left\lfloor\frac pq(qk+a)\right\rfloor
+=
+pk+\left\lfloor\frac{pa}{q}\right\rfloor.
+\label{eq:o7}
+\end{equation}
+For $a=0$ and $k\ge1$, complete multiplicativity gives
+$\lambda(qk)\lambda(pk)=\lambda(pq)$. For $a\ne0$, proportionality would
+require $q\lfloor pa/q\rfloor=pa$, impossible because $(p,q)=1$ and
+$q\nmid a$.
+\end{proof}
+
+\begin{theorem}[Fixed rational natural resonance]
+\label{thm:fixed}
+Assume Conjecture~\CGref{conj:affine_chowla}. Then
+\begin{equation}
+\frac1X C_X\!\left(\log\frac pq\right)\longrightarrow\frac{\lambda(pq)}q.
+\label{eq:o8}
+\end{equation}
+For $q=1$ the exact identity
+\begin{equation}
+C_X(\log p)=\lambda(p)X
+\label{eq:o9}
+\end{equation}
+holds for every $X\in\mathbb N$.
+\end{theorem}
+
+\begin{proof}
+The proportional class in Proposition~\CGref{prop:decomposition} contributes
+$\lambda(pq)\lfloor X/q\rfloor$. Every other residue class is a fixed
+non-proportional affine correlation and is $o(X)$ by
+Conjecture~\CGref{conj:affine_chowla}. For $q=1$ there are no remaining
+classes.
+\end{proof}
+
+\section{Unconditional logarithmic microscopic step}
+\label{sec:logstep}
+
+\begin{theorem}[Logarithmic microscopic step]
+\label{thm:logstep}
+Let $(p,q)=1$ and let $c\in\mathbb R$ be fixed. Then
+\begin{equation}
+C_X^{\log}\!\left(\log\frac pq+\frac cX\right)
+\longrightarrow
+\frac{\lambda(pq)}q\,\mathbf 1_{\{c\ge0\}}
+\label{eq:logstep}
+\end{equation}
+unconditionally.
+\end{theorem}
+
+\begin{proof}
+Fix $\varepsilon\in(0,1)$ and set
+\begin{equation}
+Y=X^{1-\varepsilon}.
+\label{eq:logstep_Y}
+\end{equation}
+Write $n=qk+a$, $0\le a<q$. Uniformly for $n\le Y$,
+\begin{equation}
+\frac pq(e^{c/X}-1)n=O_{p,q,c}(X^{-\varepsilon}).
+\label{eq:logstep_small_perturbation}
+\end{equation}
+If $a=0$, then $\{pa/q\}=0$. When $q=1$ there are no nonzero residue classes. If $a\ne0$, coprimality gives
+\begin{equation}
+\left\{\frac{pa}{q}\right\}\in
+\left[\frac1q,1-\frac1q\right].
+\label{eq:logstep_fractional_separation}
+\end{equation}
+Hence, for all sufficiently large $X$, the perturbation in
+\CGeqref{eq:logstep_small_perturbation} cannot change the floor on any
+$a\ne0$ residue class.
+
+Suppose first that $c\ge0$. On $n\le Y$ the perturbed correlation agrees
+exactly with the fixed rational dilation. The proportional class $a=0$
+contributes
+\begin{equation}
+\frac{\lambda(pq)}{H_X}
+\sum_{k\le Y/q}\frac1{qk}
+=
+\frac{H_Y}{H_X}\frac{\lambda(pq)}q+o(1).
+\label{eq:logstep_prop_initial}
+\end{equation}
+For each $a\ne0$, the two fixed affine forms are non-proportional, so
+Lemma~\CGref{lem:weighted_tao}, with weight $(qk+a)^{-1}$, shows that its
+entire contribution on $n\le Y$ is $o(H_Y)$ and therefore $o(1)$ after
+division by $H_X$. The tail $Y<n\le X$ has normalized harmonic mass
+\begin{equation}
+\frac{H_X-H_Y}{H_X}=\varepsilon+o(1).
+\label{eq:logstep_tail_mass}
+\end{equation}
+Consequently,
+\begin{equation}
+\left|
+C_X^{\log}\!\left(\log\frac pq+\frac cX\right)
+-\frac{H_Y}{H_X}\frac{\lambda(pq)}q
+\right|
+\le
+\frac{H_X-H_Y}{H_X}+o(1).
+\label{eq:logstep_bilateral}
+\end{equation}
+Since $H_Y/H_X\to1-\varepsilon$, first letting $X\to\infty$ and then
+$\varepsilon\downarrow0$ gives the branch $c\ge0$.
+Ter\"av\"ainen--Walker's Theorem~1.2(3) already gives the rationally
+dependent zero/non-zero alternative and implies non-vanishing in the present
+homogeneous rational case; the closed-form value $\lambda(pq)/q$ is computed
+here from the proportional residue class
+\cite[Theorem~1.2(3)]{TeravainenWalker2025}.
+
+Now suppose that $c<0$. On the class $a=0$ and the range $n=qk\le Y$,
+\CGeqref{eq:logstep_small_perturbation} gives
+\begin{equation}
+\left\lfloor pe^{c/X}k\right\rfloor=pk-1
+\label{eq:logstep_negative_zero_class}
+\end{equation}
+for every $k\ge1$ once $X$ is large, except for the possible initial term
+for which the target equals zero and is excluded by definition. To apply
+Tao in the usual non-negative-intercept formulation, write $k=\ell+1$:
+\begin{equation}
+qk=q\ell+q,\qquad pk-1=p\ell+(p-1).
+\label{eq:logstep_reindex}
+\end{equation}
+If $p=1$, the single term with second value zero is omitted; the remaining
+terms may be reindexed once more. The two forms are non-proportional. Every
+$a\ne0$ class remains non-proportional by
+\CGeqref{eq:logstep_fractional_separation}. Lemma~\CGref{lem:weighted_tao}
+therefore makes the whole initial range $o(H_Y)$, while the tail is bounded
+by \CGeqref{eq:logstep_tail_mass}. Letting $X\to\infty$ and then
+$\varepsilon\downarrow0$ gives zero.
+\end{proof}
+
+\section{Conditional natural microscopic profile}
+\label{sec:natural}
+
+\begin{theorem}[Rational natural microscopic profile]
+\label{thm:profile}
+Assume Conjecture~\CGref{conj:affine_chowla}.\par
+Let $(p,q)=1$ and fix $c\in\mathbb R$. Then
+\begin{equation}
+\frac1X C_X\!\left(\log\frac pq+\frac cX\right)
+\longrightarrow
+\Psi_{p,q}(c),
+\label{eq:profilelimit}
+\end{equation}
+where
+\begin{equation}
+\Psi_{p,q}(c)=
+\begin{cases}
+0,&c<0,\\[1mm]
+\dfrac{\lambda(pq)}q,&0\le c\le q/p,\\[3mm]
+\dfrac{\lambda(pq)}{pc},&c>q/p.
+\end{cases}
+\label{eq:profile}
+\end{equation}
+For $c>0$,
+\begin{equation}
+\Psi_{p,q}(c)=
+\lambda(pq)\min\!\left(\frac1q,\frac1{pc}\right).
+\label{eq:o10}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Put
+\begin{equation}
+\delta_X:=\frac pq(e^{c/X}-1)
+\label{eq:o11}
+\end{equation}
+and write $n=qk+a$, $0\le a<q$. Then
+\begin{equation}
+\left\lfloor e^{\log(p/q)+c/X}(qk+a)\right\rfloor
+=
+pk+
+\left\lfloor\frac{pa}{q}+\delta_X(qk+a)\right\rfloor.
+\label{eq:perturbedfloor}
+\end{equation}
+
+Assume first $c>0$. For an integer $r$, the block on which the final floor in
+\CGeqref{eq:perturbedfloor} equals $\lfloor pa/q\rfloor+r$ is
+\begin{equation}
+r\le
+\left\{\frac{pa}{q}\right\}+\delta_X(qk+a)<r+1.
+\label{eq:o12}
+\end{equation}
+Equivalently,
+\begin{align}
+\frac{r-\{pa/q\}}{Xp(e^{c/X}-1)}
+-\frac{a}{qX}
+\le \frac{k}{X}
+<
+\frac{r+1-\{pa/q\}}{Xp(e^{c/X}-1)}
+-\frac{a}{qX}.
+\label{eq:blockinterval}
+\end{align}
+This is written for $c>0$. For $c<0$ the factor $Xp(e^{c/X}-1)$ is negative, dividing by it reverses the inequalities, and \CGeqref{eq:blockinterval} holds with its two endpoints interchanged; nothing below depends on their order.
+Since $Xp(e^{c/X}-1)\to pc$, both endpoints converge. After intersection
+with $0\le k/X\le1/q+O(X^{-1})$, each block has endpoints converging to
+fixed limits. If the limiting endpoints are distinct, the block is
+macroscopic; if they coincide, its length is $o(X)$; otherwise it is empty.
+For fixed $p,q,c$, the perturbation in \CGeqref{eq:perturbedfloor} is uniformly
+bounded for $0\le n\le X$, so the number of integers $r$ that occur is
+bounded in terms of $p,q,c$ and is independent of $X$.
+
+On such a block the two affine forms are
+\begin{equation}
+qk+a,\qquad
+pk+\left\lfloor\frac{pa}{q}\right\rfloor+r.
+\label{eq:o13}
+\end{equation}
+For $a\ne0$, proportionality would require
+\begin{equation}
+qr=pa-q\left\lfloor\frac{pa}{q}\right\rfloor
+=pa\bmod q\in\{1,\ldots,q-1\},
+\label{eq:o14}
+\end{equation}
+which is impossible. For $a=0$, proportionality occurs only for $r=0$.
+Thus every block except $(a,r)=(0,0)$ is $o(X)$ by
+Lemma~\CGref{lem:macroscopic}.
+
+The unique proportional block is
+\begin{equation}
+n=qk,\qquad p(e^{c/X}-1)k<1.
+\label{eq:o15}
+\end{equation}
+Its cardinality is
+\begin{equation}
+R_X(c)=
+\min\!\left(
+\left\lfloor\frac Xq\right\rfloor,
+\left\lceil\frac1{p(e^{c/X}-1)}\right\rceil-1
+\right),
+\label{eq:o16}
+\end{equation}
+up to the harmless endpoint convention. Hence
+\begin{equation}
+\frac{R_X(c)}X\longrightarrow
+\min\!\left(\frac1q,\frac1{pc}\right),
+\label{eq:o17}
+\end{equation}
+and every term in this block equals $\lambda(pq)$.
+
+If $c<0$, the same block decomposition has negative corrections. For
+$a=0$ the correction is a nonzero negative integer for every $k\ge1$, so no
+proportional block remains. For $a\ne0$, proportionality would again imply
+$qr=pa\bmod q$, impossible. Only finitely many negative correction integers occur for fixed $p,q,c$.
+For each such correction, the target affine form can fail to be positive only
+for $O_{p,q,c}(1)$ initial values of $k$; these terms are omitted by the
+definition of $C_X$. All remaining blocks are $o(X)$.
+
+At $c=0$, Theorem~\CGref{thm:fixed} applies. At the boundary $pc=q$,
+\begin{equation}
+\frac{pX}{q}(e^{c/X}-1)
+=
+1+\frac{q}{2pX}+O(X^{-2}),
+\label{eq:o18}
+\end{equation}
+so only $O(1)$ terminal terms leave the proportional block. The normalized
+limit remains $\lambda(pq)/q$.
+\end{proof}
+
+\section{Integer rigidity and unconditional majority}
+\label{sec:integer}
+
+\begin{corollary}[Integer profile and exact right-hand plateau]
+\label{cor:integer}
+Assume Conjecture~\CGref{conj:affine_chowla}. For fixed $m\ge2$,
+\begin{equation}
+\frac1X C_X\!\left(\log m+\frac cX\right)
+\longrightarrow
+\begin{cases}
+0,&c<0,\\
+\lambda(m),&0\le c\le1/m,\\
+\lambda(m)/(mc),&c>1/m.
+\end{cases}
+\label{eq:o19}
+\end{equation}
+Moreover, for every fixed $0<c<1/m$,
+\begin{equation}
+C_X\!\left(\log m+\frac cX\right)=\lambda(m)X
+\label{eq:o20}
+\end{equation}
+for all sufficiently large $X$.
+\end{corollary}
+
+\begin{proof}
+The limit is Theorem~\CGref{thm:profile} with $q=1$. For the exact statement,
+$mX(e^{c/X}-1)\to mc<1$, so eventually no correction occurs for any
+$n\le X$.
+\end{proof}
+
+\begin{theorem}[Unconditional right-hand natural majority window]
+\label{thm:naturalmajority}
+Let $m\ge1$ and $0<c<2/m$. Then
+\begin{equation}
+\liminf_{X\to\infty}
+\lambda(m)\frac1X
+C_X\!\left(\log m+\frac cX\right)
+\ge
+2\min\!\left(1,\frac1{mc}\right)-1>0.
+\label{eq:naturalmajority}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let
+\begin{equation}
+I_{0,X}:=\{1\le n\le X:m(e^{c/X}-1)n<1\}.
+\label{eq:o21}
+\end{equation}
+Every summand on $I_{0,X}$ equals $\lambda(m)$, while every remaining term
+has modulus at most one. Therefore
+\begin{equation}
+\lambda(m)C_X\!\left(\log m+\frac cX\right)\ge2|I_{0,X}|-X.
+\label{eq:o22}
+\end{equation}
+Since
+\begin{equation}
+\frac{|I_{0,X}|}{X}\to\min\!\left(1,\frac1{mc}\right),
+\label{eq:o23}
+\end{equation}
+the result follows.
+\end{proof}
+
+\begin{remark}[Signed natural majority bound]
+Theorem~\CGref{thm:naturalmajority} is a signed lower bound. In particular,
+absolute non-cancellation follows immediately.
+\end{remark}
+
+\begin{theorem}[Unconditional logarithmic mesoscopic majority]
+\label{thm:logmajority}
+Let $(p,q)=1$ and let $c_X>0$ satisfy
+\begin{equation}
+\frac{\log c_X}{\log X}\longrightarrow\theta,
+\qquad 0\le\theta<1.
+\label{eq:o24}
+\end{equation}
+Then
+\begin{equation}
+\liminf_{X\to\infty}
+\lambda(pq)\,
+C_X^{\log}\!\left(\log\frac pq+\frac{c_X}{X}\right)
+\ge
+\frac{2(1-\theta)}q-1.
+\label{eq:logmajority}
+\end{equation}
+In particular, when $q=1$ and $\theta<1/2$, writing $m=p$,
+\begin{equation}
+\liminf_{X\to\infty}
+\lambda(m)C_X^{\log}\!\left(\log m+\frac{c_X}{X}\right)
+\ge1-2\theta>0.
+\label{eq:o25}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+On the proportional class $n=qk$, the zero-correction condition is
+\begin{equation}
+p(e^{c_X/X}-1)k<1.
+\label{eq:o26}
+\end{equation}
+Let $K_X$ be the largest admissible $k$, truncated by $k\le X/q$. Since
+$c_X=X^{\theta+o(1)}$ and $\theta<1$,
+\begin{equation}
+K_X=X^{1-\theta+o(1)}.
+\label{eq:o27}
+\end{equation}
+The normalized harmonic mass of this block is
+\begin{equation}
+B_X=
+\frac1{H_X}\sum_{k\le K_X}\frac1{qk}
+=
+\frac{1-\theta}{q}+o(1).
+\label{eq:o28}
+\end{equation}
+After multiplication by $\lambda(pq)$, all terms on this block are positive.
+The complement has total normalized harmonic mass at most $1-B_X$, so
+\begin{equation}
+\lambda(pq)C_X^{\log}\ge B_X-(1-B_X)=2B_X-1.
+\label{eq:o29}
+\end{equation}
+This proves \CGeqref{eq:logmajority}.
+\end{proof}
+
+\begin{remark}[Threshold of the elementary logarithmic majority mechanism]
+For $q=1$, the lower bound in Theorem~\CGref{thm:logmajority} is positive
+exactly when $\theta<1/2$. Thus $1/2$ is the threshold exponent for this
+elementary majority mechanism, not a claimed transition exponent for the
+correlation itself. More precisely, every sequence
+$c_X=X^{\theta+o(1)}$ with $0\le\theta<1/2$ is covered, at the displacement
+$c_X/X=X^{-1+\theta+o(1)}$; in particular this includes
+$X^{-1/2-\varepsilon+o(1)}$ for every $\varepsilon>0$.
+For $q\ge2$, this elementary majority bound yields no positive lower bound.
+\end{remark}
+
+\begin{remark}[Positive fixed logarithmic branch from the majority theorem]
+For $q=1$ and $\theta=0$, Theorem~\CGref{thm:logmajority} gives
+$\liminf\lambda(m)C_X^{\log}\ge1$, while $|C_X^{\log}|\le1$. Hence
+\begin{equation}
+C_X^{\log}\!\left(\log m+\frac{c_X}{X}\right)\to\lambda(m)
+\label{eq:o30}
+\end{equation}
+for every positive $c_X$ with $\log c_X/\log X\to0$. No logarithmic Chowla
+input is needed for this integer positive branch.
+\end{remark}
+
+\begin{remark}[The endpoint $c=1/m$ is not an exact finite plateau]
+For the integer right-hand layer,
+\begin{equation}
+Xm(e^{1/(mX)}-1)
+=
+1+\frac1{2mX}+O(X^{-2})>1.
+\label{eq:o31}
+\end{equation}
+Thus $c=1/m$ belongs to the closed limiting plateau. Call $c$ in the
+\emph{exact finite plateau} if $C_X(\log m+c/X)=\lambda(m)X$ for all sufficiently
+large $X$. At $c=1/m$ only the term $n=X$ changes, and
+$C_X(\log m+\tfrac1{mX})=\lambda(m)(X-1)+\lambda(X)\lambda(mX+1)$; this differs from
+$\lambda(m)X$ whenever $\lambda(X)\lambda(mX+1)=-\lambda(m)$, which happens for
+infinitely many $X$ because $\sum_{X\le Y}\lambda(X)\lambda(mX+1)=o(Y)$
+(Theorem~\CGref{thm:oai}). Hence $c=1/m$ is not in the exact finite plateau. For $m=2$, $X=10^6$, the regenerated computation gives
+$C_X=-999998$.
+\end{remark}
+
+\begin{proposition}[Exact left-hand $c$-independence interval]
+\label{prop:left}
+Let $m\ge2$ and fix $-1/m<c<0$. For all sufficiently large $X$,
+\begin{equation}
+C_X\!\left(\log m+\frac cX\right)
+=
+\sum_{n\le X}\lambda(n)\lambda(mn-1).
+\label{eq:o32}
+\end{equation}
+This states exact independence with respect to $c$ on that finite interval.
+At this point Theorem~\CGref{thm:oai} is not used, and no asymptotic value of the
+right-hand sum is asserted here; Corollary~\CGref{cor:uncond} later bounds it by
+$O(X(\log X)^{-\kappa})$.
+\end{proposition}
+
+\begin{proof}
+Put $\beta_X=m(1-e^{c/X})$. Since $X\beta_X\to m|c|<1$, eventually
+$0<\beta_Xn<1$ for all $n\le X$. Hence
+$\lceil\beta_Xn\rceil=1$ and $\lfloor me^{c/X}n\rfloor=mn-1$.
+\end{proof}
+
+\begin{proposition}[Locally finite step structure]
+Fix $m\ge2$ and $X\in\mathbb N$. The map
+\begin{equation}
+c\longmapsto C_X\!\left(\log m+\frac cX\right)
+\label{eq:o33}
+\end{equation}
+is locally constant except at explicit crossing values. Every compact
+$c$-interval contains only finitely many jumps. For sufficiently negative
+$c$, disappearance points where $\lfloor me^{c/X}n\rfloor<1$ are included
+among these crossings.
+\end{proposition}
+
+\begin{proof}
+For each fixed $n\le X$, the integer $\lfloor me^{c/X}n\rfloor$ changes only
+when the continuous function $me^{c/X}n$ crosses an integer. On a compact
+$c$-interval its range is bounded, hence only finitely many crossings occur.
+There are only finitely many $n\le X$.
+\end{proof}
+
+\section{Unconditional natural profile}
+\label{sec:unconditional}
+
+Conjecture~\CGref{conj:affine_chowla} is used in Sections~\CGref{sec:natural} and~\CGref{sec:integer} only for finitely many fixed pairs of non-proportional affine forms, namely those produced by the residue-class blocks of Proposition~\CGref{prop:decomposition} and of the proof of Theorem~\CGref{thm:profile}. The following theorem supplies exactly this input, with a rate.
+
+\begin{theorem}[Ordinary two-point affine Chowla {\cite[Theorem~1.1, p.~3]{OpenAI2026}}]
+\label{thm:oai}
+There is an absolute constant $\kappa>0$ with the following property. Let $a_1,a_2\ge1$ and $b_1,b_2\ge0$ be fixed integers with $a_1b_2-a_2b_1\ne0$. Then there is $C=C_{a_1,a_2,b_1,b_2}$ such that
+\begin{equation}
+\Bigl|\sum_{n\le X}\lambda(a_1n+b_1)\lambda(a_2n+b_2)\Bigr|\le C\,\frac{X}{(\log X)^{\kappa}}\qquad(X\ge3,\ X\in\mathbb R).
+\label{eq:oai}
+\end{equation}
+\end{theorem}
+
+The constants in \CGeqref{eq:oai} may be ineffective, and no uniformity in coefficients growing with $X$ is asserted in \cite[p.~3]{OpenAI2026}; none is used below.
+
+\begin{lemma}[Macroscopic blocks with a rate]
+\label{lem:macro_rate}
+Let $\alpha_1,\alpha_2\ge1$ and $\beta_1,\beta_2\in\mathbb Z$ be fixed with $\alpha_1\beta_2-\alpha_2\beta_1\ne0$. Let $0\le A\le B<\infty$ be fixed and $A_X=AX+O(1)$, $B_X=BX+O(1)$. Then
+\begin{equation}
+\sum_{\substack{A_X<k\le B_X\\ \alpha_1k+\beta_1\ge1,\ \alpha_2k+\beta_2\ge1}}\lambda(\alpha_1k+\beta_1)\lambda(\alpha_2k+\beta_2)=O\Bigl(\frac{X}{(\log X)^{\kappa}}\Bigr).
+\label{eq:macro_rate}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Choose $k_0\ge0$ with $\alpha_ik_0+\beta_i\ge0$ for $i=1,2$ and substitute $k=\ell+k_0$. The forms become $\alpha_i\ell+(\alpha_ik_0+\beta_i)$, with non-negative intercepts and the same determinant $\alpha_1\beta_2-\alpha_2\beta_1\ne0$. The positivity conditions remove only $O(1)$ terms. The sum is a difference of two prefix sums at the cutoffs $A_X$ and $B_X$. Theorem~\CGref{thm:oai} applies to each cutoff $\asymp X$; when $A=0$ the lower prefix sum has $A_X=O(1)$ terms and is $O(1)$.
+\end{proof}
+
+\begin{theorem}[Rational natural microscopic profile, unconditional]
+\label{thm:profile_uncond}
+Let $(p,q)=1$ and fix $c\in\mathbb R$. Then
+\begin{equation}
+\frac1X\,C_X\!\Bigl(\log\frac pq+\frac cX\Bigr)=\Psi_{p,q}(c)+O_{p,q,c}\bigl((\log X)^{-\kappa}\bigr),
+\label{eq:profile_uncond}
+\end{equation}
+with $\Psi_{p,q}$ as in \CGeqref{eq:profile} and $\kappa$ the absolute constant of Theorem~\CGref{thm:oai}.
+\end{theorem}
+
+\begin{proof}
+For $c=0$ use Proposition~\CGref{prop:decomposition}: the proportional class contributes $\lambda(pq)\lfloor X/q\rfloor$ and each of the $q-1$ remaining classes is a sum of the shape \CGeqref{eq:macro_rate} with $A=0$, $B=1/q$. Let $c\ne0$. In the proof of Theorem~\CGref{thm:profile} the number of pairs $(a,r)$ is bounded in terms of $p,q,c$. Since $Xp(e^{c/X}-1)=pc+O(X^{-1})$, the endpoints in \CGeqref{eq:blockinterval} are $X\,\frac{r-\{pa/q\}}{pc}+O(1)$; after intersection with $0\le k\le X/q$ every block is an interval $(A_X,B_X]$ with $A_X=AX+O(1)$, $B_X=BX+O(1)$ for fixed $A\le B$. Every block other than $(a,r)=(0,0)$ consists of two non-proportional fixed affine forms, so Lemma~\CGref{lem:macro_rate} bounds it by $O(X(\log X)^{-\kappa})$. The proportional block has cardinality $R_X(c)=X\min(1/q,1/(pc))\mathbf 1_{c>0}+O(1)$, and each of its terms equals $\lambda(pq)$.
+\end{proof}
+
+\begin{corollary}[Unconditional forms of Theorem~\CGref{thm:fixed}, Corollary~\CGref{cor:integer} and Proposition~\CGref{prop:left}]
+\label{cor:uncond}
+Let $(p,q)=1$ and $m\ge2$.
+\begin{enumerate}
+\item $C_X(\log(p/q))=\lambda(pq)X/q+O(X(\log X)^{-\kappa})$.
+\item The limit in Corollary~\CGref{cor:integer} holds unconditionally, with error term $O_{m,c}((\log X)^{-\kappa})$.
+\item For fixed $-1/m<c<0$ and all sufficiently large $X$,
+\begin{equation}
+C_X\!\Bigl(\log m+\frac cX\Bigr)=\sum_{n\le X}\lambda(n)\lambda(mn-1)=O\Bigl(\frac X{(\log X)^{\kappa}}\Bigr).
+\label{eq:left_uncond}
+\end{equation}
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Items (1) and (2) are the cases $c=0$ and $q=1$ of Theorem~\CGref{thm:profile_uncond}. For (3), the identity is Proposition~\CGref{prop:left}, and the forms $n$, $mn-1$ have determinant $-1\ne0$, so Lemma~\CGref{lem:macro_rate} applies.
+\end{proof}
+
+\begin{remark}[The trivial resonance is binary Chowla]
+\label{rem:trivial_resonance}
+Take $p=q=1$ and fix $-1<c<0$. Since $X(1-e^{c/X})\to|c|<1$, for $X\ge X_0(c)$ one has $0<n(1-e^{c/X})<1$ for every $n\le X$, hence $\lfloor e^{c/X}n\rfloor=n-1$, and the term $n=1$ is omitted by definition. Thus, for every $X\ge X_0(c)$,
+\begin{equation}
+C_X\!\Bigl(\frac cX\Bigr)=\sum_{2\le n\le X}\lambda(n-1)\lambda(n),
+\label{eq:trivial_resonance}
+\end{equation}
+while $\Psi_{1,1}(c)=0$. The profile of Theorem~\CGref{thm:profile} at the single point $(p,q,c)=(1,1,c)$ is therefore, for every large $X$ and not only in the limit, the shift-one Chowla sum. No argument that avoids two-point input can produce Theorem~\CGref{thm:profile}; the residue-class decomposition isolates the main term exactly, and the remainder is a finite set of fixed binary correlations, which Theorem~\CGref{thm:oai} controls.
+\end{remark}
+
+
+\section{The \texorpdfstring{$k$}{k}-point resonance family}
+\label{sec:kpoint}
+
+\subsection{Definition and exact decomposition}
+\label{subsec:kpoint_def}
+
+For $k\ge2$ and $u=(u_1,\dots,u_{k-1})\in\mathbb R^{k-1}$ put
+\begin{equation}
+\begin{gathered}
+C^{(k)}_X(u):=\sum_{\substack{1\le n\le X\\ \lfloor e^{u_i}n\rfloor\ge1\ \forall i}}\lambda(n)\prod_{i=1}^{k-1}\lambda\bigl(\lfloor e^{u_i}n\rfloor\bigr),
+\\
+C^{(k),\log}_X(u):=\frac1{H_X}\sum_{\substack{1\le n\le X\\ \lfloor e^{u_i}n\rfloor\ge1\ \forall i}}\frac{\lambda(n)\prod_{i}\lambda(\lfloor e^{u_i}n\rfloor)}{n}.
+\end{gathered}
+\label{eq:Ck}
+\end{equation}
+For $k=2$ these are $C_X(u)$ and $C^{\log}_X(u)$ of Section~\CGref{sec:input}. Fix coprime $p_i,q_i\ge1$ and $c_i\in\mathbb R$ and set
+\begin{equation}
+u_i=\log\frac{p_i}{q_i}+\frac{c_i}{X},\qquad L:=\operatorname{lcm}(q_1,\dots,q_{k-1}),\qquad \delta_i:=\frac{p_i}{q_i}\bigl(e^{c_i/X}-1\bigr).
+\label{eq:uk}
+\end{equation}
+Write $n=Lm+a$ with $0\le a<L$, $m\ge0$, and
+\begin{equation}
+\theta_{a,i}:=\Bigl\{\frac{p_ia}{q_i}\Bigr\},\qquad b_{a,i}:=\Bigl\lfloor\frac{p_ia}{q_i}\Bigr\rfloor,\qquad A_i:=\frac{p_iL}{q_i}\in\mathbb N .
+\label{eq:theta_k}
+\end{equation}
+
+\begin{lemma}[Floors on residue classes]
+\label{lem:floor_k}
+For $n=Lm+a\le X$,
+\begin{equation}
+\lfloor e^{u_i}n\rfloor=A_im+b_{a,i}+r_i(n),\qquad r_i(n):=\bigl\lfloor\theta_{a,i}+\delta_in\bigr\rfloor,
+\label{eq:floor_k}
+\end{equation}
+and $|r_i(n)|\le\frac{p_i}{q_i}|c_i|e^{|c_i|}+1$. In particular $r_i(n)$ ranges over a finite set $R_i$ depending only on $(p_i,q_i,c_i)$.
+\end{lemma}
+
+\begin{proof}
+$e^{u_i}n=\frac{p_i}{q_i}(Lm+a)+\delta_in=A_im+b_{a,i}+\theta_{a,i}+\delta_in$, and $|\delta_in|\le\frac{p_i}{q_i}|e^{c_i/X}-1|X\le\frac{p_i}{q_i}|c_i|e^{|c_i|}$ for $n\le X$.
+\end{proof}
+
+For $0\le a<L$ and $r=(r_1,\dots,r_{k-1})\in R:=\prod_iR_i$ let $I_{a,r}(X)$ be the set of $m\ge0$ with $1\le Lm+a\le X$, $f_{a,r,i}(m)\ge1$ for all $i$, and $r_i(Lm+a)=r_i$ for all $i$, where
+\begin{equation}
+f_{a,r,0}(m):=Lm+a,\qquad f_{a,r,i}(m):=A_im+b_{a,i}+r_i\quad(1\le i\le k-1).
+\label{eq:forms_k}
+\end{equation}
+Since $n\mapsto\theta_{a,i}+\delta_in$ is affine, $I_{a,r}(X)$ is an interval of integers, and by Lemma~\CGref{lem:floor_k}
+\begin{equation}
+C^{(k)}_X(u)=\sum_{a=0}^{L-1}\sum_{r\in R}\ \sum_{m\in I_{a,r}(X)}\ \prod_{i=0}^{k-1}\lambda\bigl(f_{a,r,i}(m)\bigr)
+\label{eq:dec0_k}
+\end{equation}
+exactly, for every $X$.
+
+\begin{definition}[Proportionality classes]
+\label{def:classes}
+For fixed $(a,r)$ write $f_{a,r,i}(m)=\mathcal A_im+\mathcal B_i$, let $d_i:=\gcd(\mathcal A_i,|\mathcal B_i|)$ (with $\gcd(\mathcal A,0)=\mathcal A$), and let $(\alpha_i,\beta_i):=(\mathcal A_i,\mathcal B_i)/d_i$, a primitive vector with $\alpha_i\ge1$. Declare $i\sim j$ if $(\alpha_i,\beta_i)=(\alpha_j,\beta_j)$, equivalently $\mathcal A_i\mathcal B_j=\mathcal A_j\mathcal B_i$. For a class $\mathcal C$ let $g_{\mathcal C}(m):=\alpha_{\mathcal C}m+\beta_{\mathcal C}$ be its primitive form, let $\mathrm{Odd}(a,r)$ be the set of classes of odd cardinality and $k'(a,r):=|\mathrm{Odd}(a,r)|$. The block is \emph{resonant} if $k'(a,r)=0$. Put $\varepsilon_{a,r}:=\lambda(d_0d_1\cdots d_{k-1})\in\{\pm1\}$.
+\end{definition}
+
+\begin{theorem}[Exact decomposition of the $k$-point family]
+\label{thm:dec_k}
+For every $X\ge1$ and every choice \CGeqref{eq:uk},
+\begin{equation}
+C^{(k)}_X(u)=\sum_{\substack{(a,r)\\ k'(a,r)=0}}\varepsilon_{a,r}\,\bigl|I_{a,r}(X)\bigr|
++\sum_{\substack{(a,r)\\ k'(a,r)\ge1}}\varepsilon_{a,r}\sum_{m\in I_{a,r}(X)}\ \prod_{\mathcal C\in\mathrm{Odd}(a,r)}\lambda\bigl(g_{\mathcal C}(m)\bigr).
+\label{eq:dec_k}
+\end{equation}
+The forms $g_{\mathcal C}$, $\mathcal C\in\mathrm{Odd}(a,r)$, are primitive, pairwise non-proportional and positive on $I_{a,r}(X)$, and $k'(a,r)\equiv k\pmod 2$.
+\end{theorem}
+
+\begin{proof}
+On $I_{a,r}(X)$ every $f_{a,r,i}(m)\ge1$, hence $g_{\mathcal C}(m)\ge1$ and $\lambda(f_{a,r,i}(m))=\lambda(d_i)\lambda(g_{\mathcal C}(m))$ by complete multiplicativity. Since $\lambda^2=1$,
+\begin{equation}
+\prod_{i=0}^{k-1}\lambda(f_{a,r,i}(m))=\lambda\Bigl(\prod_i d_i\Bigr)\prod_{\mathcal C}\lambda\bigl(g_{\mathcal C}(m)\bigr)^{|\mathcal C|}=\varepsilon_{a,r}\prod_{\mathcal C\in\mathrm{Odd}(a,r)}\lambda\bigl(g_{\mathcal C}(m)\bigr).
+\label{eq:collapse}
+\end{equation}
+Distinct classes have distinct primitive vectors and are therefore non-proportional, and $\sum_{\mathcal C}|\mathcal C|=k$ gives the parity. Substitute into \CGeqref{eq:dec0_k}.
+\end{proof}
+
+\begin{lemma}[Block lengths]
+\label{lem:len_k}
+Let $J_{a,r}(c)\subseteq[0,1]$ be the set of $t$ with $r_i\le\theta_{a,i}+\frac{p_ic_i}{q_i}t<r_i+1$ for all $i$. It is an interval, possibly empty, and $|I_{a,r}(X)|=\frac XL|J_{a,r}(c)|+O_{p,q,c}(1)$. More precisely, $\{m:\ m\in I_{a,r}(X)\}=(A_X,B_X]\cap\mathbb Z$ with $A_X=AX+O(1)$, $B_X=BX+O(1)$ for fixed $A\le B$.
+\end{lemma}
+
+\begin{proof}
+For $n\le X$, $\delta_in=\frac{p_ic_i}{q_i}\frac nX(1+O(|c_i|/X))$, so the endpoints of $\{Lm/X: m\in I_{a,r}(X)\}$ differ from those of $J_{a,r}(c)$ by $O(1/X)$, and the conditions $f_{a,r,i}(m)\ge1$ remove $O(1)$ values of $m$.
+\end{proof}
+
+\begin{definition}[$k$-point profile]
+\label{def:profile_k}
+\begin{equation}
+\Psi^{(k)}_{p,q}(c):=\frac1L\sum_{\substack{(a,r)\\ k'(a,r)=0}}\varepsilon_{a,r}\,\bigl|J_{a,r}(c)\bigr| .
+\label{eq:profile_k}
+\end{equation}
+For odd $k$ there are no resonant blocks, since $k'\equiv k\pmod2$, and $\Psi^{(k)}\equiv0$.
+\end{definition}
+
+\begin{remark}[$k=2$]
+\label{rem:k2}
+For $k=2$, $L=q$, and $0\sim1$ holds if and only if $q\mid a$ and $r=0$, that is $(a,r)=(0,0)$, with $d_0=q$, $d_1=p$, $\varepsilon_{0,0}=\lambda(pq)$, and $|J_{0,0}(c)|=\min(1,q/(pc))$ for $c\ge0$, $|J_{0,0}(c)|=0$ for $c<0$. Definition~\CGref{def:profile_k} recovers $\Psi_{p,q}$ of Theorem~\CGref{thm:profile}, and Theorem~\CGref{thm:dec_k} recovers the block structure of its proof.
+\end{remark}
+
+\subsection{What each order of Chowla closes}
+\label{subsec:kpoint_suff}
+
+Say that $\mathrm{Ch}_{k'}$ holds if, for every tuple of $k'$ pairwise non-proportional affine forms $\alpha_jm+\beta_j$ ($\alpha_j\ge1$, $\beta_j\in\mathbb Z$), $\sum_{m\le Y}\prod_{j}\lambda(\alpha_jm+\beta_j)=o(Y)$, the finitely many $m$ with some form $\le0$ being omitted.
+
+\begin{theorem}[Sufficiency]
+\label{thm:suf_k}
+In \CGeqref{eq:dec_k}:
+\begin{enumerate}
+\item the pieces with $k'(a,r)=1$ are $O_{p,q,c}(X\exp(-c_0\sqrt{\log X}))$ for an absolute $c_0>0$;
+\item the pieces with $k'(a,r)=2$ are $O_{p,q,c}(X(\log X)^{-\kappa})$;
+\item if $\mathrm{Ch}_{k'}$ holds for every $3\le k'\le k$ with $k'\equiv k\pmod2$, then
+\begin{equation}
+\frac1XC^{(k)}_X(u)\longrightarrow\Psi^{(k)}_{p,q}(c)\qquad(X\to\infty).
+\label{eq:limit_k}
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By Lemma~\CGref{lem:len_k} each piece is $\varepsilon_{a,r}$ times a sum over $(A_X,B_X]$, a difference of two prefix sums. (1) For one primitive form $\alpha m+\beta$ this is a sum of $\lambda$ over a fixed progression, bounded by the prime number theorem in arithmetic progressions of fixed modulus. (2) Two non-proportional primitive forms: Lemma~\CGref{lem:macro_rate}. (3) The pieces with $k'\ge3$ are $o(X)$ by $\mathrm{Ch}_{k'}$, and Lemma~\CGref{lem:len_k} gives the resonant part.
+\end{proof}
+
+\begin{proposition}[Exact criterion for unconditional closure]
+\label{prop:criterion}
+Fix $(p,q,c)$. If every block $(a,r)$ with $|J_{a,r}(c)|>0$ has $k'(a,r)\le2$, then \CGeqref{eq:limit_k} holds unconditionally, with error $O((\log X)^{-\kappa})$. Conversely, if some block with $|J_{a,r}(c)|>0$ has $k'(a,r)\ge3$, then Theorem~\CGref{thm:suf_k}(1),(2) do not cover it, and \CGeqref{eq:limit_k} at $(p,q,c)$ is equivalent to the statement that the sum over all such blocks is $o(X)$; it does not follow that each block separately satisfies its $k'$-point estimate.
+\end{proposition}
+
+\begin{proof}
+Blocks with $|J_{a,r}(c)|=0$ have $O(1)$ elements. The others are covered by Theorem~\CGref{thm:suf_k}(1),(2) exactly when $k'\le2$.
+\end{proof}
+
+\begin{example}[$k=4$, closed unconditionally]
+\label{ex:k4}
+Take $(p_i/q_i)=(2,3,6)$ and $c=(1,c_2,1)$ with $0<c_2<\tfrac13$. Then $L=1$, $a=0$, $r_2=0$ on $[0,1]$, $r_1=\lfloor2t\rfloor$ and $r_3=\lfloor6t\rfloor$. The blocks in $t=n/X$, with the proportionality classes of the forms $(m,\,2m+r_1,\,3m,\,6m+r_3)$ indexed $0,1,2,3$, are:
+\begin{center}
+\small
+\begin{tabular}{llll}
+\hline
+$t$ & $r$ & classes & piece\\
+\hline
+$[0,\tfrac16)$ & $(0,0,0)$ & $\{0,1,2,3\}$ & resonant, $\varepsilon=\lambda(36)=1$\\
+$[\tfrac16,\tfrac13)$ & $(0,0,1)$ & $\{0,1,2\},\{3\}$ & $\lambda(6)\lambda(m)\lambda(6m+1)$, $k'=2$\\
+$[\tfrac13,\tfrac12)$ & $(0,0,2)$ & $\{0,1,2\},\{3\}$ & $\lambda(12)\lambda(m)\lambda(3m+1)$, $k'=2$\\
+$[\tfrac12,\tfrac23)$ & $(1,0,3)$ & $\{0,2\},\{1,3\}$ & resonant, $\varepsilon=\lambda(9)=1$\\
+$[\tfrac23,\tfrac56)$ & $(1,0,4)$ & $\{0,2\},\{1\},\{3\}$ & $\lambda(6)\lambda(2m+1)\lambda(3m+2)$, $k'=2$\\
+$[\tfrac56,1)$ & $(1,0,5)$ & $\{0,2\},\{1\},\{3\}$ & $\lambda(3)\lambda(2m+1)\lambda(6m+5)$, $k'=2$\\
+\hline
+\end{tabular}
+\end{center}
+By Proposition~\CGref{prop:criterion}, unconditionally,
+\begin{equation}
+\frac1X\,C^{(4)}_X\Bigl(\log2+\frac1X,\ \log3+\frac{c_2}X,\ \log6+\frac1X\Bigr)=\frac13+O\bigl((\log X)^{-\kappa}\bigr).
+\label{eq:ex4}
+\end{equation}
+The second plateau comes from the block $(1,0,3)$, where the four forms pair into $(m,3m)$ and $(2m+1,6m+3)$ without all four being proportional; this pairing has no analogue for $k=2$.
+\end{example}
+
+\subsection{Plateaus, majority and the left-hand identity at integer resonances}
+\label{subsec:kpoint_integer}
+
+\begin{theorem}[Integer resonances at level $k$]
+\label{thm:integer_k}
+Let $m_1,\dots,m_{k-1}\ge1$ be integers and $u_i=\log m_i+c_i/X$.
+\begin{enumerate}
+\item If $0<c_i<1/m_i$ for all $i$, then for $X\ge X_0(m,c)$
+\begin{equation}
+C^{(k)}_X(u)=\lambda(m_1\cdots m_{k-1})\sum_{n\le X}\lambda(n)^k=
+\begin{cases}\lambda(m_1\cdots m_{k-1})\lfloor X\rfloor,& k\ \text{even},\\[1mm]
+O\bigl(Xe^{-c_0\sqrt{\log X}}\bigr),& k\ \text{odd}.\end{cases}
+\label{eq:plateau_k}
+\end{equation}
+\item If $k$ is even and $c_i>0$ for all $i$, then
+\begin{equation}
+\liminf_{X\to\infty}\ \lambda(m_1\cdots m_{k-1})\frac{C^{(k)}_X(u)}{X}\ \ge\ 2\min\Bigl(1,\frac1{\max_im_ic_i}\Bigr)-1 .
+\label{eq:majority_k}
+\end{equation}
+\item If $-1/m_i<c_i<0$ for all $i$, then for $X\ge X_0(m,c)$
+\begin{equation}
+C^{(k)}_X(u)=\sum_{\substack{n\le X\\ m_in-1\ge1\ \forall i}}\lambda(n)\prod_{i=1}^{k-1}\lambda(m_in-1).
+\label{eq:left_k}
+\end{equation}
+\end{enumerate}
+No Chowla input is used.
+\end{theorem}
+
+\begin{proof}
+$\lfloor m_ie^{c_i/X}n\rfloor=m_in+\lfloor m_i(e^{c_i/X}-1)n\rfloor$ for $c_i>0$. (1) Since $m_iX(e^{c_i/X}-1)\to m_ic_i<1$, eventually the correction vanishes for every $n\le X$, and $\lambda(n)\prod_i\lambda(m_in)=\lambda(\prod m_i)\lambda(n)^k$; for odd $k$ use the prime number theorem with classical error term. (2) On $n<\min_i\{m_i(e^{c_i/X}-1)\}^{-1}$ every correction vanishes and every summand equals $\lambda(\prod m_i)\lambda(n)^k=\lambda(\prod m_i)$; the proportion of such $n\le X$ tends to $\min(1,1/\max_im_ic_i)$, and every other summand has modulus one. (3) Since $m_iX(1-e^{c_i/X})\to m_i|c_i|<1$, eventually $0<m_i(1-e^{c_i/X})n<1$ for $n\le X$, so $\lfloor m_ie^{c_i/X}n\rfloor=m_in-1$.
+\end{proof}
+
+Parts (1) and (2) extend Corollary~\CGref{cor:integer} and Theorem~\CGref{thm:naturalmajority} to every $k$; part (3) extends Proposition~\CGref{prop:left}. If the $m_i$ are pairwise distinct, the $k$ forms $n,m_1n-1,\dots,m_{k-1}n-1$ in \CGeqref{eq:left_k} are pairwise non-proportional, so $k'=k$ and $\Psi^{(k)}=0$ there. The left-hand plateau is thus, for every large $X$, a single $k$-point Chowla sum.
+
+\begin{corollary}[Level three at $(2,3)$ is ordinary three-point Chowla]
+\label{cor:level3_23}
+For every $c=(c_1,c_2)\in(-\tfrac12,0)\times(-\tfrac13,0)$ and every $X\ge X_0(c)$,
+\begin{equation}
+\begin{aligned}
+C^{(3)}_X\Bigl(\log2+\frac{c_1}X,\ \log3+\frac{c_2}X\Bigr)&=\sum_{n\le X}\lambda(n)\lambda(2n-1)\lambda(3n-1)\\
+&=\sum_{\substack{3\le M\le 6X-3\\ M\equiv3\ (\mathrm{mod}\ 6)}}\lambda(M)\lambda(M+1)\lambda(M+3),
+\end{aligned}
+\label{eq:level3_23}
+\end{equation}
+while $\Psi^{(3)}\equiv0$. Consequently the level-three profile on this open set of $c$, for all large $X$, is equivalent to
+\begin{equation}
+\sum_{\substack{M\le Y\\ M\equiv3\ (\mathrm{mod}\ 6)}}\lambda(M)\lambda(M+1)\lambda(M+3)=o(Y).
+\label{eq:chowla013}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The first identity is Theorem~\CGref{thm:integer_k}(3). Put $N=6n$. Then $3(2n-1)=N-3$ and $2(3n-1)=N-2$, so $\lambda(n)=\lambda(6)\lambda(N)=\lambda(N)$, $\lambda(2n-1)=\lambda(3)\lambda(N-3)$ and $\lambda(3n-1)=\lambda(2)\lambda(N-2)$; since $\lambda(2)\lambda(3)=1$ the product is $\lambda(N)\lambda(N-2)\lambda(N-3)$. Put $M=N-3$.
+\end{proof}
+
+The logarithmic analogue of \CGeqref{eq:chowla013} holds by \cite[Theorem~1.1, p.~2]{TaoTeravainen2018}; the ordinary average \CGeqref{eq:chowla013} at every scale is not known, and \cite{OpenAI2026} treats only two points \cite[pp.~3--4]{OpenAI2026}.
+
+\subsection{Necessity}
+\label{subsec:kpoint_nec}
+
+\begin{theorem}[Necessity]
+\label{thm:nec_k}
+Fix $k\ge2$ and $a_1,\dots,a_{k-1}\ge1$. For $r\in\mathbb Z_{\ge0}^{k-1}$ put
+\begin{equation}
+P_r(Y):=\sum_{m\le Y}\lambda(m)\prod_{i=1}^{k-1}\lambda(a_im+r_i),\qquad \pi_r:=\varepsilon_{0,r}\,\mathbf 1\bigl[k'(0,r)=0\bigr],
+\label{eq:Pr}
+\end{equation}
+with the classes of Definition~\CGref{def:classes} for $(p_i,q_i)=(a_i,1)$. Suppose that \CGeqref{eq:limit_k} holds for $(p_i,q_i)=(a_i,1)$ and every $c\in(0,\infty)^{k-1}$. Then $P_r(Y)=\pi_rY+o(Y)$ for every $r\in\mathbb Z_{\ge0}^{k-1}$. In particular, if the forms $m,a_1m+r_1,\dots,a_{k-1}m+r_{k-1}$ are pairwise non-proportional, then $P_r(Y)=o(Y)$.
+\end{theorem}
+
+\begin{proof}
+Induction on $|r|:=\sum_ir_i$. For $r=0$, $P_0(Y)=\lambda(\prod a_i)\sum_{m\le Y}\lambda(m)^k$, which is $\pi_0Y+o(Y)$ by the prime number theorem when $k$ is odd and trivially when $k$ is even. Let $r\ne0$ and choose $c_i:=(r_i+1)/a_i$. Here $L=1$, $a=0$, $n=m$, and $\lfloor e^{u_i}m\rfloor=a_im+r'_i(m)$ with $r'_i(m)=\lfloor\delta_im\rfloor$ and $\delta_i=a_i(e^{c_i/X}-1)$. Since $x<e^x-1<x(1+x)$ for $0<x<1$,
+\[
+\delta_im=(r_i+1)\frac mX(1+\eta_i),\qquad 0<\eta_i<\frac{c_i}X .
+\]
+\emph{Order of the blocks.} For $1\le m\le X$ and $X>(r_i+1)c_i$ one has $\delta_im<(r_i+1)(1+\eta_i)<r_i+2$, so $r'_i(m)\le r_i+1$, and $r'_i(m)=r_i+1$ only if $m\ge X/(1+\eta_i)>X-c_i$. Hence, outside the at most $\lceil\max_ic_i\rceil+1=O_{a,r}(1)$ values $m>X-\max_ic_i$, every $m$ has $r'(m)\le r$ componentwise. For each $i$, $r'_i(m)=r_i$ exactly when $\frac{r_i}{r_i+1}\frac X{1+\eta_i}\le m<\frac X{1+\eta_i}$; intersecting over $i$ gives the block of $r$. Every other block that occurs has $r'\le r$, $r'\ne r$, hence $|r'|<|r|$, and is an intersection of $k-1$ intervals in $m$, hence an interval. Consequently
+\begin{equation}
+I_r(X)=\bigl[\alpha_rX,\ X\bigr]+O(1),\qquad \alpha_r:=\max_i\frac{r_i}{r_i+1}\in\bigl[\tfrac12,1\bigr).
+\label{eq:last_block}
+\end{equation}
+Every other nonempty block has $|r'|<|r|$, is an interval $(\alpha'X,\beta'X]+O(1)$, and by induction contributes $\pi_{r'}|J_{r'}(c)|X+o(X)$. The hypothesis \CGeqref{eq:limit_k} and \CGeqref{eq:profile_k} leave $\sum_{m\in I_r(X)}\lambda(m)\prod_i\lambda(a_im+r_i)=\pi_r(1-\alpha_r)X+o(X)$, that is
+\begin{equation}
+P_r(Y)-P_r(\alpha_rY)=\pi_r(1-\alpha_r)Y+o(Y)\qquad(Y\to\infty).
+\label{eq:suffix}
+\end{equation}
+Given $\epsilon>0$ take $Y_0$ with error $\le\epsilon Y$ in \CGeqref{eq:suffix} for $Y\ge Y_0$, and $J$ with $\alpha_r^{J+1}Y<Y_0\le\alpha_r^JY$. Telescoping over $Y,\alpha_rY,\dots,\alpha_r^JY$ gives $|P_r(Y)-\pi_r(1-\alpha_r^{J+1})Y|\le\epsilon Y/(1-\alpha_r)+Y_0$, since $|P_r(\alpha_r^{J+1}Y)|\le\alpha_r^{J+1}Y<Y_0$; as $|\pi_r|\alpha_r^{J+1}Y<Y_0$ too, $|P_r(Y)-\pi_rY|\le\epsilon Y/(1-\alpha_r)+2Y_0$, hence $\limsup_Y|P_r(Y)-\pi_rY|/Y\le\epsilon/(1-\alpha_r)$. If the forms are pairwise non-proportional, all classes are singletons and $\pi_r=0$.
+\end{proof}
+
+For instance, the level-three profile at $(2,3)$ on $(0,\infty)^2$ implies
+\begin{equation}
+\sum_{m\le X}\lambda(m)\lambda(2m+1)\lambda(3m+1)=o(X):
+\label{eq:231}
+\end{equation}
+with $c=(1,\tfrac23)$ the blocks are $r=(0,0)$ on the range $t\in[0,\tfrac12)$, where $\lambda(m)\lambda(2m)\lambda(3m)=\lambda(m)$, and $r=(1,1)$ on $[\tfrac12,1]$. Together with Theorem~\CGref{thm:suf_k} and Corollary~\CGref{cor:level3_23}, for $q_i=1$ and $c\in(0,\infty)^{k-1}$ the level-$k$ family is equivalent to $k$-point Chowla on the tuples it contains (Theorem~\CGref{thm:nec_k}); in general, for $k\ge3$, it is an \emph{exact} reformulation and not a reduction to two points.
+
+\begin{theorem}[Odd levels, logarithmic average]
+\label{thm:log_k}
+Let $k\ge3$ be odd. For every rational resonance \CGeqref{eq:uk} and every $c\in\mathbb R^{k-1}$, $C^{(k),\log}_X(u)\to0$.
+\end{theorem}
+
+\begin{proof}
+The decomposition \CGeqref{eq:dec0_k} holds termwise with weight $1/n$, $n=Lm+a$; the terms with $m=0$ contribute $O(1)$, and $\frac1{Lm+a}=\frac1{Lm}+O_L(m^{-2})$ for $m\ge1$. A block $(A_X,B_X]$ with $A>0$ has logarithmic mass $O(1)$; only blocks starting at $A=0$ need the following input. After a fixed shift making all intercepts positive, each block is $o(\log X)$ by \cite[Theorem~1.1, p.~2]{TaoTeravainen2018}, which for odd $k$ requires no non-degeneracy condition \cite[Remark~1.2, p.~2]{TaoTeravainen2018}. There are $O(1)$ blocks and $H_X\sim\log X$.
+\end{proof}
+
+
+\section{Three and more points: the centering step of the bias method}
+\label{sec:three}
+
+\subsection{The bias method for two points}
+\label{subsec:bias}
+
+We recall the structure of the proof of the binary corrected Elliott theorem \cite[Theorem~1.2, p.~4]{OpenAI2026}, Part~II of \cite{OpenAI2026}, specialised to $f_1=f_2=\lambda$. The parameters are \cite[(10.1)--(10.2), p.~44]{OpenAI2026}
+\begin{equation}
+\varepsilon=10^{-4},\quad \eta=\frac{\varepsilon}{100},\quad \kappa_0=\frac{400}{\eta},\quad A=e^{2\kappa_0},\quad c_*=\frac{\varepsilon}{100},\quad \theta=\frac14,
+\label{eq:oai_params}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+&\mathcal C=\{p:\ B^{1-\eta}<\log p\le B\},\qquad \mathcal Z=\{p:\ B^{1-\varepsilon}<\log p\le B^{1-\eta}\},\\
+&\mathcal S=\mathcal C\cup\mathcal Z,\qquad P_0=e^{B^{1-\varepsilon}},
+\end{aligned}
+\label{eq:oai_primes}
+\end{equation}
+with $v_{\mathcal C}=\sum_{p\in\mathcal C}1/p=(\eta+o(1))\log B$ and $L_0=\prod_{p\in\mathcal C}(1+A/p)\prod_{p\in\mathcal Z}(1+1/p)$. An admissible family $\mathcal D$ consists of squarefree $\mathcal S$-products $d$ with $H<d\le\tau H$, $1\le H\le e^{C_0B}$, $\omega(d)\le J=\lceil C_0\log B\rceil$; $d_{\mathcal C}$ is the $\mathcal C$-part of $d$, and the cutoffs are $w_d(x)=\varphi((k_d(x)-v_{\mathcal C})/\sqrt{v_{\mathcal C}})$ with $k_d(x)=\#\{p\in\mathcal C:p\mid x,\ p\nmid d\}$ \cite[(10.3)--(10.4), (11.3), pp.~45--47]{OpenAI2026}. The proof has four steps:
+\begin{enumerate}
+\item a persistent bias $|S(N_j)|\ge\gamma N_j$ is assumed;
+\item a divisor interval carries mass $\gg L_0/B$ \cite[Lemma~11.2, p.~47]{OpenAI2026}, and dilation $x=dm$ turns the bias into a lower bound $\gg_\gamma L_0/B$ for a raw sum with ordinary divisibility indicators \cite[Lemma~11.3, p.~48]{OpenAI2026};
+\item centering the center-band indicators $\mathbf 1_{p\mid x}\mapsto\mathbf 1_{p\mid x}-\theta/p$ changes the raw sum by $\ll L_0(B^{-1-\varepsilon}+J/P_0)$ \cite[Proposition~11.4, p.~49]{OpenAI2026};
+\item the centered sum is $\ll L_0B^{-1-c_*/2}$ by the divisor graph estimate \cite[Proposition~10.1, p.~45]{OpenAI2026}.
+\end{enumerate}
+Step~(3) is reduced \cite[\S12.1, pp.~50--51]{OpenAI2026} to the estimate
+\begin{equation}
+\limsup_{Y\to\infty}\Bigl|\frac1Y\sum_{z\le Y}b_1(z)\sum_{M<w\le\tau M}\frac{c_w}{w}\,b_2(z+hw)\Bigr|\ll B^{-1-\varepsilon},
+\label{eq:oai124}
+\end{equation}
+uniformly in coefficients $|c_w|\le1$ supported on $P_0$-rough $w\in(M,\tau M]$, $P_0/\tau\le M\le e^{C_0B}$, and in the twists $b_i(n)=\lambda(n)e(t_i\#\{p\in\mathcal C:p\mid n,\ p\nmid u\}/\sqrt{v_{\mathcal C}})$. The proof of \CGeqref{eq:oai124} \cite[pp.~53--55]{OpenAI2026} uses of $b_1,b_2$ only their $1$-boundedness and the averaged short exponential sum bound \cite[Theorem~12.2 and (12.7), pp.~51--52]{OpenAI2026}
+\begin{equation}
+\limsup_{Y\to\infty}\ \sup_{\alpha\in\mathbb R/\mathbb Z}\ \frac1{DY}\int_0^Y\Bigl|\sum_{y<m\le y+D}b(m)e(\alpha m)\Bigr|\,dy\ll\frac{\log\log D}{\log D},
+\label{eq:oai127}
+\end{equation}
+for one of the two functions, with the supremum outside the integral, together with the rough-number bounds of \cite[Lemma~12.3, p.~52]{OpenAI2026}: the sup-norm and fourth-moment bounds (12.9)--(12.10) for $\sum_wc_ww^{-1}e(\alpha hw)$, which rest on the count $\sum_{M<w\le\tau M,\ w\ P_0\text{-rough}}1/w\ll B^{-1+\varepsilon}\log B$ \cite[(12.13), p.~53]{OpenAI2026}.
+
+For $k$ points $0=h_0<h_1<\dots<h_{k-1}$, the same expansion, written out in Lemma~\CGref{lem:expansion_k}, leads to
+\begin{equation}
+\mathcal E_k:=\limsup_{Y\to\infty}\Bigl|\frac1Y\sum_{z\le Y}b_0(z)\sum_{M<w\le\tau M}\frac{c_w}{w}\prod_{i=1}^{k-1}b_i(z+h_iw)\Bigr|\ll B^{-1-\varepsilon}.
+\label{eq:E_k}
+\end{equation}
+For $f_i=\lambda$ the dilation coefficient of \cite[Lemma~11.3]{OpenAI2026} is $a_d=\lambda(d)^k$, and the expansion of \cite[\S12.1]{OpenAI2026}, with $d=uw$ and $x=uz$, produces the coefficients $c^{(u)}_w=a_{uw}(-\theta)^{\omega(w)}\mathbf 1[uw\in\mathcal D]$ together with the extracted factor $\prod_i\lambda(u)=\lambda(u)^k$. Since $w$ is squarefree, the effective coefficient is
+\begin{equation}
+\lambda(u)^k\,c^{(u)}_w=\lambda(w)^k(-\theta)^{\omega(w)}\mathbf 1[uw\in\mathcal D]=
+\begin{cases}\theta^{\omega(w)}\mathbf 1[uw\in\mathcal D],&k\ \text{odd},\\ (-\theta)^{\omega(w)}\mathbf 1[uw\in\mathcal D],&k\ \text{even}.\end{cases}
+\label{eq:cw_general}
+\end{equation}
+For odd $k$ every term of the expansion therefore carries a non-negative coefficient, independently of $u$.
+
+\subsection{Barriers}
+\label{subsec:barrier}
+
+\begin{proposition}[Polynomial-phase barrier, all $k\ge3$]
+\label{prop:barrier_poly}
+Let $k\ge3$, $0=h_0<h_1<\dots<h_{k-1}$, $V:=\prod_{0\le j<l\le k-1}(h_l-h_j)$ and $R_i:=V\prod_{j\ne i}(h_i-h_j)^{-1}\in\mathbb Z\setminus\{0\}$. Let $\beta$ be irrational and $b_i(m):=e(\beta R_im^{k-1})$. Then:
+\begin{enumerate}
+\item for every integer $D\ge1$, uniformly in $\alpha\in\mathbb R$,
+\begin{equation}
+\limsup_{Y\to\infty}\frac1{DY}\int_0^Y\Bigl|\sum_{y<m\le y+D}b_i(m)e(\alpha m)\Bigr|\,dy\le D^{-1/2};
+\label{eq:barrier_poly_127}
+\end{equation}
+\item $\prod_{i=0}^{k-1}b_i(z+h_iw)=e(\beta Vw^{k-1})$ for all $z,w$; hence with $c_w:=e(-\beta Vw^{k-1})\mathbf 1[w\ \text{is }P_0\text{-rough}]$,
+\begin{equation}
+\frac1Y\sum_{z\le Y}b_0(z)\sum_{M<w\le\tau M}\frac{c_w}{w}\prod_{i=1}^{k-1}b_i(z+h_iw)=\frac{\lfloor Y\rfloor}Y\sum_{\substack{M<w\le\tau M\\ w\ P_0\text{-rough}}}\frac1w .
+\label{eq:barrier_poly_E}
+\end{equation}
+\end{enumerate}
+For $P_0\le M\le P_0^2/\tau$, a range contained in that of \CGeqref{eq:oai124}, every $P_0$-rough integer of $(M,\tau M]$ is prime, and the right-hand side of \CGeqref{eq:barrier_poly_E} is $\sum_{M<p\le\tau M}1/p\ge(\tau-1)/(3\tau\log(\tau M))\gg_\tau B^{-1+\varepsilon}$ for large $B$, which exceeds $B^{-1-\varepsilon}$ by the factor $B^{2\varepsilon}$. Thus \CGeqref{eq:E_k} does not follow from \CGeqref{eq:oai127}, the rough support and the size of the coefficients.
+\end{proposition}
+
+\begin{proof}
+By Lagrange interpolation, $\sum_ih_i^j\prod_{l\ne i}(h_i-h_l)^{-1}$ equals $0$ for $0\le j\le k-2$ and $1$ for $j=k-1$. Hence $\sum_iR_i(z+h_iw)^{k-1}=\sum_j\binom{k-1}{j}z^{k-1-j}w^j\sum_iR_ih_i^j=Vw^{k-1}$, which is (2). For (1), write $S_y(\alpha)$ for the inner sum; since $D$ is an integer it has exactly $D$ terms $m=n_0+t$, $1\le t\le D$, $n_0=\lfloor y\rfloor$. Expanding the square,
+\begin{equation}
+\begin{aligned}
+\frac1Y\int_0^Y|S_y(\alpha)|^2dy=\sum_{1\le t,t'\le D}&e(\alpha(t-t'))\\
+&\times\frac1Y\int_0^Ye\bigl(\beta R_i\bigl((n_0+t)^{k-1}-(n_0+t')^{k-1}\bigr)\bigr)dy .
+\end{aligned}
+\label{eq:barrier_cs}
+\end{equation}
+For $t\ne t'$, $n\mapsto\beta R_i((n+t)^{k-1}-(n+t')^{k-1})$ is a polynomial of degree $k-2\ge1$ with irrational leading coefficient $\beta R_i(k-1)(t-t')$, so by Weyl's equidistribution theorem its average over $n_0\le Y$ tends to $0$. There are finitely many pairs, and $\alpha$ enters only through unimodular constants, so the left-hand side of \CGeqref{eq:barrier_cs} tends to $D$ uniformly in $\alpha$. Cauchy--Schwarz gives $\limsup_Y\frac1Y\int_0^Y|S_y|\,dy\le D^{1/2}$. The lower bound for the prime sum is the prime number theorem, with $\log(\tau M)\le2B^{1-\varepsilon}$.
+\end{proof}
+
+For $f_i=\lambda$ the coefficients \CGeqref{eq:cw_general} are not arbitrary: they are $(\pm\theta)^{\omega(w)}$ on the admissible $w$, and for odd $k$ they are non-negative; Proposition~\CGref{prop:barrier_poly} does not model them. For odd $k$ the polynomial phases of Proposition~\CGref{prop:barrier_poly} then no longer produce a constant product. For $k=3$ the barrier survives with phases of vanishing curvature.
+
+\begin{proposition}[Barrier for non-negative coefficients, $k=3$]
+\label{prop:barrier_pos}
+Let $0<h_1<h_2$, $\rho:=h_1h_2(h_1-h_2)$, $\tau\in(1,2)$, $H,D^*\ge1$, and let $q$ be a prime with
+\begin{equation}
+q\ge\max\bigl(2h_2+1,\ 7h_2(D^*+1)^3,\ 6|\rho|\tau^2H^2\bigr).
+\label{eq:q_choice}
+\end{equation}
+Put $b_0(m)=e((h_1-h_2)m^2/q)$, $b_1(m)=e(h_2m^2/q)$, $b_2(m)=e(-h_1m^2/q)$. Then:
+\begin{enumerate}
+\item for integers $1\le D\le D^*$ and every $\alpha$,
+\begin{equation}
+\limsup_{Y\to\infty}\frac1{DY}\int_0^Y\Bigl|\sum_{y<m\le y+D}b_i(m)e(\alpha m)\Bigr|dy\le\frac{3+\log q}{D};
+\label{eq:barrier_pos_127}
+\end{equation}
+\item for $M\le H$ and every $c_w\ge0$ supported on $(M,\tau M]$,
+\begin{equation}
+\begin{aligned}
+\liminf_{Y\to\infty}\ \mathrm{Re}\,\frac1Y\sum_{z\le Y}b_0(z)&\sum_{M<w\le\tau M}\frac{c_w}{w}b_1(z+h_1w)b_2(z+h_2w)\\
+&\ge\ \frac12\sum_{M<w\le\tau M}\frac{c_w}{w}.
+\end{aligned}
+\label{eq:barrier_pos}
+\end{equation}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(2) $(h_1-h_2)z^2+h_2(z+h_1w)^2-h_1(z+h_2w)^2=\rho w^2$, so the product equals $e(\rho w^2/q)$, and $|\rho|w^2/q\le|\rho|\tau^2H^2/q\le\frac16$ gives $\mathrm{Re}\,e(\rho w^2/q)\ge\frac12$. (1) Let $r\in\{h_1-h_2,h_2,-h_1\}$, $n_0=\lfloor y\rfloor$, and $L\le D+1$ the number of terms. Then $r(n_0+t)^2/q+\alpha(n_0+t)=\mathrm{const}+\vartheta t+rt^2/q$ with $\vartheta=\alpha+2rn_0/q$, and $\sum_{t\le L}|e(rt^2/q)-1|\le2\pi h_2L^3/q\le1$. So $|S_y|\le\min(L,\|\vartheta\|^{-1}/2)+1$. As $n_0$ runs over a period modulo $q$, $2rn_0$ runs over all residues ($q\nmid2r$). The points $\alpha+j/q$ have spacing $1/q$, at most two of them lie at distance $<1/q$ from $\mathbb Z$, and at most two lie at distance in $[j'/q,(j'+1)/q)$ for each $j'\ge1$; hence the average of $\min(L,\|\alpha+j/q\|^{-1}/2)$ over $j$ is at most $2L/q+1+\log q\le2+\log q$.
+\end{proof}
+
+The functions of Proposition~\CGref{prop:barrier_pos} are $q$-periodic, so the bound in (1) holds only for windows $D\le D^*$; this is all that matters. In \cite[pp.~54--55]{OpenAI2026} the bound \CGeqref{eq:oai127} is used only at the two window lengths $D_1\asymp M$ and $D_2\asymp_hD_1$ fixed before $Y\to\infty$. Choosing $D^*\ge(1+2h_2)\lceil H\rceil$ gives $q\asymp_{h}H^3$, $\log q\ll B$, and for $P_0/\tau\le D\le D^*$ the bound in (1) is $O(Be^{-B^{1-\varepsilon}})$, far below $\log\log D/\log D$. So the functions of Proposition~\CGref{prop:barrier_pos} satisfy \CGeqref{eq:oai127} at every window length used in \cite[\S12]{OpenAI2026}. Their product along the pattern is $\ge\frac12$ in real part, uniformly in $u$ when $q$ is chosen for $H$, so for odd $k=3$ no cancellation between different $u$ occurs either. The functions are locally linear phases with slowly varying frequency: on each window the frequency is $\alpha+2rn_0/q$. Any extension of Step~(3) to three points must therefore use information on $b_i$ that excludes such local linear phases, which \CGeqref{eq:oai127} does not.
+
+\subsection{Local Gowers norms control the centering error}
+\label{subsec:local_gowers}
+
+For a prime $N$ and $g:\mathbb Z_N\to\mathbb C$ let $\mathbb E$ denote averages over $\mathbb Z_N$, $\Delta_ag(x):=g(x)\overline{g(x+a)}$, $\|g\|_{U^1}:=|\mathbb Eg|$, and
+\begin{equation}
+\|g\|_{U^{s}}^{2^{s}}:=\mathbb E_{a}\,\|\Delta_ag\|_{U^{s-1}}^{2^{s-1}}\qquad(s\ge2),
+\label{eq:gowers}
+\end{equation}
+the Gowers norms \cite{Gowers2001}. In particular $\|g\|_{U^2}^4=\sum_\xi|\widehat g(\xi)|^4\ge\max_\xi|\widehat g(\xi)|^4$, with $\widehat g(\xi)=\mathbb E_xg(x)e(-x\xi/N)$.
+
+\begin{definition}[Local Gowers norm]
+\label{def:local_gowers}
+For an integer $D\ge2$ let $N_D$ be the least prime $>4D$. For $b:\mathbb N\to\mathbb C$ and $y\ge0$ define $G_y:\mathbb Z_{N_D}\to\mathbb C$ by $G_y(x)=b(\lfloor y\rfloor+x)$ for $x\in\{1,\dots,2D+1\}$ and $G_y(x)=0$ for the other residues, and put $\|b\|_{U^s(y;D)}:=\|G_y\|_{U^s(\mathbb Z_{N_D})}$.
+\end{definition}
+
+\begin{lemma}[Generalised von Neumann inequality]
+\label{lem:vonneumann}
+Let $k\ge2$, $0=h_0<h_1<\dots<h_{k-1}$, $N>h_{k-1}$ prime, and $g_0,\dots,g_{k-1}:\mathbb Z_N\to\mathbb C$ with $|g_i|\le1$. Then
+\begin{equation}
+\Bigl|\mathbb E_{z,w\in\mathbb Z_N}\prod_{i=0}^{k-1}g_i(z+h_iw)\Bigr|\le\|g_{k-1}\|_{U^{k-1}}.
+\label{eq:vonneumann}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For $k=2$ the average factorises as $\mathbb E g_0\cdot\mathbb Eg_1$, of modulus $\le\|g_1\|_{U^1}$. For $k\ge3$, Cauchy--Schwarz in $z$ and $|g_0|\le1$ give
+\begin{equation}
+\begin{aligned}
+\Bigl|\mathbb E_{z,w}\prod_{i=0}^{k-1}g_i(z+h_iw)\Bigr|^2&\le\mathbb E_{z}\Bigl|\mathbb E_w\prod_{i=1}^{k-1}g_i(z+h_iw)\Bigr|^2\\
+&=\mathbb E_t\,\mathbb E_{z,w}\prod_{i=1}^{k-1}(\Delta_{h_it}g_i)(z+(h_i-h_1)w),
+\end{aligned}
+\label{eq:vn_step}
+\end{equation}
+after writing $w'=w+t$ and replacing $z$ by $z-h_1w$. The new shifts are $h_i-h_1$ for $1\le i\le k-1$; they satisfy $0=h_1-h_1<h_2-h_1<\dots<h_{k-1}-h_1<N$, so the inductive hypothesis (with $k-1$ functions and the same prime $N$) applies to them. Since $N$ is prime and $0<h_i<N$, every $h_i$ with $i\ge1$, and in particular $h_{k-1}$, is a unit modulo $N$. By induction the inner average is at most $\|\Delta_{h_{k-1}t}g_{k-1}\|_{U^{k-2}}$ in modulus. Since $t\mapsto h_{k-1}t$ is a bijection of $\mathbb Z_N$, H\"older and \CGeqref{eq:gowers} give $\mathbb E_t\|\Delta_{h_{k-1}t}g_{k-1}\|_{U^{k-2}}\le(\mathbb E_s\|\Delta_sg_{k-1}\|_{U^{k-2}}^{2^{k-2}})^{2^{2-k}}=\|g_{k-1}\|_{U^{k-1}}^2$.
+\end{proof}
+
+\begin{proposition}[Local $U^k$ control of the $k$-point centering error]
+\label{prop:local_control}
+Let $k\ge3$, $0=h_0<h_1<\dots<h_{k-1}$, $\tau\in(1,2)$, $M\ge1$, $\mathcal J=(M,\tau M]$, $|c_w|\le1$ for $w\in\mathcal J$, $\varpi:=\sum_{w\in\mathcal J}|c_w|/w$, and $D:=\lceil h_{k-1}\tau M\rceil$. There is $C=C(h_{k-1})$ such that for all $b_0,\dots,b_{k-1}:\mathbb N\to\mathbb C$ with $|b_i|\le1$ and all $Y\ge1$,
+\begin{equation}
+\begin{aligned}
+&\frac1Y\Bigl|\sum_{z\le Y}b_0(z)\sum_{w\in\mathcal J}\frac{c_w}w\prod_{i=1}^{k-1}b_i(z+h_iw)\Bigr|\\
+&\qquad\le C\,\bigl(\varpi\log(3M)\bigr)^{1/2}\,\frac1Y\int_0^Y\|b_{k-1}\|_{U^k(y;D)}\,dy\\
+&\qquad\quad+\frac{(2D+1)\varpi}{Y}.
+\end{aligned}
+\label{eq:local_control}
+\end{equation}
+No hypothesis on the support of $c_w$ or on $b_0,\dots,b_{k-2}$ is needed.
+\end{proposition}
+
+\begin{proof}
+Write $g(z)$ for the summand in $z$, so $|g|\le\varpi$, and for $y\ge0$ let $\mathcal W_y=(y,y+D]\cap\mathbb Z$ and $S_y=\sum_{z\in\mathcal W_y}g(z)$. Each integer $z\in[D,Y]$ lies in $\mathcal W_y$ for a set of $y\in[0,Y]$ of measure $D$, and every other $z$ for a set of measure in $[0,D]$; hence
+\begin{equation}
+\Bigl|\sum_{z\le Y}g(z)\Bigr|\le\frac1D\int_0^Y|S_y|\,dy+(2D+1)\varpi .
+\label{eq:windows}
+\end{equation}
+\emph{Cauchy--Schwarz in $w$.} With $X_{y,w}:=\sum_{z\in\mathcal W_y}b_0(z)\prod_{i\ge1}b_i(z+h_iw)$ and $|c_w|/w\le1/M$,
+\begin{equation}
+|S_y|^2\le\varpi\sum_{w\in\mathcal J}\frac{|c_w|}{w}|X_{y,w}|^2\le\frac{\varpi}{M}\sum_{w\in\mathcal J}|X_{y,w}|^2 .
+\label{eq:cs_w}
+\end{equation}
+\emph{Differencing.} Put $n_0=\lfloor y\rfloor$, so that $\mathcal W_y-n_0=\{1,\dots,D\}$, and $G_i(x):=b_i(n_0+x)\mathbf 1_{1\le x\le 2D+1}$ and $F_0(x):=b_0(n_0+x)\mathbf 1_{n_0+x\in\mathcal W_y}$. Writing $z'=z+s$ in $|X_{y,w}|^2$,
+\begin{equation}
+\sum_{w\in\mathcal J}|X_{y,w}|^2=\sum_{|s|<D}T_s,\qquad T_s:=\sum_{x}\sum_{w\in\mathcal J}(\Delta_sF_0)(x)\prod_{i=1}^{k-1}(\Delta_sG_i)(x+h_iw),
+\label{eq:Tk}
+\end{equation}
+since for $x,x+s\in\mathcal W_y-n_0\subseteq\{1,\dots,D+1\}$ and $w\in\mathcal J$ all arguments $x+h_iw$, $x+s+h_iw$ lie in $\{1,\dots,2D+1\}$ (here $h_{k-1}w\le h_{k-1}\tau M\le D$).
+
+\emph{Transfer to $\mathbb Z_N$.} Let $N=N_D\in(4D,8D]$ (Bertrand). Read $F_0,G_i$ as functions on $\mathbb Z_N$ supported on the residues of $\{1,\dots,D+1\}$ and $\{1,\dots,2D+1\}$, and take $\Delta_s$ in $\mathbb Z_N$. For $|s|<D$, the arguments $x+s$ and $x+h_iw+s$ with $x\le D+1$ lie in $\{2-D,\dots,3D\}$; those outside $\{1,\dots,3D\}$ lie in $\{2-D,\dots,0\}$, whose residues are $\ge N-D+2>2D+1$; so $\Delta_sF_0$ is unchanged, and for $w\in\mathcal J$ and $x$ in the support of $\Delta_sF_0$ the values $(\Delta_sG_i)(x+h_iw)$ computed in $\mathbb Z_N$ equal the integer ones. Thus $T_s=\sum_{x,w\in\mathbb Z_N}\mathbf 1_{\mathcal J}(w)(\Delta_sF_0)(x)\prod_{i\ge1}(\Delta_sG_i)(x+h_iw)$, where $\mathcal J$ is read in $\mathbb Z_N$ ($\tau M<N$). With the normalised transform $\widehat g(\xi)=\mathbb E_{x\in\mathbb Z_N}g(x)e(-x\xi/N)$ fixed after \CGeqref{eq:gowers}, Fourier inversion reads $\mathbf 1_{\mathcal J}(w)=\sum_{\xi\in\mathbb Z_N}\widehat{\mathbf 1_{\mathcal J}}(\xi)e(\xi w/N)$. For the interval $\mathcal J$ of length $|\mathcal J|<N$ one has $|\widehat{\mathbf 1_{\mathcal J}}(0)|=|\mathcal J|/N\le1$ and $|\widehat{\mathbf 1_{\mathcal J}}(\xi)|\le\frac1{2N\|\xi/N\|}$ for $\xi\ne0$ (geometric sum, $\|\cdot\|$ the distance to $\mathbb Z$), so
+\[
+\sum_{\xi\in\mathbb Z_N}|\widehat{\mathbf 1_{\mathcal J}}(\xi)|\le1+2\sum_{1\le\xi\le N/2}\frac1{2\xi}\le2+\log N .
+\]
+In $T_s$ the sums over $x,w\in\mathbb Z_N$ are unnormalised, so $T_s=N^2\,\mathbb E_{x,w\in\mathbb Z_N}[\cdots]$; this is the source of the factor $N^2$ below. Write $e(\xi w/N)=e(\xi\bar h_1(x+h_1w)/N)\,e(-\xi\bar h_1x/N)$ with $\bar h_1h_1\equiv1$. The two linear phases are absorbed into $\Delta_sF_0$ and $\Delta_sG_1$ without changing their sup norms. Since $k\ge3$, the indices $1$ and $k-1$ are distinct, so the phase is absorbed into a factor other than the one controlled by the Gowers norm in Lemma~\CGref{lem:vonneumann}, and that factor, $\Delta_sG_{k-1}$, is untouched. Applying Lemma~\CGref{lem:vonneumann} to $\mathbb E_{x,w}$ for each $\xi$ and summing over $\xi$,
+\begin{equation}
+|T_s|\le N^2(2+\log N)\,\|\Delta_sG_{k-1}\|_{U^{k-1}(\mathbb Z_N)} .
+\label{eq:Tk_bound}
+\end{equation}
+\emph{Summing over $s$.} By H\"older and \CGeqref{eq:gowers},
+\begin{equation}
+\sum_{|s|<D}\|\Delta_sG_{k-1}\|_{U^{k-1}}\le N^{1-2^{1-k}}\Bigl(\sum_{s\in\mathbb Z_N}\|\Delta_sG_{k-1}\|^{2^{k-1}}_{U^{k-1}}\Bigr)^{2^{1-k}}=N\,\|G_{k-1}\|^2_{U^k}.
+\label{eq:sum_k}
+\end{equation}
+Combining \CGeqref{eq:cs_w}--\CGeqref{eq:sum_k}, $|S_y|\le(\varpi N^3(2+\log N)/M)^{1/2}\|G_{k-1}\|_{U^k}$. Since $\|G_{k-1}\|_{U^k}=\|b_{k-1}\|_{U^k(y;D)}$, $N\le8D$ and $D\le3h_{k-1}M$, one has $N^3/(MD^2)\le1536h_{k-1}$ and $\log N\ll_{h_{k-1}}\log(3M)$. Insert in \CGeqref{eq:windows} and divide by $Y$.
+\end{proof}
+
+\subsection{A conditional extension of the bias method}
+\label{subsec:conditional}
+
+\begin{hypothesis}[$\mathrm{LU}_k(\varrho,K)$: quantitative local Gowers uniformity of $\lambda$]
+\label{hyp:LU}
+Let $k\ge3$. For every integer $D\ge2$, every finite set of primes $\mathcal P$ and every multiplicative $b:\mathbb N\to\mathbb C$ with $|b|\le1$ and $b(p^j)=\lambda(p^j)$ for all $p\notin\mathcal P$, $j\ge1$,
+\begin{equation}
+\limsup_{Y\to\infty}\frac1Y\int_0^Y\|b\|_{U^k(y;D)}\,dy\le K\Bigl(2+\sum_{p\in\mathcal P}\frac1p\Bigr)^K(\log D)^{-\varrho}.
+\label{eq:LU}
+\end{equation}
+\end{hypothesis}
+
+\begin{theorem}[$k$-point centering under $\mathrm{LU}_k$]
+\label{thm:centering_k}
+Let $k\ge3$ and assume $\mathrm{LU}_k(\varrho,K)$ for some $K$ and some $\varrho>1+3\varepsilon$, with $\varepsilon=10^{-4}$ as in \CGeqref{eq:oai_params}. Then \CGeqref{eq:E_k} holds for the twists $b_i$ of \cite[(12.3), p.~51]{OpenAI2026}, any $1$-bounded $b_0,\dots,b_{k-2}$, and all coefficients $|c_w|\le1$ supported on $P_0$-rough integers of $(M,\tau M]$ with $P_0/\tau\le M\le e^{C_0B}$, uniformly, for all sufficiently large $B$.
+\end{theorem}
+
+\begin{proof}
+The twist $b_{k-1}$ agrees with $\lambda$ at all prime powers of primes outside $\mathcal C$, and $\sum_{p\in\mathcal C}1/p=v_{\mathcal C}\le\log B$. By \cite[(12.13), p.~53]{OpenAI2026}, $\varpi\ll B^{-1+\varepsilon}\log B$; also $\log(3M)\ll B$ and $\log D\ge\log M\ge B^{1-\varepsilon}-1$. Proposition~\CGref{prop:local_control} and \CGeqref{eq:LU} give
+\begin{equation}
+\mathcal E_k\ll\bigl(B^{-1+\varepsilon}(\log B)\,B\bigr)^{1/2}(2+\log B)^K B^{-\varrho(1-\varepsilon)}\ll B^{\varepsilon/2}(\log B)^{K+1/2}B^{-\varrho(1-\varepsilon)},
+\label{eq:Ek_bound}
+\end{equation}
+Writing the right-hand side as a power of $B$,
+\begin{equation}
+B^{\varepsilon/2}(\log B)^{K+1/2}B^{-\varrho(1-\varepsilon)}=B^{-1-\varepsilon}\cdot(\log B)^{K+1/2}\,B^{-\left(\varrho(1-\varepsilon)-1-\frac32\varepsilon\right)} .
+\label{eq:Ek_exponent}
+\end{equation}
+If $\varrho>1+3\varepsilon$, then $\varrho(1-\varepsilon)-1-\frac32\varepsilon>(1+3\varepsilon)(1-\varepsilon)-1-\frac32\varepsilon=\frac12\varepsilon-3\varepsilon^2>0$ for $\varepsilon=10^{-4}$, so the last factor in \CGeqref{eq:Ek_exponent} tends to $0$ and $\mathcal E_k\ll B^{-1-\varepsilon}$, which is the target \CGeqref{eq:E_k}. The boundary term $(2D+1)\varpi/Y$ of \CGeqref{eq:local_control} tends to $0$ because $D$ is fixed before $Y\to\infty$.
+\end{proof}
+
+For the graph step we formulate the $k$-linear analogue of \cite[Proposition~10.1, p.~45]{OpenAI2026}. With the notation of Subsection~\CGref{subsec:bias} put
+\begin{equation}
+g^{(k)}_d(x):=A^{\omega_{\mathcal C}(d)}\,\mathbf 1_{d_{\mathcal C}\mid x}\prod_{\substack{p\mid d\\ p\in\mathcal Z}}\Bigl(\mathbf 1_{p\mid x}-\frac\theta p\Bigr)\prod_{i=0}^{k-1}w_d(x+h_id).
+\label{eq:gk}
+\end{equation}
+
+\begin{hypothesis}[$\mathrm{G}_k(h)$: $k$-linear divisor graph estimate]
+\label{hyp:G}
+Fix $0=h_0<h_1<\dots<h_{k-1}$, $1<\tau<2$, $C_0\ge1$, $T>0$. For every sufficiently large $B$, every admissible family $\mathcal D$, all cutoffs $w_d$ as in \cite[(10.4)]{OpenAI2026}, all $|a_d|\le1$ and all $F_0,\dots,F_{k-1}:\mathbb N\to\mathbb D$,
+\begin{equation}
+\limsup_{X\to\infty}\frac1X\Bigl|\sum_{x\le X}\sum_{d\in\mathcal D}a_d\prod_{i=0}^{k-1}F_i(x+h_id)\,g^{(k)}_d(x)\Bigr|\ll L_0B^{-1-c_*/2},
+\label{eq:Gk}
+\end{equation}
+with implied constant depending only on $h,\tau,C_0,T$ and \CGeqref{eq:oai_params}.
+\end{hypothesis}
+
+For $k=2$, \CGeqref{eq:Gk} is \cite[Proposition~10.1]{OpenAI2026}, proved there through high traces of a self-adjoint graph operator \cite[\S\S13--17, pp.~55--81]{OpenAI2026}; for $k\ge3$ the natural object is a $k$-uniform hypergraph with hyperedges $\{x+h_id\}_i$, and the trace method has no direct analogue.
+
+\begin{lemma}[The $k$-linear expansion of the centering error]
+\label{lem:expansion_k}
+Let $k\ge2$, $l\ge1$, $b\in\mathbb Z$, and let $B$ be so large that every prime of $\mathcal S$ exceeds $l$. Let $\mathcal D$ be an admissible family with interval $(H,\tau H]$, let $|a_d|\le1$, let $\varphi$ be the smooth cutoff of \CGeqref{eq:gk} with $\widehat\varphi(t)=\int\varphi(s)e(-ts)\,ds$, and define
+\[
+R_B(X)=\sum_{\substack{x\le X\\ x\equiv b\ (l)}}\sum_{d\in\mathcal D}a_dA^{\omega_{\mathcal C}(d)}\mathbf 1_{d\mid x}\prod_{i=0}^{k-1}\lambda(x+h_id)w_d(x+h_id),
+\]
+and $C_B(X)$ by the same expression with $A^{\omega_{\mathcal C}(d)}\mathbf 1_{d\mid x}\prod_iw_d(x+h_id)$ replaced by $g^{(k)}_d(x)$. Then
+\begin{equation}
+\limsup_{X\to\infty}\frac{|R_B(X)-C_B(X)|}X\le\|\widehat\varphi\|_1^k\,L_0\,\sup\mathcal E_k ,
+\label{eq:expansion_k}
+\end{equation}
+where the supremum is over all $M$ with $P_0/\tau\le M\le e^{C_0B}$, all coefficients $|c_w|\le1$ supported on $P_0$-rough integers of $(M,\tau M]$, all residue classes $\bar b$ modulo $l$, and all real $t_1,\dots,t_{k-1}$, of the quantity $\mathcal E_k$ of \CGeqref{eq:E_k} with
+\[
+b_0(z)=\mathbf 1_{z\equiv\bar b\ (l)}\,\lambda(z)\,e\Bigl(\frac{t_0}{\sqrt{v_{\mathcal C}}}\sum_{\substack{p\in\mathcal C\\ p\nmid u,\ p\mid z}}1\Bigr),
+\]
+\[
+b_i(n)=\lambda(n)\,e\Bigl(\frac{t_i}{\sqrt{v_{\mathcal C}}}\sum_{\substack{p\in\mathcal C\\ p\nmid u,\ p\mid n}}1\Bigr)\quad(1\le i\le k-1),
+\]
+$t_0\in\mathbb R$ and $u$ a squarefree $\mathcal S$-product. Each $b_i$ with $i\ge1$ is multiplicative, $1$-bounded, and agrees with $\lambda$ at every power of a prime outside $\mathcal C$.
+\end{lemma}
+
+\begin{proof}
+\emph{Expansion into divisibility indicators.} For $d\in\mathcal D$ write $d=d_{\mathcal C}d_{\mathcal Z}$. Since $\mathbf 1_{p\mid x}-\theta/p$ is affine in $\mathbf 1_{p\mid x}$ and $d_{\mathcal Z}$ is squarefree,
+\[
+\prod_{p\mid d_{\mathcal Z}}\Bigl(\mathbf 1_{p\mid x}-\frac\theta p\Bigr)=\sum_{w\mid d_{\mathcal Z}}\frac{(-\theta)^{\omega(w)}}w\,\mathbf 1_{(d_{\mathcal Z}/w)\mid x},
+\]
+so $g^{(k)}_d(x)=\sum_{w\mid d_{\mathcal Z}}A^{\omega_{\mathcal C}(d)}\frac{(-\theta)^{\omega(w)}}w\mathbf 1_{(d/w)\mid x}\prod_iw_d(x+h_id)$. Multiplying by the outer coefficient $a_d$ and by $\prod_i\lambda(x+h_id)$, both of which do not depend on $w$, and summing over $x$ and $d$,
+\[
+C_B(X)=\sum_{\substack{x\le X\\ x\equiv b\ (l)}}\sum_{d\in\mathcal D}a_d\sum_{w\mid d_{\mathcal Z}}A^{\omega_{\mathcal C}(d)}\frac{(-\theta)^{\omega(w)}}w\mathbf 1_{(d/w)\mid x}\prod_{i=0}^{k-1}\lambda(x+h_id)w_d(x+h_id).
+\]
+The term $w=1$ is exactly the summand of $R_B$, with the same coefficient $a_d$. Hence $C_B(X)-R_B(X)$ is the sum of the terms with $w>1$, each still carrying its coefficient $a_d$. Write $u=d/w$; then $u,w$ are coprime squarefree $\mathcal S$-products, $w$ consists of primes of $\mathcal Z$, $\omega_{\mathcal C}(u)=\omega_{\mathcal C}(d)$, and every prime of $\mathcal C$ dividing $d$ divides $u$. Grouping by $u$,
+\[
+C_B(X)-R_B(X)=\sum_{u}A^{\omega_{\mathcal C}(u)}\sum_{\substack{x\le X,\ u\mid x\\ x\equiv b\ (l)}}\ \sum_{w}\frac{c^{(u)}_w}w\prod_{i=0}^{k-1}\lambda(x+h_iuw)\,w_{uw}(x+h_iuw),
+\]
+in which the outer coefficient $a_d=a_{uw}$ has been moved into $c^{(u)}_w:=a_{uw}(-\theta)^{\omega(w)}$ if $w>1$, $uw\in\mathcal D$ and $w\mid(uw)_{\mathcal Z}$, and $c^{(u)}_w:=0$ otherwise. Thus $|c^{(u)}_w|\le1$, the support does not depend on $x$, and $u$ runs over a finite set.
+
+\emph{Range of $w$.} Put $M=H/u$. If $c^{(u)}_w\ne0$ then $uw\in(H,\tau H]$, so $w\in(M,\tau M]$; $w>1$ is a product of primes of $\mathcal Z$, all larger than $P_0$, so $w$ is $P_0$-rough and $w>P_0$, whence $M>P_0/\tau$; and $M\le H\le e^{C_0B}$.
+
+\emph{Substitution $x=uz$.} For $u\mid x$ write $x=uz$ with $1\le z\le Y:=X/u$. Every prime of $u$ exceeds $l$, so $(u,l)=1$ and $x\equiv b\pmod l$ if and only if $z\equiv\bar b:=\bar ub\pmod l$, where $\bar uu\equiv1\pmod l$. Since $\lambda$ is completely multiplicative,
+\[
+\prod_{i=0}^{k-1}\lambda\bigl(u(z+h_iw)\bigr)=\lambda(u)^k\prod_{i=0}^{k-1}\lambda(z+h_iw),
+\]
+with no coprimality condition. The factor $\lambda(u)^k\in\{\pm1\}$ depends only on $u$; it is taken outside the sums over $z$ and $w$, and it disappears in the absolute value at the end of the proof, since $|\lambda(u)^k|=1$. The factor $\lambda(z+h_0w)=\lambda(z)$ is kept in $b_0$. In the cutoff $w_{uw}(n)=\varphi\bigl((k_{uw}(n)-v_{\mathcal C})/\sqrt{v_{\mathcal C}}\bigr)$, $k_{uw}(n)$ counts the primes $p\in\mathcal C$ with $p\mid n$ and $p\nmid uw$. As $w$ has no prime in $\mathcal C$, $p\nmid uw$ means $p\nmid u$, and for such $p$ one has $p\mid u(z+h_iw)$ if and only if $p\mid z+h_iw$. Hence
+\[
+w_{uw}\bigl(u(z+h_iw)\bigr)=\varphi\Bigl(\frac{\kappa_u(z+h_iw)-v_{\mathcal C}}{\sqrt{v_{\mathcal C}}}\Bigr),\qquad \kappa_u(n):=\#\{p\in\mathcal C:\ p\nmid u,\ p\mid n\}.
+\]
+
+\emph{Fourier inversion.} Write $\varphi(s)=\int\widehat\varphi(t)e(ts)\,dt$ for each of the $k$ cutoffs. The product of the $k$ cutoffs becomes
+\[
+\int_{\mathbb R^k}\prod_{i=0}^{k-1}\widehat\varphi(t_i)\,e\Bigl(-\sum_it_i\sqrt{v_{\mathcal C}}\Bigr)\prod_{i=0}^{k-1}e\Bigl(\frac{t_i\,\kappa_u(z+h_iw)}{\sqrt{v_{\mathcal C}}}\Bigr)\,dt ,
+\]
+and $\lambda(n)e(t_i\kappa_u(n)/\sqrt{v_{\mathcal C}})$ is the function $b_i(n)$ of the statement for $i\ge1$, while $\mathbf 1_{z\equiv\bar b}\lambda(z)e(t_0\kappa_u(z)/\sqrt{v_{\mathcal C}})=b_0(z)$. Since $\kappa_u$ is additive over coprime factors and takes the same value at $p$ and $p^j$, each $b_i$ ($i\ge1$) is multiplicative and $1$-bounded and equals $\lambda$ at powers of primes outside $\mathcal C$. Interchanging the finite sums with the integral,
+\[
+\frac{|C_B(X)-R_B(X)|}X\le\sum_u\frac{A^{\omega_{\mathcal C}(u)}\,|\lambda(u)^k|}u\int_{\mathbb R^k}\prod_i|\widehat\varphi(t_i)|\ \Bigl|\frac1Y\sum_{z\le Y}b_0(z)\sum_{M<w\le\tau M}\frac{c^{(u)}_w}w\prod_{i=1}^{k-1}b_i(z+h_iw)\Bigr|\,dt .
+\]
+\emph{Limit.} Fix $B$; the sum over $u$ is finite, and $Y=X/u\to\infty$ with $X$. Taking $\limsup_{X\to\infty}$, bounding the inner absolute value by its supremum over the parameters listed in the statement, and using $\int|\widehat\varphi|=\|\widehat\varphi\|_1$ for each of the $k$ variables and $\sum_uA^{\omega_{\mathcal C}(u)}/u\le L_0$ by \CGeqref{eq:oai_primes} (the sum runs over squarefree $\mathcal S$-products) gives \CGeqref{eq:expansion_k}.
+\end{proof}
+
+\begin{theorem}[Conditional $k$-point Chowla in progressions]
+\label{thm:conditional_k}
+Let $k\ge3$ and $0=h_0<\dots<h_{k-1}$. Assume $\mathrm{LU}_k(\varrho,K)$ with $\varrho>1+3\varepsilon$ and $\mathrm{G}_k(h)$. Then for all fixed $l\ge1$ and $b\in\mathbb Z$,
+\begin{equation}
+\frac1N\sum_{\substack{m\le N\\ m\equiv b\ (\mathrm{mod}\ l)}}\prod_{i=0}^{k-1}\lambda(m+h_i)\longrightarrow0\qquad(N\to\infty).
+\label{eq:conditional_k}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Suppose the contrary: there are $\gamma\in(0,1]$ and $N_j\to\infty$ with $|S(N_j)|\ge\gamma N_j$, where $S(N)$ is the sum in \CGeqref{eq:conditional_k}. We follow \cite[\S11]{OpenAI2026} with three changes.
+
+\emph{(a) Divisors $\equiv1\pmod l$.} For large $B$ every prime of $\mathcal S$ exceeds $l$. Under the divisor law of \cite[proof of Lemma~11.2]{OpenAI2026} each $p\in\mathcal S$ is included independently with probability $A_p/(p+A_p)$, where $A_p=A$ for $p\in\mathcal C$ and $A_p=1$ for $p\in\mathcal Z$ (the normalisation of the weights $A^{\omega_{\mathcal C}(d)}/d$); for a non-principal character $\chi$ modulo $l$,
+\begin{equation}
+\begin{aligned}
+|\mathbb E_{\mathrm{div}}\chi(d)|&=\prod_{p\in\mathcal S}\Bigl|\frac{1+A_p\chi(p)/p}{1+A_p/p}\Bigr|\\
+&\le\exp\Bigl(-\sum_{p\in\mathcal Z}\frac{1-\mathrm{Re}\,\chi(p)}{p}+O\Bigl(\sum_{p>P_0}p^{-2}\Bigr)\Bigr)\to0,
+\end{aligned}
+\label{eq:char_div}
+\end{equation}
+because $\sum_{p\in\mathcal Z}1/p=v_{\mathcal Z}\to\infty$ while $\sum_{p\in\mathcal Z}\chi(p)/p\to0$ by the prime number theorem in progressions modulo $l$. Hence $\mathbb P_{\mathrm{div}}(d\equiv1\ (\mathrm{mod}\ l))\to1/\varphi(l)$. Choosing $C_0$ so that $\mathbb P_{\mathrm{div}}(\omega(d)>J)$ and $\mathbb P_{\mathrm{div}}(\log d>C_0B)$ are each $\le1/(8\varphi(l))$, the argument of \cite[Lemma~11.2]{OpenAI2026} gives an interval $(H,\tau H]$ and a family $\mathcal D$ of divisors $d\equiv1\pmod l$ with $\sum_{d\in\mathcal D}A^{\omega_{\mathcal C}(d)}/d\ge c\,L_0/B$, $c=c(l,\tau,C_0)>0$; the condition $|f_1f_2(d)|\ge\frac12$ is void for $\lambda$.
+
+\emph{(b) Raw lower bound with $k$ cutoffs.} Put $a_d=\lambda(d)^k$, $X_j=HN_j$, and
+\begin{equation}
+R_B(X):=\sum_{\substack{x\le X\\ x\equiv b\ (l)}}\sum_{d\in\mathcal D}a_dA^{\omega_{\mathcal C}(d)}\prod_{i=0}^{k-1}\lambda(x+h_id)w_d(x+h_id)\,\mathbf 1_{d\mid x}.
+\label{eq:RB_k}
+\end{equation}
+For $x=dm$, $d\equiv1\pmod l$ gives $x\equiv b\iff m\equiv b\pmod l$, and complete multiplicativity gives $a_d\prod_i\lambda(d(m+h_i))=\prod_i\lambda(m+h_i)$ with no coprimality condition. As in \cite[proof of Lemma~11.3]{OpenAI2026}, using that the primes of $\mathcal C$ exceed $l$ (so that, by the Chinese remainder theorem, divisibility by them is independent of the class $m\bmod l$), Chebyshev's inequality bounds the proportion of $m$ on which some of the $k$ cutoffs differs from $1$ by $16k/T^2$, and the comparison of $X_j/d\in[N_j/\tau,N_j]$ with $N_j$ costs $\tau-1$. Choosing $\tau-1\le\gamma/64$ and $16k/T^2\le\gamma/64$ gives $\liminf_j|R_B(X_j)|/X_j\ge c_\gamma L_0/B$.
+
+\emph{(c) Centering.} Let $C_B(X)$ be \CGeqref{eq:RB_k} with the factor $A^{\omega_{\mathcal C}(d)}\prod_iw_d(x+h_id)\mathbf 1_{d\mid x}$ replaced by $g^{(k)}_d(x)$. Lemma~\CGref{lem:expansion_k} bounds $\limsup_X|R_B(X)-C_B(X)|/X$ by $\|\widehat\varphi\|_1^kL_0\sup\mathcal E_k$, where the supremum is over the parameters listed there. In that family, $b_0,\dots,b_{k-2}$ are $1$-bounded and $b_{k-1}$ is multiplicative, $1$-bounded and equal to $\lambda$ at powers of primes outside $\mathcal C$, with $\sum_{p\in\mathcal C}1/p=v_{\mathcal C}\le\log B$; the coefficients and $M$ satisfy the hypotheses of Theorem~\CGref{thm:centering_k}. That theorem therefore gives $\sup\mathcal E_k\ll B^{-1-\varepsilon}$, uniformly in these parameters, and hence $\limsup_X|R_B(X)-C_B(X)|/X\ll L_0B^{-1-\varepsilon}$, with an implied constant depending on $k$ and $\varphi$.
+
+\emph{(d) Contradiction.} Apply $\mathrm{G}_k(h)$ with $F_0(x)=\mathbf 1[x\equiv b\ (\mathrm{mod}\ l)]\lambda(x)$ and $F_i=\lambda$ for $i\ge1$. It gives $\limsup_X|C_B(X)|/X\ll L_0B^{-1-c_*/2}$. Hence $c_\gamma L_0/B\le C L_0(B^{-1-c_*/2}+B^{-1-\varepsilon})$, which fails for large $B$. The order of limits is that of \cite[p.~49]{OpenAI2026}: $\gamma,\tau,T,\varphi,C_0$ first, then $B$ fixed while $j\to\infty$, then $B\to\infty$.
+\end{proof}
+
+\begin{corollary}[The $k$-point family under $\mathrm{LU}$ and $\mathrm{G}$]
+\label{cor:family_conditional}
+Let $K_0\ge3$. Assume, for every $3\le k\le K_0$, $\mathrm{LU}_k(\varrho,K)$ with $\varrho>1+3\varepsilon$ and $\mathrm{G}_k(h)$ for every $h$. Then $\mathrm{Ch}_{k'}$ holds for $3\le k'\le K_0$, and \CGeqref{eq:limit_k} holds for every $k\le K_0$, every rational resonance and every $c$. In particular \CGeqref{eq:chowla013} holds.
+\end{corollary}
+
+\begin{proof}
+Let $\alpha_jm+\beta_j$, $0\le j<k'$, be pairwise non-proportional, $Q=\prod_j\alpha_j$ and $N=Qm$. Then $(Q/\alpha_j)(\alpha_jm+\beta_j)=N+s_j$ with $s_j=(Q/\alpha_j)\beta_j$, pairwise distinct by non-proportionality, and $\prod_j\lambda(\alpha_jm+\beta_j)=\pm\prod_j\lambda(N+s_j)$. Ordering the $s_j$ and putting $M=N+\min_js_j$ turns the sum into a sum of $\prod_i\lambda(M+h_i)$ over $M\equiv\min_js_j\pmod Q$ with $0=h_0<\dots<h_{k'-1}$, which is $o(Y)$ by Theorem~\CGref{thm:conditional_k}. Theorem~\CGref{thm:suf_k} gives \CGeqref{eq:limit_k}.
+\end{proof}
+
+\begin{remark}[Status of the two hypotheses]
+\label{rem:status}
+Proposition~\CGref{prop:local_control}, Lemma~\CGref{lem:vonneumann} and Propositions~\CGref{prop:barrier_poly}--\CGref{prop:barrier_pos} are unconditional; Theorem~\CGref{thm:centering_k} is the implication $\mathrm{LU}_k\Rightarrow$\CGeqref{eq:E_k}, and Theorem~\CGref{thm:conditional_k} is conditional on both hypotheses. At fixed $D$, $\mathrm{LU}_k$ is a statement about averaged $2^k$-point correlations of $b$ at shifts $\le3D$ (expand $\|G_y\|_{U^k}^{2^k}$); it is therefore not a statement obviously weaker than $k$-point Chowla, and Theorem~\CGref{thm:conditional_k} should be read as isolating exactly which uniformity the bias method needs. $\mathrm{LU}_k$ concerns windows of fixed length $D$ while $Y\to\infty$, with an ordinary average in $y$ and the rate $(\log D)^{-\varrho}$. Matom\"aki--Radziwi{\l}{\l}--Tao proved local Fourier uniformity, with the supremum over frequencies inside the integral, for windows $H\ge X^\theta$ with any fixed $\theta>0$ \cite[Theorem~1.2, p.~4]{MRT2020}; Tao showed that the logarithmically averaged Chowla conjecture is equivalent to a logarithmically averaged local Gowers uniformity of $\lambda$ \cite{Tao2017}. Windows of fixed length, ordinary averages and a rate, as in \CGeqref{eq:LU}, are not covered by either. Proposition~\CGref{prop:barrier_pos} shows that, for $k=3$, some information excluding local linear phases is necessary for Step~(3); Theorem~\CGref{thm:centering_k} shows that the quantitative, uniform local $U^3$ hypothesis $\mathrm{LU}_3(\varrho,K)$ is sufficient. Whether local $U^2$ uniformity suffices for the specific non-negative coefficients of \CGeqref{eq:cw_general} is open. $\mathrm{G}_k$ for $k\ge3$ is open.
+\end{remark}
+
+\section{Numerical verification}
+\label{sec:numerics}
+
+All values below were regenerated from the supplied signed-int8 Liouville
+prefix using the supplied Python scripts. They are finite checks and are not
+used as asymptotic rate assumptions.
+
+\begin{experiment}[Fixed rational resonances]
+At $X=2\cdot10^6$:
+\begin{equation}
+\begin{array}{c|r|r|r}
+p/q & C_X/X & \lambda(pq)/q & (C_X-X\lambda(pq)/q)/\sqrt X\\ \hline
+3/2 &  0.4999230 &  0.5000000 & -0.109\\
+5/2 &  0.4995180 &  0.5000000 & -0.682\\
+7/2 &  0.4996260 &  0.5000000 & -0.529\\
+2/3 &  0.3326445 &  0.3333333 & -0.974\\
+5/3 &  0.3324220 &  0.3333333 & -1.289\\
+4/3 & -0.3322400 & -0.3333333 &  1.546\\
+5/4 & -0.2492080 & -0.2500000 &  1.120
+\end{array}
+\label{eq:o34}
+\end{equation}
+The $2/3$ computation omits the unique initial term for which
+$\lfloor(2/3)n\rfloor=0$, as required by the definition.
+\end{experiment}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.88\textwidth]{rational_resonances_X2000000.png}
+\caption{Measured rational resonances at $X=2\cdot10^6$ and the conditional
+natural main term.}
+\label{fig:rational}
+\end{figure}
+
+\begin{experiment}[Natural microscopic profile]
+For $p/q=3/2$ and $X=2\cdot10^6$:
+\begin{equation}
+\begin{array}{c|r|r}
+c & C_X/X & \Psi_{3,2}(c)\\ \hline
+-0.5 & -0.000265 & 0\\
+-0.1 & -0.000321 & 0\\
+0.0 & 0.499923 & 0.500000\\
+0.3 & 0.499923 & 0.500000\\
+0.6 & 0.499904 & 0.500000\\
+0.8 & 0.415884 & 0.416667\\
+1.2 & 0.276538 & 0.277778\\
+2.0 & 0.166553 & 0.166667
+\end{array}
+\label{eq:o35}
+\end{equation}
+\end{experiment}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.88\textwidth]{rational_local_profile_3_over_2.png}
+\caption{Natural microscopic profile around $\log(3/2)$.}
+\label{fig:profile}
+\end{figure}
+
+\begin{experiment}[Integer endpoint, left interval, and majority]
+For $m=2$, $X=10^6$, $c=1/2$,
+\begin{equation}
+Xm(e^{c/X}-1)=1.000000250000041666\ldots,\qquad C_X=-999998.
+\label{eq:o36}
+\end{equation}
+For $m=2$, $X=10^7$, both $c=-0.01$ and $c=-0.40$ give exactly
+$C_X=-778$. Two finite checks of Theorem~\CGref{thm:naturalmajority} are
+\begin{equation}
+\begin{array}{c|r|r|r}
+c & \lambda(2)C_X/X & (2|I_{0,X}|-X)/X &
+2\min(1,(2c)^{-1})-1\\ \hline
+0.60 & 0.833072800 & 0.666666600 & 0.666666667\\
+0.90 & 0.555258200 & 0.111111000 & 0.111111111
+\end{array}
+\label{eq:o37}
+\end{equation}
+The middle column is the exact finite-$X$ signed lower bound used in the
+proof; the last column is its asymptotic limit.
+\end{experiment}
+
+\begin{experiment}[Logarithmic mesoscopic majority]
+For $m=2$, $X=10^7$ and $c_X=X^\theta$, let $B_X$ denote the exact
+$H_X$-normalized harmonic mass of the zero-correction block. The finite bound
+in the proof is $2B_X-1$, not its limiting value $1-2\theta$. The regenerated
+values are
+\begin{equation}
+\begin{array}{c|r|r|r|r}
+\theta & c_X & \lambda(2)C_X^{\log} & 2B_X-1 & 1-2\theta\\ \hline
+0.00 & 1.0000    & 0.958453098 & 0.916965031 & 1.000000000\\
+0.20 & 25.1189   & 0.765504459 & 0.530794400 & 0.600000000\\
+0.40 & 630.9573  & 0.573145613 & 0.144624375 & 0.200000000\\
+0.45 & 1412.5375 & 0.523535345 & 0.048073466 & 0.100000000
+\end{array}
+\label{eq:o38}
+\end{equation}
+Thus the finite measured values satisfy the exact finite-$X$ majority bound;
+the final column is displayed only as the asymptotic lower bound.
+\end{experiment}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.88\textwidth]{logarithmic_mesoscopic_m2_X10000000.png}
+\caption{Finite logarithmic mesoscopic check for $m=2$, $X=10^7$. The dashed
+curve is the envelope supplied by the unconditional signed majority bound.}
+\label{fig:logmajority}
+\end{figure}
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+Reduced rational dilations decompose into one proportional residue class and
+finitely many non-proportional affine classes. Under fixed affine Chowla this
+produces the natural microscopic profile
+$\lambda(pq)\min(1/q,1/(pc))$ on the positive side and zero on the negative
+side. Logarithmic weighting behaves differently: the fixed $X^{-1}$ layer
+collapses to a one-sided step, while the elementary logarithmic majority mechanism has threshold
+exponent $1/2$ and is effective for every
+$c_X=X^{\theta+o(1)}$ with $\theta<1/2$. These unconditional majority
+statements distinguish integer from non-integer rational resonances without
+using Chowla, while the conditional and unconditional parts of the argument
+remain separated explicitly throughout.
+
+
+With the ordinary two-point theorem of \cite{OpenAI2026} the natural profile
+is unconditional, with the rate $(\log X)^{-\kappa}$, because its remainder is
+a finite set of fixed binary correlations. At level $k\ge3$ the exact
+decomposition reduces every block to a $k'$-point correlation with
+$k'\equiv k\pmod2$; blocks with $k'\le2$ are unconditional, and the
+left-hand identity shows that blocks with $k'\ge3$ are genuine, for every
+large $X$: level three at $(2,3)$ is the ordinary sum
+$\sum_{M\equiv3\,(6)}\lambda(M)\lambda(M+1)\lambda(M+3)$. In the bias method
+the centering step is controlled by local $U^k$ norms, and cannot be
+controlled by the averaged short exponential sums used for two points; the
+graph step requires a $k$-linear divisor-graph estimate. Both inputs are
+isolated as hypotheses.
+
+\section{Data and reproducibility}
+\label{sec:data}
+
+The numerical calculations use only
+\path{liouville_int8_N21000000.bin}, containing the first $21{,}000{,}000$
+Liouville values as signed int8 with byte $n-1$ equal to $\lambda(n)$. The
+binary is deterministically reproducible from
+$\lambda(n)=(-1)^{\Omega(n)}$ using the supplied generator. The repository
+contains every Python script used for the reported checks, all corresponding
+stdout captures, CSV and text outputs, the three manuscript figures as PNG
+files, and SHA-256 inventories for the submission files and the complete
+repository.
+
+\section{Use of AI tools}
+\label{sec:ai}
+
+AI tools were used during drafting, code development, and consistency
+checking. All mathematical claims retained in the manuscript were reviewed by
+the author. All reported numerical values were regenerated from the supplied
+Liouville binary by the supplied Python scripts and checked against the
+identities stated in the manuscript. The author verified the resulting
+computations and remains responsible for the manuscript and its numerical
+content.
+
+\begin{thebibliography}{99}
+\raggedright
+
+\bibitem{Abercrombie1995}
+A.~G. Abercrombie,
+\textit{Beatty sequences and multiplicative number theory},
+Acta Arith. 70 (1995), 195--207; DOI: \href{https://doi.org/10.4064/aa-70-3-195-207}{10.4064/aa-70-3-195-207}.
+
+\bibitem{AbercrombieBanksShparlinski2009}
+A.~G. Abercrombie, W.~D. Banks, I.~E. Shparlinski,
+\textit{Arithmetic functions on Beatty sequences},
+Acta Arith. 136 (2009), 81--89; DOI: \href{https://doi.org/10.4064/aa136-1-6}{10.4064/aa136-1-6}.
+
+\bibitem{Frantzikinakis2020}
+N. Frantzikinakis,
+\textit{Correlations of multiplicative functions along deterministic and
+independent sequences},
+arXiv:\href{https://arxiv.org/abs/1908.02732}{1908.02732}.
+
+\bibitem{CHRST2024}
+D. Crn\v{c}evi\'c, F. Hern\'andez, K. Rizk, K. Sereesuchart, R. Tao,
+\textit{On the multiplicative independence between $n$ and
+$\lfloor \alpha n\rfloor$},
+Acta Arith. 213 (2024), 193--226;
+DOI: \href{https://doi.org/10.4064/aa230115-18-2}{10.4064/aa230115-18-2};
+arXiv:\href{https://arxiv.org/abs/2211.15830}{2211.15830}.
+
+\bibitem{MRT2015}
+K. Matom\"aki, M. Radziwi{\l}{\l}, T. Tao,
+\textit{An averaged form of Chowla's conjecture},
+Algebra Number Theory 9 (2015), 2167--2196; DOI: \href{https://doi.org/10.2140/ant.2015.9.2167}{10.2140/ant.2015.9.2167}.
+
+\bibitem{Tao2016}
+T. Tao,
+\textit{The logarithmically averaged Chowla and Elliott conjectures for
+two-point correlations},
+Forum Math. Pi 4 (2016), e8; DOI: \href{https://doi.org/10.1017/fmp.2016.6}{10.1017/fmp.2016.6};
+arXiv:\href{https://arxiv.org/abs/1509.05422}{1509.05422}.
+
+\bibitem{TeravainenWalker2025}
+J. Ter\"av\"ainen, A. Walker,
+\textit{On a Bohr set analogue of Chowla's conjecture},
+Math. Z. 310 (2025), Article 75; DOI: \href{https://doi.org/10.1007/s00209-025-03770-2}{10.1007/s00209-025-03770-2};
+arXiv:\href{https://arxiv.org/abs/2303.12574}{2303.12574}.
+
+\bibitem{Gowers2001}
+W.~T. Gowers,
+\textit{A new proof of Szemer\'edi's theorem},
+Geom. Funct. Anal. 11 (2001), 465--588;
+DOI: \href{https://doi.org/10.1007/s00039-001-0332-9}{10.1007/s00039-001-0332-9}.
+
+\bibitem{MRT2020}
+K. Matom\"aki, M. Radziwi{\l}{\l}, T. Tao,
+\textit{Fourier uniformity of bounded multiplicative functions in short intervals on average},
+Invent. Math. 220 (2020), 1--58;
+DOI: \href{https://doi.org/10.1007/s00222-019-00926-w}{10.1007/s00222-019-00926-w};
+arXiv:\href{https://arxiv.org/abs/1812.01224}{1812.01224}.
+
+\bibitem{OpenAI2026}
+OpenAI,
+\textit{Ordinary two-point correlations of multiplicative functions},
+preprint, 24 September 2026, 87 pp.; no DOI.
+
+\bibitem{Tao2017}
+T. Tao,
+\textit{Equivalence of the logarithmically averaged Chowla and Sarnak conjectures},
+in: Number Theory -- Diophantine Problems, Uniform Distribution and Applications,
+Springer, Cham, 2017, pp.~391--421;
+DOI: \href{https://doi.org/10.1007/978-3-319-55357-3_21}{10.1007/978-3-319-55357-3\_21};
+arXiv:\href{https://arxiv.org/abs/1605.04628}{1605.04628}.
+
+\bibitem{TaoTeravainen2018}
+T. Tao, J. Ter\"av\"ainen,
+\textit{Odd order cases of the logarithmically averaged Chowla conjecture},
+J. Th\'eor. Nombres Bordeaux 30 (2018), 997--1015;
+DOI: \href{https://doi.org/10.5802/jtnb.1062}{10.5802/jtnb.1062};
+arXiv:\href{https://arxiv.org/abs/1710.02112}{1710.02112}.
+
+\end{thebibliography}
+
+\end{document}

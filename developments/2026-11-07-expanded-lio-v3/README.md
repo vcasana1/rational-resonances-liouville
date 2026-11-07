@@ -4,8 +4,8 @@ Corrections from the referee review of v2 (chapter 36 of Theorems and Proofs); n
 
 - Conjecture 2.1: the sum runs over n with both forms ≥ 1.
 - Lemma 2.2: the sum is named, A_X ≥ 0, and the proof uses the uniform form |S(Y)| ≤ εY + C_ε (covers A = 0 and A = B).
-- Lemma 3.1: the sum (36.10) starts at k = 1 and requires Qk + A ≥ 1.
-- Remark 3.2: [OpenAI2026] is marked as an unrefereed preprint.
+- Lemma 2.3: the sum (36.10) starts at k = 1 and requires Qk + A ≥ 1.
+- Remark 2.4: [OpenAI2026] is marked as an unrefereed preprint.
 - Theorem 5.1: for c < 0 the inequalities in the block interval are reversed (endpoints interchanged).
 - Theorem 6.2: m ≥ 1 (m ≥ 2 was not needed).
 - Theorem 6.4: m = p in (36.48).

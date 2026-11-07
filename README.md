@@ -45,3 +45,13 @@ local Gowers control, conditional theorem under two stated hypotheses).
 - [TXT](developments/2026-11-07-expanded-lio-v1/expanded_lio_v1.txt)
 - [PDF](developments/2026-11-07-expanded-lio-v1/expanded_lio_v1.pdf)
 - [ZIP](developments/2026-11-07-expanded-lio-v1/expanded_lio_v1.zip)
+
+## Expanded version expanded_lio_v2 (7 November 2026)
+
+[expanded_lio_v2](developments/2026-11-07-expanded-lio-v2/): Sections 7--9 on
+top of the submitted v2 text, plus the channel-form remark (9.11).
+
+- [TEX](developments/2026-11-07-expanded-lio-v2/expanded_lio_v2.tex)
+- [TXT](developments/2026-11-07-expanded-lio-v2/expanded_lio_v2.txt)
+- [PDF](developments/2026-11-07-expanded-lio-v2/expanded_lio_v2.pdf)
+- [ZIP](developments/2026-11-07-expanded-lio-v2/expanded_lio_v2.zip)

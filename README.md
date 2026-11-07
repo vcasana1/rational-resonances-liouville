@@ -33,3 +33,15 @@ estimates. The original submission is preserved.
 - [TXT](developments/2026-11-07-remainder-first/REMAINDER_FIRST_PROOF.txt)
 - [PDF](developments/2026-11-07-remainder-first/REMAINDER_FIRST_PROOF.pdf)
 - [ZIP](developments/2026-11-07-remainder-first/LIOUVILLE_REMAINDER_FIRST_20261107.zip)
+
+## Expanded version expanded_lio_v1 (7 November 2026)
+
+[Sections 7--9](developments/2026-11-07-expanded-lio-v1/): unconditional
+profile with rate via the OpenAI two-point theorem, the k-point resonance
+family, and the centering step of the bias method for k >= 3 (barriers,
+local Gowers control, conditional theorem under two stated hypotheses).
+
+- [TEX](developments/2026-11-07-expanded-lio-v1/expanded_lio_v1.tex)
+- [TXT](developments/2026-11-07-expanded-lio-v1/expanded_lio_v1.txt)
+- [PDF](developments/2026-11-07-expanded-lio-v1/expanded_lio_v1.pdf)
+- [ZIP](developments/2026-11-07-expanded-lio-v1/expanded_lio_v1.zip)

@@ -1,0 +1,17 @@
+{
+  "sources": [
+    {
+      "sha256": "ccb6f339a7505db7ab158dae4b739164ed8dda32be4012b0310198dd32f5c70a",
+      "source_filename": "final.pdf"
+    },
+    {
+      "sha256": "1386856751e5ea66a449ba1c7cbe4064b03ef1cd96f3c48435a49167870922d3",
+      "source_filename": "Theorems_and_Proofs_Complete_Structured_Edition (1).pdf"
+    },
+    {
+      "sha256": "6321134153a9dea739dbe31f4761747588be008cb18ebbe4ff81552fe570ad7d",
+      "source_filename": "tex_resonant_liouville_JNT_FINAL.tex"
+    }
+  ],
+  "scope": "Source filenames and SHA-256 hashes identify the supplied inputs. No source section is reproduced. The original manuscripts remain unchanged."
+}

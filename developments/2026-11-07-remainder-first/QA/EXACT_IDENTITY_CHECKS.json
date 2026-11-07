@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "decimal_precision": 80,
+  "block_decomposition_cases": 1026,
+  "nonproportional_conversion_terms": 54686,
+  "exact_negative_band_cases": 40,
+  "exact_negative_one_cases": 400,
+  "observed_limiting_band_error_by_shift": {
+    "1": 0,
+    "2": 2,
+    "3": 4,
+    "4": 6,
+    "5": 6,
+    "6": 8,
+    "7": 10,
+    "8": 10
+  },
+  "scope": "Finite checks of identities only. These checks do not verify the external graph inputs or prove any asymptotic cancellation."
+}

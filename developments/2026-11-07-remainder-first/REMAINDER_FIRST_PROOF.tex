@@ -1,0 +1,835 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[margin=1.02in]{geometry}
+\usepackage{microtype,enumitem,xurl}
+\usepackage[hidelinks]{hyperref}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\T}{\mathbb R/\mathbb Z}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\E}{\mathbb E}
+\DeclareMathOperator{\Tr}{Tr}
+\emergencystretch=2em
+\setlist{itemsep=3pt,topsep=5pt}
+\title{From the Liouville resonance remainder\\to ordinary two-point cancellation}
+\author{A remainder-first derivation from V. Casa\~na-Giner's decomposition\\
+using intermediate estimates of the supplied OpenAI manuscript}
+\date{7 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The starting point is the nonproportional block remainder in
+\emph{Rational Resonances and Microscopic Natural--Logarithmic Profiles for
+the Liouville Function}. We define those blocks before taking their sum,
+prove their exact conversion to progression intervals, and close the
+remainder by a centered-divisor and graph argument. The final affine
+correlation theorem of the supplied \texttt{final.pdf} is never used as
+an input. Instead, specific intermediate Fourier, deletion, and graph-moment
+estimates from that manuscript are stated as external inputs. Their
+consequences are developed here, including the operator transfer and
+the finite-interval boundary estimates. Finally, we recover ordinary
+two-point Chowla directly from the negative microscopic remainders,
+by an explicit induction on the shift.
+
+This is a proof relative to the intermediate results explicitly cited
+below. It is not a self-contained reproof of their sieve, circuit, or
+closed-walk arguments, and it does not establish an independent proof
+of those results. No source sections are appended or included.
+\end{abstract}
+
+\paragraph{Provenance.}
+\textbf{[LIT]} identifies results imported from the supplied sources.
+\textbf{[ADAPT]} identifies their application to the resonance remainder.
+\textbf{[DED]} identifies derivations written out here. These labels describe
+logical provenance, not a claim of historical priority. In particular,
+the negative-remainder extraction in Section~\ref{sec:chowla} is a
+deduction here; no literature-wide novelty claim is made for it.
+
+\tableofcontents
+
+\section{Start with the nonproportional remainder}
+\label{sec:remainder}
+
+Write $\lambda(n)=(-1)^{\Omega(n)}$ for $n\ge1$, so that
+$\lambda(mn)=\lambda(m)\lambda(n)$ and $\lambda(n)^2=1$.
+For fixed coprime $p,q\in\N$ and fixed $c\in\R$, put
+\begin{equation}\label{eq:CX}
+ C_X(u)=\sum_{\substack{1\le n\le X\\\lfloor e^u n\rfloor\ge1}}
+ \lambda(n)\lambda(\lfloor e^u n\rfloor),\qquad
+ u_X=\log(p/q)+c/X.
+\end{equation}
+We initially take $X\in\N$. Define
+\[
+ b_a=\lfloor pa/q\rfloor,\qquad
+ s_a=pa-qb_a\in\{0,\ldots,q-1\},\qquad
+ \delta_X=\frac pq(e^{c/X}-1).
+\]
+For $0\le a<q$ and $r\in\Z$, let $I_{a,r}(X,c)$ be the set of integers
+$k\ge0$ satisfying all three restrictions
+\begin{equation}\label{eq:I}
+ 1\le qk+a\le X,\qquad pk+b_a+r\ge1,\qquad
+ r\le s_a/q+\delta_X(qk+a)<r+1.
+\end{equation}
+Each set is an integer interval, possibly empty, because all its
+restrictions are linear inequalities in $k$. For $c=0$ the last
+restriction is either always true or always false.
+
+The two affine arguments on this interval are
+\begin{equation}\label{eq:forms}
+ L_{1,a,r}(k)=qk+a,\qquad L_{2,a,r}(k)=pk+b_a+r.
+\end{equation}
+Their determinant is
+\begin{equation}\label{eq:det}
+ \Delta_{a,r}=q(b_a+r)-pa=qr-s_a.
+\end{equation}
+If it is zero, $qr=s_a$ forces $r=s_a=0$; coprimality then forces
+$a=0$. Conversely, $(a,r)=(0,0)$ is proportional. This classification,
+not merely subtraction of a proposed main term, defines the remainder:
+\begin{equation}\label{eq:E}
+ \mathcal E_{p,q,c}(X)=
+ \sum_{\substack{0\le a<q,\ r\in\Z\\(a,r)\ne(0,0)}}
+ \ \sum_{k\in I_{a,r}(X,c)}
+ \lambda(qk+a)\lambda(pk+b_a+r).
+\end{equation}
+Only a fixed finite set of $r$ can occur. Indeed, for $n\le X$,
+\[
+ |\delta_X n|\le\frac pq |c|e^{|c|},
+\]
+using $|e^t-1|\le |t|e^{|t|}$. Thus the number of blocks depends on
+$p,q,c$ but not on $X$.
+
+Let
+\begin{equation}\label{eq:N}
+ N_{p,q,c}(X)=\#\{k\ge1:qk\le X,\ \lfloor pe^{c/X}k\rfloor=pk\}.
+\end{equation}
+\begin{proposition}[Exact structural decomposition: {\rm[LIT/ADAPT]}]
+\label{prop:split}
+With the preceding definitions,
+\begin{equation}\label{eq:split}
+ \boxed{\ C_X(u_X)=\lambda(pq)N_{p,q,c}(X)+\mathcal E_{p,q,c}(X).\ }
+\end{equation}
+Every summand defining $\mathcal E$ belongs to a nonproportional affine
+block. The decomposition specializes to the residue-class decomposition
+and the microscopic block partition of \cite[Sections 3 and 5]{resonance}.
+\end{proposition}
+\begin{proof}
+Write $n=qk+a$. Since $pk+b_a$ is an integer,
+\[
+ \lfloor e^{u_X}(qk+a)\rfloor
+ =pk+b_a+\lfloor s_a/q+\delta_X(qk+a)\rfloor.
+\]
+The intervals in \eqref{eq:I} partition precisely the allowed integers
+in \eqref{eq:CX}. On the unique proportional block, $n=qk$ and the
+second argument is $pk$, so its summand is
+$\lambda(qk)\lambda(pk)=\lambda(pq)$. Its size is exactly \eqref{eq:N}.
+The determinant calculation \eqref{eq:det} covers all other blocks.
+\end{proof}
+
+The task is to prove $\mathcal E_{p,q,c}(X)=o(X)$, rather than to
+assume it through an affine Chowla hypothesis. The next sections develop
+the required estimate from lower-level inputs in \cite{final}.
+
+\section{Identify the exact analytic object in every remainder block}
+\label{sec:conversion}
+
+\begin{lemma}[Conversion to a progression interval: {\rm[DED]}]
+\label{lem:conversion}
+For a nonproportional block set
+\[
+ \ell=pq,\quad d_0=\min(pa,q(b_a+r)),\quad
+ h=|q(b_a+r)-pa|>0.
+\]
+Then, for every $k$ in that block,
+\begin{equation}\label{eq:conversion}
+ \lambda(qk+a)\lambda(pk+b_a+r)
+ =\lambda(pq)\lambda(pqk+d_0)\lambda(pqk+d_0+h).
+\end{equation}
+Consequently its sum is $\lambda(pq)$ times the sum of
+$\lambda(m)\lambda(m+h)$ over the integer interval
+$m\in pqI_{a,r}(X,c)+d_0$ restricted to $m\equiv d_0\pmod{pq}$.
+The two arguments are positive there, even when $d_0<0$.
+\end{lemma}
+\begin{proof}
+The two scaled arguments are $p(qk+a)=pqk+pa$ and
+$q(pk+b_a+r)=pqk+q(b_a+r)$. They differ by $h$ and their smaller
+one is $pqk+d_0$. Complete multiplicativity gives their Liouville
+product as $\lambda(pq)$ times the product in \eqref{eq:forms}.
+Multiplying again by $\lambda(pq)$ proves the identity. Positivity
+follows from \eqref{eq:I}, since the scaled arguments are positive
+multiples of the original arguments. The map $k\mapsto pqk+d_0$
+is increasing and has image one residue class in an interval.
+\end{proof}
+
+We therefore need a bound for
+\begin{equation}\label{eq:F}
+ F_{h,\ell,b}(Y)=\frac1Y\sum_{1\le m\le Y}
+ \1_{m\equiv b\pmod\ell}\lambda(m)\lambda(m+h)
+ \quad(Y\ge1),
+\end{equation}
+with $h,\ell,b$ fixed. No coprimality condition on $b,\ell$ is available
+or needed. We will derive the bound, rather than invoke the progression
+conclusion or Theorem 1.1 of \cite{final}.
+
+\section{Dilate the progression atoms and center the prime factors}
+\label{sec:center}
+
+Fix one triple $h,\ell,b$. For this section and the next two, use $Y$
+as the long cutoff, and abbreviate $F=F_{h,\ell,b}$. Choose absolute
+constants $A\ge1000$ and, later, $W\ge10$. Put
+\begin{equation}\label{eq:parameters}
+ \begin{gathered}
+ L=(\log Y)^{1/A},\quad \delta=1/200,\quad
+ J=\left\lfloor\frac{\delta\log L}{6W}\right\rfloor,\quad
+ \eta=e^{-J},\quad K=e^{4J},\\
+ U_i=L^{1-\delta}e^{6Wi}\ (0\le i\le J),\qquad
+ P_i=\{s\text{ prime}:s\equiv1\pmod5,\ U_{i-1}\le\log s<U_i,
+                         \ s\nmid h\ell\},\\
+ Q=\{s\text{ prime}:s\not\equiv1\pmod5,\ s\le e^L,\ s\nmid h\ell\}.
+ \end{gathered}
+\end{equation}
+The letter $s$ denotes a prime here; the rational parameters $p,q$
+of Section~\ref{sec:remainder} remain fixed and separate. Set
+\[
+ V_i=\sum_{s\in P_i}s^{-1},\quad V_* =\prod_{i=1}^J V_i,\quad
+ \mathcal D=\{s_1\cdots s_J:s_i\in P_i\}.
+\]
+The prime number theorem in the fixed modulus $5$, applied by partial
+summation, gives $V_i=3W/2+o(1)$ uniformly in $i$. In particular,
+\begin{equation}\label{eq:masses}
+ W\le V_i\le2W,\qquad d\le e^{2L}\quad(d\in\mathcal D)
+\end{equation}
+for sufficiently large $Y$, with $h,\ell,W$ fixed. Let $\mathcal Q$
+be the squarefree products of primes in $Q$, including $1$, and define
+\[
+ v(z)=4^{\omega(z)},\qquad
+ S=\sum_{z\in\mathcal Q}\frac{v(z)}z=\prod_{s\in Q}(1+4/s),\qquad
+ w(m)=\sum_{\substack{z\in\mathcal Q\\z\mid m}}v(z)=5^{\omega_Q(m)}.
+\]
+For integers $j\ge0$ with $j\eta\le100L$, put
+\begin{equation}\label{eq:bins}
+ \mathcal S_j=\{(d,z):d\in\mathcal D,\ z\in\mathcal Q,
+  \ \omega(z)\le100\log L,\ j\eta\le\log(dz)<(j+1)\eta\},
+ \qquad T_j=Ye^{j\eta}.
+\end{equation}
+There are $O(L/\eta)$ bins. Their retained harmonic mass is
+\begin{equation}\label{eq:S0}
+ S_0=\sum_j\sum_{(d,z)\in\mathcal S_j}\frac{v(z)}{dz},\qquad
+ \frac12SV_*\le S_0\le SV_*.
+\end{equation}
+For the lower bound, under the law $v(z)/(zS)$, the inclusion probability
+of a prime $s\in Q$ is $4/(s+4)$. Partial summation gives
+$\E\log z\le4L$ and $\E\omega(z)\le4\log L$ for large $Y$.
+Markov's inequality discards at most $4/98+4/100<1/2$ of that law by
+requiring $\log z\le98L$ and $\omega(z)\le100\log L$. Equation
+\eqref{eq:masses} puts all remaining pairs in the bins. The reciprocal
+mass of the $d$ choices is $V_*$, proving \eqref{eq:S0}.
+
+Define the centered correlation
+\begin{equation}\label{eq:Cj}
+ \begin{split}
+ C_j=\frac1{T_j}\sum_{1\le m\le T_j}\sum_{(d,z)\in\mathcal S_j}
+ &v(z)\1_{z\mid m}\1_{m\equiv bzd\pmod\ell}
+ \lambda(m)\lambda(m+hzd)\\[-2pt]
+ &\hspace{5mm}\cdot\prod_{s\mid d}(\1_{s\mid m}-1/s).
+ \end{split}
+\end{equation}
+\begin{lemma}[The error of centering: {\rm[ADAPT]}]
+\label{lem:center}
+\begin{equation}\label{eq:center}
+ \left|\sum_j C_j-S_0F(Y)\right|
+ \ll_{h,\ell}SV_*\left(\eta+Y^{-1}
+                           +2^J\eta^{-1}L^{-1/20}\right).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Expand the product in \eqref{eq:Cj}. The term retaining all divisibility
+indicators has $m=zdv$. Complete multiplicativity and invertibility of
+$zd$ modulo $\ell$ turn this term into
+\[
+ \frac{v(z)}{zd}F(T_j/(zd)).
+\]
+Here $Ye^{-\eta}<T_j/(zd)\le Y$. Boundedness of the summands of $F$
+therefore gives $F(T_j/(zd))=F(Y)+O(\eta+Y^{-1})$.
+Summing yields the main term $S_0F(Y)$ and its first two errors.
+
+For a partial term let $I\ne\varnothing$ be the subset of prime bands
+whose constant terms were chosen. Write $d=d't$, where
+$t=\prod_{i\in I}s_i$. Substituting $m=zd'v$ and extracting the
+factor $(-1)^{|I|}v(z)/(zd')$ leaves
+\begin{equation}\label{eq:roughmean}
+ \frac1U\sum_{1\le v\le U}\sum_t\frac1t
+   \1_{v\equiv bt\pmod\ell}\lambda(v)\lambda(v+ht),
+ \qquad U=T_j/(zd').
+\end{equation}
+For fixed $z,d',j,I$, the possible $t$ occupy a multiplicative interval
+of width $e^{\eta}<2$. Split it into at most two dyadic intervals and
+the $\ell$ residue classes of $t$. On each part the progression
+restriction on $v$ is fixed. Every prime factor of $t$ is at least
+$\exp(L^{0.995})$, and the dyadic scale $D$ satisfies
+$\tfrac12\exp(L^{0.995})\le D\le\exp(2L)$. A nonempty bin also gives
+$U>Ye^{-\eta}t$, hence $U\ge\exp(L^A/2)$.
+
+The Fourier and short-sum inputs are precisely Lemma 4.2 and Theorem
+4.3 of \cite{final}, the latter quoting the short exponential-sum
+theorem of Matom\"aki--Radziwi\l\l--Tao. They give, for
+$B(\theta)=\sum_t\ee(ht\theta)/t$ on each such dyadic part,
+\begin{equation}\label{eq:fourier-input}
+ \|B\|_\infty\ll L^{-0.99},\qquad
+ \int_\T|B|^4\ll D^{-1}L^{-3.96},\qquad
+ \sup_\theta\sum_{v\le U}|F_v(\theta)|\ll UD L^{-0.8},
+\end{equation}
+where
+\[
+ F_v(\theta)=\sum_{a=1}^D\lambda(v+a)
+             \1_{v+a\equiv b_0\pmod\ell}\ee(a\theta).
+\]
+In the third estimate the supremum is outside the average over $v$.
+The progression restriction follows by its additive-character
+expansion, whose coefficients have total absolute value $1$.
+We import \eqref{eq:fourier-input}; we do not assert a proof here of
+its sieve bounds or of the short exponential-sum theorem.
+
+For completeness, its use in \eqref{eq:roughmean} is as follows.
+Average over translations $a=1,\ldots,D$. The boundary error is
+$O(D/U)$. Orthogonality expresses the remaining average as
+\[
+ \frac1{UD}\sum_{v\le U}\int_\T
+ B(\theta)F_v(\theta)G_v(\theta)\,d\theta,
+ \quad G_v(\theta)=\sum_{a=1}^{(2h+1)D}\lambda(v+a)\ee(-a\theta).
+\]
+On $|B|\le L^{-1.05}$, Parseval and Cauchy--Schwarz give a bound
+$O_h(L^{-1.05})$. On the complement, the fourth moment gives measure
+$O(D^{-1}L^{0.24})$. Using $|G_v|\le(2h+1)D$ and the last estimate in
+\eqref{eq:fourier-input}, its contribution is
+$O_h(L^{0.24-0.99-0.8})=O_h(L^{-1.55})$. Thus \eqref{eq:roughmean}
+is $O_{h,\ell}(L^{-21/20})$.
+
+For fixed $I$ and $j$, the total extraction weight is at most
+$S\prod_{i\notin I}V_i\le SV_*$. Summing over fewer than $2^J$ sets
+$I$ and $O(L/\eta)$ bins gives the last error in \eqref{eq:center}.
+\end{proof}
+
+\section{The graph input and the operator argument it supplies}
+\label{sec:graph}
+
+This section records exactly which additional parts of \cite{final}
+are imported. They concern centered edges and finite residue tests;
+none states ordinary two-point Chowla as a hypothesis.
+
+First put
+\[
+ \rho_j(m,d)=\frac1{w(m)}
+   \sum_{\substack{z\in\mathcal Q,\ z\mid m\\
+             j\eta\le\log(zd)<(j+1)\eta}}v(z).
+\]
+This sum includes all padding divisors in its bin, without the bound
+on $\omega(z)$ from \eqref{eq:bins}. Thus $\sum_j\rho_j\le1$.
+
+Here is the deleted set from Definition 5.1 of \cite{final}, expressed
+in the present notation. A step is $D_i=\varepsilon_i h z_i d_i$,
+$\varepsilon_i\in\{-1,1\}$, with $(d_i,z_i)\in\mathcal S_j$.
+A path is positive when $z_id_i$ divides the departure site of every
+step. A forward prohibited word has length between $3$ and
+$\lfloor L^{1/10}\rfloor$, unequal consecutive $d_i$, and consecutive
+occurrences of each tuple prime. In addition, a prime $s\mid d_1$
+absent from $d_m$ divides $\sum_{i=a}^mD_i$ for some $1<a<m$.
+It is minimal if no shorter contiguous subword is forward prohibited
+in either orientation. Let $\mathcal B_j$ be the starting sites of
+positive paths with such minimal words. Put
+\begin{equation}\label{eq:cutsdef}
+ \begin{split}
+ \tau_j(m,d)&=\1_{\omega_Q(m)\le400\log L}
+       \1_{\rho_j(m,d)\le K/L}\1_{m\notin\mathcal B_j},\\
+ \chi_j(m,d)&=\tau_j(m,d)\1_{\omega_P(m)\le6WJ},
+       \qquad P=\bigcup_iP_i.
+ \end{split}
+\end{equation}
+Let $C_j^\circ$ be \eqref{eq:Cj} with the extra factor
+$\chi_j(m,d)\chi_j(m+hzd,d)$.
+
+\paragraph{External deletion input {\rm[LIT]}.}
+Lemma 5.3 of \cite{final} verifies the rare-event hypotheses for
+$\mathcal B_j$; Lemma 4.6, using the finite integer-residue comparison
+of Section 3 there, then states
+\begin{equation}\label{eq:deletion}
+ \frac1{SV_*}\sum_j|C_j-C_j^\circ|
+ \ll_{h,\ell}2^J(K^{-1}+L^{-100}+e^{-2WJ})+e^{-L^{0.9}}.
+\end{equation}
+This is an integer-average estimate. Replacing the integer residues by
+independent ones without the cited finite comparison would not justify it.
+
+\paragraph{External moment and weight inputs {\rm[LIT]}.}
+Set $M=\lceil e^{103L}\rceil$, $k=\lfloor L\rfloor$. On a block
+$\{t+1,\ldots,t+M\}$ define the real symmetric matrix $A_d$ by the
+following increasing edges, and their transposes:
+\begin{equation}\label{eq:matrix}
+ \begin{split}
+ A_d(m,m+hzd)=
+ &\frac{L v(z)\tau_j(m,d)\tau_j(m+hzd,d)}
+          {\sqrt{w(m)w(m+hzd)}}\,
+ \1_{z\mid m}\1_{m\equiv bzd\pmod\ell}\\[-2pt]
+ &\hspace{10mm}\cdot\prod_{s\mid d}(\1_{s\mid m}-1/s),
+ \qquad (d,z)\in\mathcal S_j.
+ \end{split}
+\end{equation}
+All other entries vanish. Let $E$ be the coordinate projection to
+$\omega_P(m)\le6WJ$, and on copies indexed by $d$ define
+$H_{d,d'}=\1_{d\ne d'}A_{d'}$.
+Theorem 5.4 of \cite{final}, proved there using Sections 5--7, supplies
+an absolute $C_2$ such that
+\begin{equation}\label{eq:moment}
+ \operatorname*{avg}_{t\in I}\|H^k\|_{\rm HS}^2
+ \le [K(C_2\sqrt W)^J]^{2k}
+\end{equation}
+whenever the integer interval $I$ of block origins has length at least
+$\exp(L^A/2)$, with $A$ as required by that manuscript's finite-law
+comparison. The threshold may depend on $h,\ell,W$.
+Its Corollary 3.3 also supplies, uniformly in every offset $a$,
+\begin{equation}\label{eq:weight}
+ \operatorname*{avg}_{t\in I}
+  w(t+a)\1_{\omega_Q(t+a)\le400\log L}\le2S.
+\end{equation}
+These two estimates are used for integer block origins; no independence
+of Liouville values or of translated sites is assumed.
+
+\begin{lemma}[Transfer for noncommuting edge operators: {\rm[ADAPT]}]
+\label{lem:transfer}
+Let $B_i$ be finitely many self-adjoint operators and $E$ an orthogonal
+projection. Put $\mathscr H_{i,j}=\1_{i\ne j}B_j$. If $\|B_i\|\le a$
+and $\sum_i\|B_iv\|^2\le b^2\|v\|^2$ for $v=Ev$, then
+\begin{equation}\label{eq:transfer}
+ \left\|E\Big(\sum_iB_i\Big)E\right\|
+ \le3\max(a,b,\rho(\mathscr H)).
+\end{equation}
+\end{lemma}
+\begin{proof}
+This is Lemma 8.1 of \cite{final}; the short resolvent proof is included
+to display the transfer being used. Put $m_0=\max(a,b,\rho(\mathscr H))$.
+If $m_0=0$ all $B_i=0$. Otherwise take $t=(2m_0)^{-1}$. For real
+$|u|\le t$, $I-u\mathscr H$ and all $I+uB_i$ are invertible. The
+self-adjoint operator
+\[
+ Q(u)=I-\sum_i uB_i(I+uB_i)^{-1}
+\]
+is invertible too: a vector $v$ in its kernel would give
+$z_i=(I+uB_i)^{-1}v$ with $u\mathscr Hz=z$, a contradiction.
+Since $Q(0)=I$, it stays positive definite throughout $[-t,t]$.
+The resolvent identity gives
+\[
+ Q(u)=I-u\sum_iB_i+u^2\sum_iB_i^2(I+uB_i)^{-1}.
+\]
+For $v=Ev$ the quadratic form of the last term lies between $0$ and
+$2u^2b^2\|v\|^2$. Positivity at $u=t$ and $u=-t$ therefore yields
+$|\langle v,\sum_iB_iv\rangle|\le(1+2t^2b^2)\|v\|^2/t
+\le3m_0\|v\|^2$. Take the supremum over unit vectors in the range
+of $E$. Distinct $B_i$ were not interchanged at any point.
+\end{proof}
+
+\begin{lemma}[The moment gives a retained operator bound: {\rm[ADAPT]}]
+\label{lem:norm}
+There is an absolute $C_3$ such that, outside a fraction at most
+$e^{-2k}$ of admissible block origins,
+\begin{equation}\label{eq:norm}
+ \left\|E\Big(\sum_d A_d\Big)E\right\|
+ \le K(C_3\sqrt W)^J.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Put $a_d(m)=\prod_{s\mid d}|\1_{s\mid m}-1/s|$.
+It is constant along an $A_d$ edge because that displacement is a
+multiple of $d$. The definition of $\rho_j$ and the cutoff in
+\eqref{eq:cutsdef} give the weighted row bound
+\begin{equation}\label{eq:row}
+ \sum_{m'}|A_d(m,m')|\frac{\sqrt{w(m')}}{\sqrt{w(m)}}\le2K a_d(m).
+\end{equation}
+For the incoming orientation, $z$ divides both endpoints or neither;
+discarding the other endpoint restrictions gives the same bound.
+The weighted Schur inequality applied on each invariant level set of
+$a_d$ now gives
+\[
+ \|A_d\|\le2K,\qquad
+ \|A_dv\|^2\le4K^2\sum_m a_d(m)^2|v_m|^2.
+\]
+At a site retained by $E$, arithmetic-geometric mean and
+\eqref{eq:masses} give
+\[
+ \sum_d a_d(m)^2\le\sum_d a_d(m)
+ \le\prod_i(\omega_{P_i}(m)+V_i)
+ \le(8W)^J.
+\]
+Thus $\sum_d\|A_dv\|^2\le4K^2(8W)^J\|v\|^2$ for $v=Ev$.
+Also $\rho(H)^{2k}\le\|H^k\|_{\rm HS}^2$. Markov's inequality
+applied to \eqref{eq:moment} shows that
+$\rho(H)\le eK(C_2\sqrt W)^J$ outside the stated exceptional
+fraction. Lemma~\ref{lem:transfer} proves \eqref{eq:norm} with
+$C_3=3\max(2,2\sqrt8,eC_2)$, independent of $W,h,\ell$.
+\end{proof}
+
+\section{Test the graph against the actual remainder atoms}
+\label{sec:testing}
+
+\begin{lemma}[Recover the finite prefix: {\rm[ADAPT]}]
+\label{lem:testing}
+For every bin,
+\begin{equation}\label{eq:binbound}
+ |C_j^\circ|\ll_{h,\ell}\frac{SK(C_3\sqrt W)^J}{L}+e^{-L}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Write $N=\lfloor T_j\rfloor$ and average over origins $0\le t<N$.
+The length $N\ge\exp(L^A/2)$ is admissible in
+\eqref{eq:moment}--\eqref{eq:weight}. On a block use the test vector
+\[
+ f_t(m)=\sqrt{w(m)}\lambda(m)
+              \1_{\omega_Q(m)\le400\log L},\qquad g_t=Ef_t.
+\]
+Summing \eqref{eq:weight} over the $M$ offsets gives
+$N^{-1}\sum_t\|g_t\|^2\le2MS$. On the good origins,
+\eqref{eq:norm} bounds the average absolute quadratic form by
+$2MSK(C_3\sqrt W)^J$. On every block the deterministic row bound
+\eqref{eq:row} gives
+\[
+ \left|\left\langle g_t,\sum_d A_dg_t\right\rangle\right|
+ \le2KM\,5^{400\log L}(8W)^J.
+\]
+For fixed $W$ its right side divided by $M$ is polynomial in $L$.
+The bad fraction $e^{-2k}$ therefore contributes $O(e^{-L})$
+after normalization by $2LM$. We have proved
+\begin{equation}\label{eq:qform}
+ \left|\frac1{2LMN}\sum_{t=0}^{N-1}
+ \left\langle g_t,\sum_d A_dg_t\right\rangle\right|
+ \ll\frac{SK(C_3\sqrt W)^J}{L}+e^{-L}.
+\end{equation}
+
+To justify that this controls the original prefix, write
+$c_j(m;d,z)$ for its retained signed edge summand, so that
+$C_j^\circ=T_j^{-1}\sum_{m\le N,d,z}c_j(m;d,z)$.
+Testing an increasing entry of \eqref{eq:matrix} cancels both square-root
+weights and gives $L c_j(m;d,z)$; the transpose gives the same value.
+For $r=hzd$, the number of blocks containing both endpoints is
+\[
+ \mu_N(m,r)=
+ [\min(N-1,m-1)-\max(0,m+r-M)+1]_+.
+\]
+Hence the expression inside the absolute value in \eqref{eq:qform}
+is exactly
+\[
+ \frac1{MN}\sum_{m,d,z}\mu_N(m,hzd)c_j(m;d,z).
+\]
+All displacements are at most $R_L=he^{100L+1}$, and the one-orientation
+row bound gives
+\[
+ \sum_{d,z}|c_j(m;d,z)|\le
+ D_L:=\frac KL5^{400\log L}(8W)^J.
+\]
+For large $Y$, $N\gg M>R_L$. On $M\le m\le N$ one has
+$\mu_N(m,r)=M-r$; the lower boundary and the extra sites $N<m<N+M$
+contain at most $2M$ sites altogether. Thus replacing the averaged
+quadratic form by $C_j^\circ$ has error at most
+\[
+ O\left(D_L\left(\frac{R_L}{M}+\frac MN+\frac1{T_j}\right)\right)
+ =O(e^{-L}).
+\]
+The last equality uses $M=\lceil e^{103L}\rceil$, $T_j\ge Y=e^{L^A}$
+and polynomial growth of $D_L$ for fixed $W$. This includes the real
+cutoff rounding and terminal edges leaving the original prefix.
+Combining with \eqref{eq:qform} proves \eqref{eq:binbound}.
+\end{proof}
+
+\begin{proposition}[The bound needed by every remainder block]
+\label{prop:atoms}
+Under the external intermediate inputs stated above, there is an
+absolute $\kappa>0$ such that, for every fixed $h,\ell\ge1$ and
+$b\in\Z$,
+\begin{equation}\label{eq:atom}
+ |F_{h,\ell,b}(Y)|\ll_{h,\ell}(\log Y)^{-\kappa}\qquad(Y\ge3).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Use \eqref{eq:S0}, Lemma~\ref{lem:center}, the deletion estimate
+\eqref{eq:deletion}, and sum Lemma~\ref{lem:testing} over
+$O(L/\eta)$ bins. Since $V_*\ge W^J$, this gives
+\begin{equation}\label{eq:finish}
+ \begin{split}
+ |F(Y)|\ll{}&\eta+2^J\eta^{-1}L^{-1/20}
+ +2^J(K^{-1}+L^{-100}+e^{-2WJ})\\
+ &+\frac K\eta(C_3/\sqrt W)^J+e^{-L^{0.9}}+Y^{-1}.
+ \end{split}
+\end{equation}
+The accumulated $O((L/\eta)e^{-L})$ term is absorbed by
+$e^{-L^{0.9}}$, as $SV_*\ge1$ and $L/\eta$ is polynomial in $L$.
+
+Choose constants in the following order: first $A$ large enough for
+the imported finite-law and moment statements; then their absolute
+$C_2$ and the resulting $C_3$; finally $W\ge10$ so large that
+$e^5C_3/\sqrt W\le e^{-1}$. All are fixed before $Y$ increases.
+The spectral term in \eqref{eq:finish} is then at most $e^{-J}$.
+The two elementary exponential errors obey
+\[
+ 2^JK^{-1}=e^{-(4-\log2)J}\le e^{-J},\qquad
+ 2^Je^{-2WJ}\le e^{-J}.
+\]
+Since $J\le\delta\log L/(6W)$ and
+$\delta(2+\log2)/(6W)<1/20$, one also has
+$2^Je^JL^{-1/20}\le e^{-J}$; likewise $2^JL^{-100}\le e^{-J}$.
+The last two errors are $O(e^{-J})$. Consequently
+\[
+ |F(Y)|\ll_{h,\ell}e^{-J}
+ \le eL^{-\delta/(6W)}
+ =e(\log Y)^{-\kappa},\qquad \kappa=\frac{\delta}{6WA}>0.
+\]
+This proves the estimate at every sufficiently large real cutoff.
+The bounded remaining range is absorbed by enlarging the constant,
+using $|F(Y)|\le1$. Residue representatives can be reduced modulo
+$\ell$, so the constant need not depend on the representative $b$.
+\end{proof}
+
+\section{Close the original remainder, with all endpoint errors}
+\label{sec:close}
+
+\begin{theorem}[Quantitative closure of the resonance remainder]
+\label{thm:closure}
+Accept the external intermediate estimates of \cite{final} identified
+in Sections~\ref{sec:center}--\ref{sec:graph}. For every fixed coprime
+$p,q\ge1$ and fixed $c\in\R$, the actual block remainder
+\eqref{eq:E} satisfies
+\begin{equation}\label{eq:closure}
+ \boxed{\ \mathcal E_{p,q,c}(X)
+       =O_{p,q,c}\bigl(X(\log X)^{-\kappa}\bigr)=o(X).\ }
+\end{equation}
+The exponent $\kappa>0$ is absolute. No uniformity for $p,q,c$ growing
+with $X$ is asserted.
+\end{theorem}
+\begin{proof}
+There are finitely many nonempty block types, independently of $X$.
+Fix one. Lemma~\ref{lem:conversion} identifies its sum as
+$\lambda(pq)$ times a progression-interval sum with fixed $h,\ell,b$.
+All its arguments $m=pqk+d_0$ are positive and at most
+$pX+|d_0|$, hence at most $K_0X$ for a fixed $K_0$ and $X\ge1$.
+The progression-interval sum is a difference of two prefixes
+\[
+ P_{h,\ell,b}(T)=\sum_{1\le m\le T}
+ \1_{m\equiv b\pmod\ell}\lambda(m)\lambda(m+h),
+ \qquad 0\le T\le K_0X,
+\]
+with the empty prefix defined to be $0$. If $T\le\sqrt X$, boundedness
+gives $|P(T)|\le\sqrt X$. If $T>\sqrt X$, Proposition~\ref{prop:atoms}
+and $\log T\ge\tfrac12\log X$ give
+$|P(T)|\ll_{h,\ell,K_0}X(\log X)^{-\kappa}$.
+As $\sqrt X=O(X(\log X)^{-\kappa})$, the same bound holds uniformly
+for all endpoints in this fixed range. Two prefixes therefore bound
+the block, without any assumption that its endpoints converge or that
+its length is macroscopic. Summing the finite collection of blocks
+proves \eqref{eq:closure}. Negative fixed intercepts cause no additional
+issue, since the mapped arguments were already positive.
+\end{proof}
+
+This closes exactly the nonproportional terms left conditional in the
+natural microscopic-profile proof of \cite[Section 5]{resonance}.
+The proof did not use the source's final affine theorem. It did use
+its intermediate graph-moment and deletion estimates, including their
+finite-law justification. Removing those inputs would remove the
+justification of \eqref{eq:closure}.
+
+\section{Recover two-point Chowla from the negative remainders}
+\label{sec:chowla}
+
+This deduction makes the direction of the argument explicit:
+we start with the resonance remainder, establish its cancellation,
+and then extract ordinary fixed-shift cancellation.
+
+For $j\ge1$ define, for real $T\ge0$,
+\begin{equation}\label{eq:Sj}
+ S_j(T)=\sum_{j<n\le T}\lambda(n)\lambda(n-j).
+\end{equation}
+\begin{lemma}[A negative microscopic remainder resolves terminal shift bands:
+{\rm[DED]}]
+\label{lem:bands}
+For each fixed integer $h\ge1$,
+\begin{equation}\label{eq:bands}
+ \mathcal E_{1,1,-h}(X)
+ =\sum_{j=1}^h
+ \left[S_j\left(\frac{jX}{h}\right)
+       -S_j\left(\frac{(j-1)X}{h}\right)\right]+O_h(1).
+\end{equation}
+For $h=1$ the stronger identity
+$\mathcal E_{1,1,-1}(X)=S_1(X)$ holds exactly for every integer $X\ge1$.
+\end{lemma}
+\begin{proof}
+Put $\alpha_X=1-e^{-h/X}>0$. For integer $n$,
+\[
+ \lfloor e^{-h/X}n\rfloor=n-\lceil\alpha_X n\rceil.
+\]
+There is no proportional block because $c=-h<0$, hence
+$\mathcal E_{1,1,-h}(X)=C_X(-h/X)$. The correction is $-j$ precisely
+when $(j-1)/\alpha_X<n\le j/\alpha_X$. Requiring the second argument
+to be positive is precisely $n>j$, as encoded by $S_j$.
+Since $\alpha_XX\to h$ from below, for sufficiently large $X$ the
+possible $j$ are exactly among $1,\ldots,h$. We have the exact identity
+\begin{equation}\label{eq:exactbands}
+ \mathcal E_{1,1,-h}(X)=\sum_{j=1}^h
+ \left[S_j\left(\min\left(X,\frac j{\alpha_X}\right)\right)
+       -S_j\left(\frac{j-1}{\alpha_X}\right)\right]
+\end{equation}
+for such $X$ (the last lower endpoint is less than $X$).
+Expansion at fixed $h$ gives
+\[
+ \frac1{\alpha_X}=\frac Xh+\frac12+O_h(X^{-1}).
+\]
+Each endpoint therefore differs by $O_h(1)$ from the corresponding
+endpoint in \eqref{eq:bands}. Changing a bounded-summand prefix by
+$O_h(1)$ changes it by $O_h(1)$, proving that formula.
+For $h=1$, $0<\alpha_X n\le X(1-e^{-1/X})<1$, so the correction
+is always $-1$. Only $n=1$ is omitted for a nonpositive second
+argument, giving the exact identity claimed.
+\end{proof}
+
+\begin{theorem}[Ordinary two-point Chowla from remainder closure: {\rm[DED]}]
+\label{thm:chowla}
+If $\mathcal E_{1,1,-h}(X)=o(X)$ for every fixed positive integer $h$,
+then
+\begin{equation}\label{eq:chowla}
+ \sum_{n\le X}\lambda(n)\lambda(n+h)=o(X)
+ \qquad\text{for every fixed }h\ge1.
+\end{equation}
+In particular Theorem~\ref{thm:closure}, with its stated external
+inputs, proves this assertion and gives the quantitative bound
+$O_h(X(\log X)^{-\kappa})$. Conversely, \eqref{eq:chowla} for all
+fixed $h$ implies $\mathcal E_{1,1,-h}(X)=o(X)$ for all such $h$.
+\end{theorem}
+\begin{proof}
+We induct on $h$. The exact identity for $h=1$ in
+Lemma~\ref{lem:bands} proves $S_1(X)=o(X)$.
+Assume $S_j(T)=o(T)$ for $1\le j<h$. Every term with $j<h$ in
+\eqref{eq:bands} is $o(X)$, so the assumed remainder cancellation gives
+\begin{equation}\label{eq:tail}
+ S_h(X)-S_h(aX)=o(X),\qquad a=(h-1)/h\in(0,1).
+\end{equation}
+This relation extends from integer to real $X$ by bounded endpoint
+changes. Write $M_h=\limsup_{X\to\infty}|S_h(X)|/X\le1$.
+The triangle inequality in \eqref{eq:tail} yields $M_h\le aM_h$;
+since $a<1$, $M_h=0$. This proves the induction.
+Equivalently, iterate \eqref{eq:tail} a fixed number of times, let
+$X\to\infty$, and then let that number increase; the residual
+prefix has relative length $a^r\to0$.
+
+For the quantitative assertion, strengthen the induction to
+$S_j(T)=O_j(T(\log T)^{-\kappa})$ for $T\ge3$.
+Theorem~\ref{thm:closure} and \eqref{eq:bands} give
+$S_h(X)-S_h(aX)=O_h(X(\log X)^{-\kappa})$ under that induction
+hypothesis; the base case follows from the exact identity at $h=1$.
+Iterate down to the first $r$ for which $a^rX\le\sqrt X$.
+Every earlier scale has logarithm at least $\tfrac12\log X$, so the
+sum of the errors is at most a constant times
+\[
+ \frac{X}{(\log X)^\kappa}\sum_{i=0}^{r-1}a^i
+ \le \frac{X}{(1-a)(\log X)^\kappa}.
+\]
+The remaining prefix is at most $\sqrt X$, which is absorbed into
+the same bound. This proves the quantitative induction.
+
+Finally
+$\sum_{n\le X}\lambda(n)\lambda(n+h)=S_h(X+h)$ for integer $X$,
+so the proved prefix cancellation gives \eqref{eq:chowla}.
+Conversely, \eqref{eq:chowla} gives $S_j(T)=o(T)$ for each fixed $j$;
+inserting these estimates into the finite sum \eqref{eq:bands} proves
+the converse.
+\end{proof}
+
+The negative microscopic remainders in this theorem contain the whole
+fixed-shift two-point problem. Thus their $o(X)$ estimate is substantive
+analytic work; it does not follow from the structural decomposition
+alone. Here that work is supplied through the stated intermediate
+inputs and the developed argument in Sections~\ref{sec:center}--\ref{sec:close}.
+
+\section{The completed natural microscopic profile}
+\label{sec:profile}
+
+\begin{theorem}[The author's profile after closing its remainder]
+\label{thm:profile}
+With the same external inputs and fixed $p,q,c$ as in
+Theorem~\ref{thm:closure},
+\begin{equation}\label{eq:profile}
+ \frac1X C_X\left(\log\frac pq+\frac cX\right)
+ =\Psi_{p,q}(c)+O_{p,q,c}((\log X)^{-\kappa}),
+\end{equation}
+where the profile is the one in \cite[Theorem 5.1]{resonance}:
+\[
+ \Psi_{p,q}(c)=
+ \begin{cases}
+ 0,&c<0,\\
+ \lambda(pq)/q,&0\le c\le q/p,\\
+ \lambda(pq)/(pc),&c>q/p.
+ \end{cases}
+\]
+\end{theorem}
+\begin{proof}
+It remains only to count the proportional block, already classified
+before introducing the remainder. For $c<0$, $pe^{c/X}k<pk$ for
+every $k\ge1$, so $N_{p,q,c}(X)=0$. For $c=0$ it equals
+$\lfloor X/q\rfloor$. For $c>0$ the exact condition is
+$p(e^{c/X}-1)k<1$, and therefore
+\[
+ N_{p,q,c}(X)=\min\left(\left\lfloor\frac Xq\right\rfloor,
+ \left\lceil\frac1{p(e^{c/X}-1)}\right\rceil-1\right).
+\]
+For fixed positive $c$,
+\[
+ \frac1{p(e^{c/X}-1)}=\frac X{pc}-\frac1{2p}+O_{p,c}(X^{-1}),
+\]
+whence $N_{p,q,c}(X)=X\min(1/q,1/(pc))+O_{p,q,c}(1)$.
+This includes $pc=q$: equality at the limiting boundary does not
+assert an exact finite plateau there. Combine this count with
+\eqref{eq:split} and \eqref{eq:closure}, then divide by $X$.
+The normalized $O(1)$ count error is absorbed into
+$O((\log X)^{-\kappa})$.
+\end{proof}
+
+\paragraph{Logical and attribution boundary.}
+The resonance block partition and the stated profile come from
+\cite{resonance}. The Fourier, finite-law, deletion and moment estimates
+identified above come from \cite{final} and its cited analytic inputs.
+The remainder-to-progression conversion and the negative-band extraction
+have been derived explicitly here. This establishes an application
+of those inputs to the author's remainder; it provides no evidence
+that the source manuscript historically used that decomposition.
+It is also not a claim that the structural decomposition by itself
+proves Chowla.
+
+\paragraph{Route accounting.}
+One route is developed: an \textbf{[ADAPT]} of the source's centered-graph
+estimates to the author's remainder, with \textbf{[DED]} block conversion
+and recovery of fixed-shift Chowla. No independent route outside the
+source's analytic method is established or claimed.
+
+\begin{thebibliography}{9}
+\bibitem{resonance}
+V. Casa\~na-Giner,
+\emph{Rational Resonances and Microscopic Natural--Logarithmic Profiles
+for the Liouville Function}, supplied author manuscript.
+Source version: \path{tex_resonant_liouville_JNT_FINAL.tex}.
+The exact rational partition is Proposition 3.1; the conditional
+microscopic profile and its proof are Theorem 5.1 and Section 5.
+
+\bibitem{final}
+OpenAI, \emph{Ordinary two-point correlations of multiplicative functions},
+supplied manuscript \texttt{final.pdf}, dated 24 September 2026.
+External inputs used here: Corollary 3.3 (PDF page 12);
+Lemma 4.2 and Theorem 4.3 (PDF pages 13--15);
+Lemma 4.6 (PDF page 19); Definition 5.1 and Lemma 5.3
+(PDF pages 21--23); Theorem 5.4 (PDF page 24, with its proof in
+Sections 5--7). The operator transfer rederived here is Lemma 8.1
+of that manuscript. Its Theorem 1.1 and Proposition 2.1 are not
+used as inputs.
+\end{thebibliography}
+\end{document}
